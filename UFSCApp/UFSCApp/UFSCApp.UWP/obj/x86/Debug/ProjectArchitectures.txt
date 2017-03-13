@@ -1,0 +1,1 @@
+C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\UFSCApp.UWP.csproj;x86
