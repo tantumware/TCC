@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-03-13T17:16:11.307</Modified>
+      <Modified>2017-03-14T18:14:04.645</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\bin\x86\Debug\UFSCApp.UWP.exe">
       <PackagePath>entrypoint\UFSCApp.UWP.exe</PackagePath>
-      <Modified>2017-03-13T17:16:02.100</Modified>
+      <Modified>2017-03-14T18:14:04.175</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Pedro\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -661,11 +661,11 @@
     <AppxPackagedFile Include="C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-03-13T17:16:09.167</Modified>
+      <Modified>2017-03-14T18:10:57.788</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\bin\x86\Debug\Core\UFSCApp.UWP.exe">
       <PackagePath>UFSCApp.UWP.exe</PackagePath>
-      <Modified>2017-03-13T17:16:11.294</Modified>
+      <Modified>2017-03-14T18:14:04.641</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

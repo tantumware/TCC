@@ -4,8 +4,12 @@
              xmlns:local="clr-namespace:UFSCApp"
              x:Class="UFSCApp.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <StackLayout>
+        <Button x:Name="button" 
+                Clicked="Clicked"
+                Text="Ver disciplina"  
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand" />
+    </StackLayout>
 
 </ContentPage>

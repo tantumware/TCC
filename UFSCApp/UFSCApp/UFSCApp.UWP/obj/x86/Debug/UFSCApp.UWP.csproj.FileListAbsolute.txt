@@ -217,3 +217,4 @@ C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\obj\x86\Debu
 C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\obj\x86\Debug\Xamarin.Forms.Platform.UAP.pri.xml
 C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\obj\x86\Debug\ProjectArchitectures.txt
+C:\Users\Pedro\Documents\GitHub\TCC\TCC\UFSCApp\UFSCApp\UFSCApp.UWP\obj\x86\Debug\UFSCApp.UWP.C_.Users.Pedro.Documents.GitHub.TCC.TCC.UFSCApp.UFSCApp.UFSCApp.View.DisciplinaView.xaml.g.cs
