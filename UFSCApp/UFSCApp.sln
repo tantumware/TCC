@@ -15,6 +15,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		UFSCApp\UFSCApp\UFSCApp.projitems*{2e68b1d5-1f21-4a5e-ad54-0ed58fc9c494}*SharedItemsImports = 4
 		UFSCApp\UFSCApp\UFSCApp.projitems*{6205e2c1-868e-48a8-9c43-c8ecb7cdbca8}*SharedItemsImports = 4
+		UFSCApp\UFSCApp\UFSCApp.projitems*{ca468d11-41a0-4718-983e-e86a3855afd8}*SharedItemsImports = 4
 		UFSCApp\UFSCApp\UFSCApp.projitems*{ce05a780-e9f5-43d7-aeeb-e3c5b1380eba}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
