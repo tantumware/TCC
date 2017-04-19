@@ -12,11 +12,6 @@ namespace UFSCApp
 		public MainPage()
 		{
 			InitializeComponent();
-		}
-
-        void Clicked(object sender, EventArgs e)
-        {
-            button.Text = "teste";
-        }
+		}       
     }
 }
