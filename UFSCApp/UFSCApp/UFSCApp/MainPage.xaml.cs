@@ -12,6 +12,12 @@ namespace UFSCApp
 		public MainPage()
 		{
 			InitializeComponent();
-		}       
+
+            this.loginButton.Clicked += async(sender, e) =>
+            {
+            System.Diagnostics.Debug.WriteLine("aaaaaaa");
+            await Navigation.PushAsync(new View.DisciplinaView()); 
+            };
+		}
     }
 }

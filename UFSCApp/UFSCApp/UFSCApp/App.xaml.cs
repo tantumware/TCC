@@ -13,7 +13,7 @@ namespace UFSCApp
 		{
 			InitializeComponent();
 
-			MainPage = new UFSCApp.MainPage();
+			MainPage = new NavigationPage(new UFSCApp.MainPage());
 		}
 
 		protected override void OnStart ()
