@@ -5,10 +5,10 @@
 
     <StackLayout Spacing="20" Padding="20"
                          VerticalOptions="Center">
-        <Entry Placeholder="Username"/>
-        <Entry Placeholder="Password" IsPassword="true"/>
-        <Button x:Name="loginButton" Text="Login" TextColor="White"
-                        BackgroundColor="#77D065"/>
+        <Entry Placeholder="Informe seu ID UFSC ou CPF"/>
+        <Entry Placeholder="Senha" IsPassword="true"/>
+        <Button x:Name="loginButton" Text="Entrar" TextColor="Black"
+                        BackgroundColor="White"/>
     </StackLayout>
 
 </ContentPage>
