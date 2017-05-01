@@ -4,7 +4,7 @@
              x:Class="UFSCApp.View.DisciplinaView">
 
     <StackLayout>
-        <TextCell Text="test"/>
+       
     </StackLayout>
     
 </ContentPage>
