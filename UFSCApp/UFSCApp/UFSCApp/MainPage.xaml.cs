@@ -11,13 +11,13 @@ namespace UFSCApp
 	{
 		public MainPage()
 		{
-			InitializeComponent();
-
-            this.loginButton.Clicked += async(sender, e) =>
+            InitializeComponent();
+            Logout.Clicked += async (sender, e) =>
             {
-            System.Diagnostics.Debug.WriteLine("aaaaaaa");
-            await Navigation.PushAsync(new View.DisciplinaView()); 
+                App.IsUserLoggedIn = false;
+                Navigation.InsertPageBefore(new View.LoginView(), this);
+                await Navigation.PopAsync();
             };
-		}
+        }
     }
 }

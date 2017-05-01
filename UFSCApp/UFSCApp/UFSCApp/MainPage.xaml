@@ -4,12 +4,13 @@
              xmlns:local="clr-namespace:UFSCApp"
              x:Class="UFSCApp.MainPage">
 
-    <StackLayout Spacing="20" Padding="20"
-                         VerticalOptions="Center">
-        <Entry Placeholder="Username"/>
-        <Entry Placeholder="Password" IsPassword="true"/>
-        <Button x:Name="loginButton" Text="Login" TextColor="White"
-                        BackgroundColor="#77D065"/>
-    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Logout" Text="Logout" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Main app content goes here" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>

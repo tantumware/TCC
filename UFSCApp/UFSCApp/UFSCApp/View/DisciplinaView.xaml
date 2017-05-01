@@ -4,7 +4,7 @@
              x:Class="UFSCApp.View.DisciplinaView">
 
     <StackLayout>
-       
+        <Label Text="Main app content goes here" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
     </StackLayout>
-    
+
 </ContentPage>
