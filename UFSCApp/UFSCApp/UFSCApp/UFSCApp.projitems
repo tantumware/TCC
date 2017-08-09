@@ -16,6 +16,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\Disciplina.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DisciplinaHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\DisciplinaView.xaml.cs">
       <DependentUpon>DisciplinaView.xaml</DependentUpon>
       <SubType>Code</SubType>

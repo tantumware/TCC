@@ -7,7 +7,11 @@ namespace UFSCApp.Model
     public class Disciplina
     {
 
-        private int id;
+        public string Codigo { get; set; }
+
+        public string Nome { get; set; }
+
+        public List<Disciplina> Requisitos { get; set; }
 
     }
 }
