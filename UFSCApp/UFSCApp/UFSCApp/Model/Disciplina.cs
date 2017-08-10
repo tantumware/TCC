@@ -11,7 +11,7 @@ namespace UFSCApp.Model
 
         public string Nome { get; set; }
 
-        public List<Disciplina> Requisitos { get; set; }
+        public List<string> Requisitos { get; set; }
 
     }
 }
