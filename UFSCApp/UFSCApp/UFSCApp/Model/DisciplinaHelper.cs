@@ -8,73 +8,50 @@ namespace UFSCApp.Model
     {
         private Dictionary<string, List<string>> disciplinas;
 
-        public Dictionary<string, int> pontos { get; set; }
+        public Dictionary<string, int> Pontos { get; set; }
 
-        public DisciplinaHelper(List<Disciplina> disciplinas)
+        public DisciplinaHelper(Dictionary<int, Dictionary<string, List<string>>> curriculo)
         {
-            foreach (Disciplina d in disciplinas) {
-                disciplinas.Add(d.Codigo, d.Requisitos);
-            }
-            this.pontos = new Dictionary<string, int>();
-        }
-
-        public Dictionary<string, int> Compute()
-        {            
-           foreach(KeyValuePair<string, List<string>> entry in disciplinas)
+            Pontos = new Dictionary<string, int>();
+            
+            // para cada materia da fase, começando pela ultima
+            for (int i = curriculo.Count; i >= 1; i--)
             {
-                int count = 0;
-                ComputeRecursive(entry.Key, ref count);
-                pontos.Add(entry.Key, count);
-                // do something with entry.Value or entry.Key
-            }
-
-            return pontos;
-        }
-
-        private void ComputeRecursive(string codigo, ref int i)
-        {   
-                List<string> rq;
-                disciplinas.TryGetValue(codigo, out rq);
-                if (rq.Count > 0){
-                    i++;
-                    foreach (string s : rq) 
-                    {
-                    ComputeRecursive(s, i);
-                    }
-                }
-        }
-
-        public static List<Disciplina> selecionarMelhoresDisciplinas(List<Disciplina> disciplinasCurso, List<Disciplina> disciplinasCursadas, List<Disciplina> disciplinasDesejadas)
-        {
-            Dictionary<string, int> pesos = new Dictionary<string, int>();
-
-            foreach (Disciplina d in disciplinasCurso)
-            {
-                foreach (Disciplina req in d.Requisitos)
+                foreach (KeyValuePair<string, List<string>> entry in curriculo[i])
                 {
-                    if (pesos.ContainsKey(d.Codigo))
+                    // controle da disciplina
+                    if (Pontos.ContainsKey(entry.Key))
                     {
+                        // se ja existe a disciplina, soma 1
+                        Pontos[entry.Key] += 1;
+                    }
+                    else
+                    {
+                        // senao adiciona com valor 1
+                        Pontos.Add(entry.Key, 1);
+                    }
 
-                    } else
+                    // controle dos requisitos
+
+                    foreach (string requisito in entry.Value)
                     {
-                        pesos.Add(d.Codigo, d.Requisitos == null || d.Requisitos.Count == 0 ? 0 : 1);
+                        if (Pontos.ContainsKey(requisito))
+                        {
+                            // se ja existe o requisito, soma 1
+                            Pontos[requisito] += 1;
+                        }
+                        else
+                        {
+                            // senao passa o valor da materia
+                            Pontos.Add(requisito, Pontos[entry.Key]);
+                        }
+
                     }
                 }
+                
             }
 
-
-            return null;
         }
-
-        private static Dictionary<string, int> getPontuacao(List<Disciplina> disciplinas)
-        {
-            Dictionary<string, int> pontuacao = new Dictionary<string, int>();
-
-            return pontuacao;
-        }
-
-        private static boolean hasRequerimentos(Disciplina disciplina) {
-            return disciplina.Requisitos != null && disciplina.Requisitos.Count > 0;
-        }
+        
     }
 }
