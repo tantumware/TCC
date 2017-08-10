@@ -23,17 +23,26 @@ namespace UFSCApp.Model
            foreach(KeyValuePair<string, List<string>> entry in disciplinas)
             {
                 int count = 0;
-                if (entry.Value.Count > 0){
-                    count++;
-                    foreach 
-                }
+                ComputeRecursive(entry.Key, ref count);
+                pontos.Add(entry.Key, count);
                 // do something with entry.Value or entry.Key
             }
 
             return pontos;
         }
 
-        private int getCountRequisitos()
+        private void ComputeRecursive(string codigo, ref int i)
+        {   
+                List<string> rq;
+                disciplinas.TryGetValue(codigo, out rq);
+                if (rq.Count > 0){
+                    i++;
+                    foreach (string s : rq) 
+                    {
+                    ComputeRecursive(s, i);
+                    }
+                }
+        }
 
         public static List<Disciplina> selecionarMelhoresDisciplinas(List<Disciplina> disciplinasCurso, List<Disciplina> disciplinasCursadas, List<Disciplina> disciplinasDesejadas)
         {
