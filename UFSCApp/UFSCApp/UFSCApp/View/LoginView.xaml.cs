@@ -52,7 +52,20 @@ namespace UFSCApp.View
                  {
                      System.Diagnostics.Debug.WriteLine(entry.Key+": "+entry.Value);
                  }
-                   
+
+                 System.Diagnostics.Debug.WriteLine("#######################");
+
+                 List<string> cursadas = new List<string>();
+                 cursadas.Add("B");
+                 cursadas.Add("C");
+
+
+                 foreach (string s in helper.compute(cursadas, null))
+                 {
+                     System.Diagnostics.Debug.WriteLine(s);
+                 }
+
+
                  App.IsUserLoggedIn = true;
                  Navigation.InsertPageBefore(new MainPage(), this);
                  await Navigation.PopAsync();
