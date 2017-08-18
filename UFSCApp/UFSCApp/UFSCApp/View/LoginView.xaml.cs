@@ -65,6 +65,14 @@ namespace UFSCApp.View
                      System.Diagnostics.Debug.WriteLine(s);
                  }
 
+                 Action<string> c = (x) => System.Diagnostics.Debug.WriteLine(x.ToLower());
+
+                 c.Invoke("Java2s.com"); // or simply c("Java2s.com");
+
+                 Action<int> i = (x) => System.Diagnostics.Debug.WriteLine(x >= 10);
+
+                 i.Invoke(5); // or simply c("Java2s.com");
+                 i.Invoke(11);
 
                  App.IsUserLoggedIn = true;
                  Navigation.InsertPageBefore(new MainPage(), this);
