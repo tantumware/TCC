@@ -18,56 +18,119 @@ namespace UFSCApp.View
 
             this.loginButton.Clicked += async (sender, e) =>
              {
-                 Dictionary<int, Dictionary<string, List<string>>> d = new Dictionary<int, Dictionary<string, List<string>>>();
+                 var c = new Model.Curso();
+                 var l = new List<Model.Disciplina>();
 
-                 Dictionary<string, List<string>> f1 = new Dictionary<string, List<string>>();
-                 f1.Add("A", new List<string>());
-                 f1.Add("B", new List<string>());
-                 f1.Add("C", new List<string>());
+                 var d = new Model.Disciplina();
+                 d.Codigo = "CAD5240";
+                 d.CargaHoraria = 36;
+                 d.Fase = 1;
+                 d.Horarios = new List<string>() { "5.2020" };
+                 d.Nome = "Aspectos Comportamentais do Empreendedor";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { };
+                 l.Add(d);
 
-                 d.Add(1, f1);
+                 d = new Model.Disciplina();
+                 d.Codigo = "EGC5015";
+                 d.CargaHoraria = 72;
+                 d.Fase = 1;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Teoria Geral de Sistemas";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { };
+                 l.Add(d);
 
-                 Dictionary<string, List<string>> f2 = new Dictionary<string, List<string>>();
-                 f2.Add("D", new List<string> { "A" });
-                 f2.Add("E", new List<string>());
-                 f2.Add("F", new List<string>());
+                 d = new Model.Disciplina();
+                 d.Codigo = "INE5601";
+                 d.CargaHoraria = 72;
+                 d.Fase = 1;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Fundamentos Matemáticos da Informática ";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { };
+                 l.Add(d);
 
-                 d.Add(2, f2);
+                 d = new Model.Disciplina();
+                 d.Codigo = "INE5602";
+                 d.CargaHoraria = 72;
+                 d.Fase = 1;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Introdução à Informática ";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { };
+                 l.Add(d);
 
-                 Dictionary<string, List<string>> f3 = new Dictionary<string, List<string>>();
-                 f3.Add("G", new List<string>() { "F" });
-                 f3.Add("H", new List<string>() { "D" });
+                 d = new Model.Disciplina();
+                 d.Codigo = "INE5603";
+                 d.CargaHoraria = 108;
+                 d.Fase = 1;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Introdução à Programação Orientada a Objetos";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { };
+                 l.Add(d);
 
-                 d.Add(3, f3);
+                 // ####################################
 
-                 Dictionary<string, List<string>> f4 = new Dictionary<string, List<string>>();
-                 f4.Add("I", new List<string>());
-                 f4.Add("J", new List<string>() { "H", "B" });
+                 d = new Model.Disciplina();
+                 d.Codigo = "CAD5146";
+                 d.CargaHoraria = 36;
+                 d.Fase = 2;
+                 d.Horarios = new List<string>() { "5.2020" };
+                 d.Nome = "Marketing Pessoal em Informática";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { "CAD5240" };
+                 l.Add(d);
 
-                 d.Add(4, f4);
+                 d = new Model.Disciplina();
+                 d.Codigo = "CAD7001";
+                 d.CargaHoraria = 72;
+                 d.Fase = 2;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Introdução a Administração";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { };
+                 l.Add(d);
 
-                 Model.DisciplinaHelper helper = new Model.DisciplinaHelper(d);
+                 d = new Model.Disciplina();
+                 d.Codigo = "INE5605";
+                 d.CargaHoraria = 108;
+                 d.Fase = 2;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Desenvolvimento de Sistemas Orientados a Objetos I";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { "INE5603" };
+                 l.Add(d);
 
-                 foreach (KeyValuePair<string, int> entry in helper.Pontos)
-                 {
-                     System.Diagnostics.Debug.WriteLine(entry.Key+": "+entry.Value);
-                 }
+                 d = new Model.Disciplina();
+                 d.Codigo = "INE5606";
+                 d.CargaHoraria = 72;
+                 d.Fase = 2;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Probabilidade e Estatística";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { "INE5601" };
+                 l.Add(d);
 
-                 System.Diagnostics.Debug.WriteLine("#######################");
+                 d = new Model.Disciplina();
+                 d.Codigo = "INE5607";
+                 d.CargaHoraria = 108;
+                 d.Fase = 2;
+                 d.Horarios = new List<string>() { "5.2020", "6.1830" };
+                 d.Nome = "Organização e Arquitetura de Computadores";
+                 d.Obrigatoria = true;
+                 d.Requisitos = new List<string>() { "INE5602", "INE5603" };
+                 l.Add(d);
 
-                 List<string> cursadas = new List<string>();
-                 cursadas.Add("B");
-                 cursadas.Add("C");
+                 c.Nome = "Sistemas de Informação";
+                 c.Disciplinas = l;
 
+                 new Model.Decisor(c);
 
-                 foreach (string s in helper.compute(cursadas, null))
-                 {
-                     System.Diagnostics.Debug.WriteLine(s);
-                 }
+                // Action<string> c = (x) => System.Diagnostics.Debug.WriteLine(x.ToLower());
 
-                 Action<string> c = (x) => System.Diagnostics.Debug.WriteLine(x.ToLower());
-
-                 c.Invoke("Java2s.com"); // or simply c("Java2s.com");
+               //  c.Invoke("Java2s.com"); // or simply c("Java2s.com");
 
                  Action<int> i = (x) => System.Diagnostics.Debug.WriteLine(x >= 10);
 

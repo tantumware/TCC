@@ -13,5 +13,13 @@ namespace UFSCApp.Model
 
         public List<string> Requisitos { get; set; }
 
+        public int Fase { get; set; }
+
+        public List<string> Horarios { get; set; }
+
+        public int CargaHoraria { get; set; }
+
+        public bool Obrigatoria { get; set; }
+
     }
 }

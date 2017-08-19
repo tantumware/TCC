@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Curso.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Decisor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Disciplina.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DisciplinaHelper.cs" />

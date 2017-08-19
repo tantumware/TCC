@@ -11,7 +11,24 @@ namespace UFSCApp.Model
 
         public Dictionary<string, int> Pontos { get; set; }
 
-        public DisciplinaHelper(Dictionary<int, Dictionary<string, List<string>>> curriculo)
+        private Dictionary<int, Dictionary<string, List<string>>> curriculo;
+
+        public DisciplinaHelper(List<Disciplina> disciplinas)
+        {
+            // recebe a lista de disciplinas do curso e monta do map
+            curriculo = new Dictionary<int, Dictionary<string, List<string>>>();
+
+            disciplinas.ForEach(d =>
+            {
+                if (!curriculo.ContainsKey(d.Fase))
+                {
+                    curriculo.Add(d.Fase, new Dictionary<string, List<string>>());
+                }
+                curriculo[d.Fase].Add(d.Codigo, d.Requisitos);
+            });
+        }
+
+        public void RankDisciplinas()
         {
             Pontos = new Dictionary<string, int>();
             Disciplinas = new Dictionary<string, List<string>>();
@@ -53,7 +70,7 @@ namespace UFSCApp.Model
                     }
                 }
 
-            }            
+            }
         }
 
         public List<string> compute(List<string> disciplinasCursadas, List<string> disciplinasDesejadas)
