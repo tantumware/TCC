@@ -1,0 +1,79 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: exemplo.aux
+The style file: ufscThesis/ufsc-alf.bst
+I couldn't open database file abnt-options.bib
+---line 44 of file exemplo.aux
+ : \bibdata{abnt-options
+ :                      ,bibliografia}
+I'm skipping whatever remains of this command
+I found no database files---while reading file exemplo.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--I didn't find a database entry for "abnt-and-type=e"
+Warning--I didn't find a database entry for "abnt-year-extra-label=yes"
+Warning--I didn't find a database entry for "abnt-emphasize=bf"
+Warning--I didn't find a database entry for "abnt-url-package=html"
+Warning--I didn't find a database entry for "abnt14724"
+Warning--I didn't find a database entry for "alves_2001"
+Warning--I didn't find a database entry for "BU_formatoA5"
+Warning--I didn't find a database entry for "abnt10520"
+Warning--I didn't find a database entry for "abnt6024"
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
++---------------------------------------------------------+
+| Estilo bibliográfico abnt-alf.bst versão 1.45.2.1           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://abntex.codigolivre.org.br                        |
++---------------------------------------------------------+
+You've used 0 entries,
+            6480 wiz_defined-function locations,
+            1163 strings with 9243 characters,
+and the built_in function-call counts, 693 in all, are:
+= -- 186
+> -- 0
+< -- 0
++ -- 47
+- -- 0
+* -- 28
+:= -- 158
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 142
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 8
+num.names$ -- 0
+pop$ -- 26
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 40
+stack$ -- 1
+substring$ -- 45
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 2
+width$ -- 0
+write$ -- 8
+(There were 2 error messages)
