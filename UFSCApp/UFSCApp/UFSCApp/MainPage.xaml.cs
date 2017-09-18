@@ -7,10 +7,16 @@ using Xamarin.Forms;
 
 namespace UFSCApp
 {
-	public partial class MainPage : ContentPage
-	{
-		public MainPage()
-		{
+    public partial class MainPage : ContentPage
+    {
+        public MainPage()
+        {
+            var curso = new Model.Curso();
+            curso.CargaHorariaMaxima = 22;
+            curso.CargaHorariaMinima = 11;
+
+
+
             InitializeComponent();
             Logout.Clicked += async (sender, e) =>
             {

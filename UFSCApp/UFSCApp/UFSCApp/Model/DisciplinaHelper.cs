@@ -73,7 +73,7 @@ namespace UFSCApp.Model
             }
         }
 
-        public List<string> compute(List<string> disciplinasCursadas, List<string> disciplinasDesejadas)
+        public List<string> Compute(List<string> disciplinasCursadas, List<string> disciplinasDesejadas)
         {
             List<string> result = new List<string>();
 
