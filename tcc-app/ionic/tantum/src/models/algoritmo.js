@@ -18,8 +18,44 @@ function createCurriculo(listaDisciplinas) {
                 value: d.requisitos
             }});
     });
-    var x = Stream(curriculo).filter(x => true).toArray();
-    console.log(x);
+
+    var aux = Stream(curriculo).map(x => x.key).toArray();
+    var count = Math.max.apply(null, aux);
+
+   
+    for (i = count; i >= 1; i--) {
+        Stream(curriculo)
+            .filter(d => d.key == i)
+            .forEach(d => {
+                disciplinas.push({
+                    key: d.value.key, 
+                    value: d.value.value
+                })
+
+                if (Stream(pontos).filter(p => p.key == d.value.key).findAny().isPresent()) {
+                    Stream(pontos).filter(p => p.key == d.value.key).findAny().get().rank++;
+                } else {
+                    pontos.push({
+                        key: d.value.key,
+                        rank: 1
+                    })
+                }
+
+                Stream(d.value.value).forEach(r => {
+                    if (Stream(pontos).filter(p => p.key == r).findAny().isPresent()) {
+                        Stream(pontos).filter(p => p.key == r).findAny().get().rank++;
+                    } else {
+                        pontos.push({
+                            key: r,
+                            rank: Stream(pontos).filter(p => p.key == d.value.key).findAny().get().rank
+                        })
+                    }
+                })
+
+            }) 
+    }
+    console.log(Stream(pontos).sort((p1, p2) => p1.rank > p2.rank).toArray());
+
 }
 
 function rank(listaDisciplinas) {
