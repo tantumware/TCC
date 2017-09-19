@@ -1,3 +1,5 @@
+var Stream = require('streamjs');
+
 //private Dictionary<string, List<string>> Disciplinas;
 var disciplinas = [];
 
@@ -16,6 +18,8 @@ function createCurriculo(listaDisciplinas) {
                 value: d.requisitos
             }});
     });
+    var x = Stream(curriculo).filter(x => true).toArray();
+    console.log(x);
 }
 
 function rank(listaDisciplinas) {
