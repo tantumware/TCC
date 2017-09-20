@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
-import checkCargaHorariaMaxima from '../models/constraint';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -52,7 +51,6 @@ export class TutorialPage {
   }
 
   startApp() {
-    alert("test");
     this.navCtrl.setRoot('WelcomePage', {}, {
       animate: true,
       direction: 'forward'
