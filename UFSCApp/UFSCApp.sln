@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UFSCApp", "UFSCApp\UFSCApp\UFSCApp.shproj", "{CE05A780-E9F5-43D7-AEEB-E3C5B1380EBA}"
 EndProject
@@ -214,5 +214,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6FED76C-0434-4BD9-8BEE-2B813D2209C7}
 	EndGlobalSection
 EndGlobal

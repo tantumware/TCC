@@ -9,7 +9,7 @@ namespace UFSCApp.Model
     {
         public Action<int> CargaHorariaMinima { private get; set; }
 
-        public Action<int> CargaHorariaMaxima{ private get; set; }
+        public Action<int> CargaHorariaMaxima { private get; set; }
 
         public Action<List<string>> HorariosPermitidos { private get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,9 +129,9 @@ namespace UFSCApp.View
 
                  new Model.Decisor(c);
 
-                // Action<string> c = (x) => System.Diagnostics.Debug.WriteLine(x.ToLower());
+                 // Action<string> c = (x) => System.Diagnostics.Debug.WriteLine(x.ToLower());
 
-               //  c.Invoke("Java2s.com"); // or simply c("Java2s.com");
+                 //  c.Invoke("Java2s.com"); // or simply c("Java2s.com");
 
                  Action<int> i = (x) => System.Diagnostics.Debug.WriteLine(x >= 10);
 
