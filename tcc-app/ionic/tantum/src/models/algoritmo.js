@@ -1,13 +1,23 @@
-var Stream = require('streamjs');
+import checkCargaHorariaMaxima from 'constraint';
+
+const Stream = require('streamjs');
 
 //private Dictionary<string, List<string>> Disciplinas;
-// var disciplinas = [];
+const disciplinas = [];
 
 //public Dictionary<string, int> Pontos {get; set; }
-var pontos = [];
+let pontos = [];
 
 //private Dictionary<int, Dictionary<string, List<string>>> curriculo;
-var curriculo = [];
+let curriculo = [];
+
+const constraints = ["CARGA_HORARIA_MAXIMA", "CARGA_HORARIA_MINIMA"];
+
+function checkConstraint(constraint, value){
+    checkCargaHorariaMaxima();
+}
+
+checkConstraint(null, null);
 
 function createCurriculo(listaDisciplinas) {
     listaDisciplinas.forEach(d => {
@@ -55,12 +65,11 @@ function createCurriculo(listaDisciplinas) {
             }) 
     }
     console.log(Stream(pontos).sort((p1, p2) => p1.rank > p2.rank).toArray());
-
 }
 
 function rank(listaDisciplinas) {
     createCurriculo(listaDisciplinas);
-    
+    this.disciplinas = listaDisciplinas;    
 }
 
 
@@ -69,59 +78,69 @@ var x = [
         nome: "A", 
         codigo: "A1", 
         fase: 1,
+        aulas: 2,
         requisitos: [] 
     },
     { 
         nome: "B", 
         codigo: "A2", 
         fase: 1,
+        aulas: 2,
         requisitos: []
     },
     { 
         nome: "C", 
         codigo: "A3", 
         fase: 1,
+        aulas: 2,
         requisitos: []
     },
     { 
         nome: "D", 
         codigo: "A4", 
         fase: 2,
+        aulas: 2,
         requisitos: ["A"] 
     },
     { 
         nome: "E", 
         codigo: "A4", 
         fase: 2,
+        aulas: 2,
         requisitos: []
     },    
     { 
         nome: "F", 
         codigo: "A4", 
         fase: 2,
+        aulas: 2,
         requisitos: []
     }, { 
         nome: "G", 
         codigo: "A4", 
         fase: 3,
+        aulas: 2,
         requisitos: ["F"]
     },    
     { 
         nome: "H", 
         codigo: "A4", 
         fase: 3,
+        aulas: 2,
         requisitos: ["D"]
     },
     { 
         nome: "I", 
         codigo: "A4", 
         fase: 4,
+        aulas: 2,
         requisitos: []
     },    
     { 
         nome: "J", 
         codigo: "A4", 
         fase: 4,
+        aulas: 2,
         requisitos: ["H", "B"]
     },    
 ];
