@@ -27,7 +27,7 @@ public class ContraintCheckerTest {
 
 		List<Disciplina> list = new ArrayList<>();
 		Disciplina d = new Disciplina();
-		d.setCargaHoraria(4);
+		d.setAulas(4);
 		d.setFase(1);
 		d.setHorarios(Arrays.asList("21830", "41830"));
 		d.setNome("Disciplina Teste");

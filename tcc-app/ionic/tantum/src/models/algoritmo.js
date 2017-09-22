@@ -79,6 +79,8 @@ var x = [
         codigo: "A1", 
         fase: 1,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: [] 
     },
     { 
@@ -86,6 +88,8 @@ var x = [
         codigo: "A2", 
         fase: 1,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: []
     },
     { 
@@ -93,6 +97,8 @@ var x = [
         codigo: "A3", 
         fase: 1,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: []
     },
     { 
@@ -100,6 +106,8 @@ var x = [
         codigo: "A4", 
         fase: 2,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: ["A"] 
     },
     { 
@@ -107,6 +115,8 @@ var x = [
         codigo: "A4", 
         fase: 2,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: []
     },    
     { 
@@ -114,12 +124,16 @@ var x = [
         codigo: "A4", 
         fase: 2,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: []
     }, { 
         nome: "G", 
         codigo: "A4", 
         fase: 3,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: ["F"]
     },    
     { 
@@ -127,6 +141,8 @@ var x = [
         codigo: "A4", 
         fase: 3,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: ["D"]
     },
     { 
@@ -134,6 +150,8 @@ var x = [
         codigo: "A4", 
         fase: 4,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: []
     },    
     { 
@@ -141,6 +159,8 @@ var x = [
         codigo: "A4", 
         fase: 4,
         aulas: 2,
+        obrigatoria: true,
+        horarios: [],
         requisitos: ["H", "B"]
     },    
 ];

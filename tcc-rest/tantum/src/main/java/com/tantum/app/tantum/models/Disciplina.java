@@ -9,18 +9,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Disciplina {	
+public class Disciplina {
 
-    private String Nome;
-    
-    private List<String> Requisitos;
+	private String nome;
 
-    private int Fase;
+	private String codigo;
 
-    private List<String> Horarios;
+	private int fase;
 
-    private int CargaHoraria;
+	private int aulas;
 
-    private boolean Obrigatoria;
+	private boolean obrigatoria;
+
+	private List<String> horarios;
+
+	private List<String> requisitos;
 
 }

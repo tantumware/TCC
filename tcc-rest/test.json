@@ -1,0 +1,103 @@
+{
+    "disciplinas": [
+        {
+            "nome": "A",
+            "codigo": "A1",
+            "fase": 1,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": []
+        },
+        {
+            "nome": "B",
+            "codigo": "A2",
+            "fase": 1,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": []
+        },
+        {
+            "nome": "C",
+            "codigo": "A3",
+            "fase": 1,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": []
+        },
+        {
+            "nome": "D",
+            "codigo": "A4",
+            "fase": 2,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": [
+                "A"
+            ]
+        },
+        {
+            "nome": "E",
+            "codigo": "A4",
+            "fase": 2,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": []
+        },
+        {
+            "nome": "F",
+            "codigo": "A4",
+            "fase": 2,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": []
+        },
+        {
+            "nome": "G",
+            "codigo": "A4",
+            "fase": 3,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": [
+                "F"
+            ]
+        },
+        {
+            "nome": "H",
+            "codigo": "A4",
+            "fase": 3,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": [
+                "D"
+            ]
+        },
+        {
+            "nome": "I",
+            "codigo": "A4",
+            "fase": 4,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": []
+        },
+        {
+            "nome": "J",
+            "codigo": "A4",
+            "fase": 4,
+            "aulas": 2,
+            "obrigatoria": true,
+            "horarios": [],
+            "requisitos": [
+                "H",
+                "B"
+            ]
+        }
+    ]
+}
