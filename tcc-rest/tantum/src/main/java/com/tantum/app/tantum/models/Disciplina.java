@@ -2,13 +2,17 @@ package com.tantum.app.tantum.models;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(of = { "nome", "codigo" })
 public class Disciplina {
 
 	private String nome;

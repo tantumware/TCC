@@ -11,8 +11,8 @@ import lombok.Getter;
 public enum Constraint {
 
 	// @formatter:off
-	CARGA_HORARIA_MAXIMA((set, sem) -> checkCargaHorariaMaxima(set, sem)), CARGA_HORARIA_MINIMA(
-			(set, sem) -> checkCargaHorariaMinima(set, sem));
+	CARGA_HORARIA_MAXIMA((set, sem) -> checkCargaHorariaMaxima(set, sem)),
+	CARGA_HORARIA_MINIMA((set, sem) -> checkCargaHorariaMinima(set, sem));
 	// formatter:on
 
 	private Rule rule;

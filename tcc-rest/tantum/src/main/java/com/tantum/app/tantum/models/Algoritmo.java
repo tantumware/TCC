@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -73,7 +74,7 @@ public class Algoritmo {
 		this.semestres = new HashMap<>();
 		List<Disciplina> disciplinas = new LinkedList<>();
 
-		for (String s : this.rank.keySet()) {
+		for (String s : getDisciplinasByRank()) {
 			disciplinas.add(this.disciplinas.get(s));
 			try {
 				Semestre semestre = new Semestre(disciplinas);
@@ -84,6 +85,16 @@ public class Algoritmo {
 				continue;
 			}
 		}
-
 	}
+
+	private List<String> getDisciplinasByRank() {
+		//@formatter:off
+		return this.rank.entrySet()
+				.stream()
+				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
+				.map(Entry::getKey)
+				.collect(Collectors.toList());
+		//@formatter:on
+	}
+
 }
