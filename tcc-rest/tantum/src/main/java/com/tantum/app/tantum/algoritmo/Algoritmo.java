@@ -1,4 +1,4 @@
-package com.tantum.app.tantum.models;
+package com.tantum.app.tantum.algoritmo;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,6 +9,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
+
+import com.tantum.app.tantum.models.Curso;
+import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Semestre;
+import com.tantum.app.tantum.models.Settings;
 
 @Getter
 public class Algoritmo {

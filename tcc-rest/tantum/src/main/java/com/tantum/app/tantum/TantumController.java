@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.tantum.app.tantum.models.Algoritmo;
+import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;

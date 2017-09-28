@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.google.gson.Gson;
-import com.tantum.app.tantum.models.Algoritmo;
+import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;

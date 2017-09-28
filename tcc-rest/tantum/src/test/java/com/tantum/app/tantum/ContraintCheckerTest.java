@@ -1,7 +1,7 @@
 package com.tantum.app.tantum;
 
-import static com.tantum.app.tantum.models.ConstraintChecker.checkCargaHorariaMaxima;
-import static com.tantum.app.tantum.models.ConstraintChecker.checkCargaHorariaMinima;
+import static com.tantum.app.tantum.algoritmo.ConstraintChecker.checkCargaHorariaMaxima;
+import static com.tantum.app.tantum.algoritmo.ConstraintChecker.checkCargaHorariaMinima;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.tantum.app.tantum.models.ConstraintException;
+import com.tantum.app.tantum.algoritmo.ConstraintException;
 import com.tantum.app.tantum.models.Disciplina;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;

@@ -1,10 +1,13 @@
-package com.tantum.app.tantum.models;
+package com.tantum.app.tantum.algoritmo;
 
-import static com.tantum.app.tantum.models.ConstraintChecker.checkCargaHorariaMaxima;
-import static com.tantum.app.tantum.models.ConstraintChecker.checkCargaHorariaMinima;
+import static com.tantum.app.tantum.algoritmo.ConstraintChecker.checkCargaHorariaMaxima;
+import static com.tantum.app.tantum.algoritmo.ConstraintChecker.checkCargaHorariaMinima;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import com.tantum.app.tantum.models.Semestre;
+import com.tantum.app.tantum.models.Settings;
 
 @AllArgsConstructor
 @Getter

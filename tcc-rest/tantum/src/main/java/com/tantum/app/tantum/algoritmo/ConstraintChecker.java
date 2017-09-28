@@ -1,6 +1,10 @@
-package com.tantum.app.tantum.models;
+package com.tantum.app.tantum.algoritmo;
 
 import lombok.NoArgsConstructor;
+
+import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Semestre;
+import com.tantum.app.tantum.models.Settings;
 
 @NoArgsConstructor
 public class ConstraintChecker {

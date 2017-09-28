@@ -1,4 +1,4 @@
-package com.tantum.app.tantum.models;
+package com.tantum.app.tantum.algoritmo;
 
 public class ConstraintException extends Exception {
 
