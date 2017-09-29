@@ -20,12 +20,6 @@ public enum Constraint {
 
 	private Rule rule;
 
-	public static void applyAll(Settings settings, Semestre semestre) throws ConstraintException {
-		for (Constraint c : Constraint.values()) {
-			c.getRule().apply(settings, semestre);
-		}
-	}
-
 	@FunctionalInterface
 	public interface Rule {
 

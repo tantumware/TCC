@@ -46,6 +46,8 @@ public class TantumApplication {
 		a.rankDisciplinas();
 		a.checkConstraints(new Settings(5, 3, true, false, false, Arrays.asList(), Arrays.asList()));
 		System.out.println(a.getRank());
+		a.getSemestres().entrySet().stream()
+				.forEach(e -> System.out.println(e.getKey() + " " + e.getValue().getDisciplinas()));
 		System.out.println(a.getSemestres().get(1).getDisciplinas());
 	}
 }

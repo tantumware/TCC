@@ -18,8 +18,6 @@ import com.tantum.app.tantum.models.Settings;
 @RestController
 public class TantumController {
 
-	private static final String senha = "trviXxFhBa";
-
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 

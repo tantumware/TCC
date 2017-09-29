@@ -1,19 +1,21 @@
 package com.tantum.app.tantum.algoritmo;
 
+import static com.tantum.app.tantum.algoritmo.ConstraintChecker.applyAll;
+
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Disciplina;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
+
+import lombok.Getter;
 
 @Getter
 public class Algoritmo {
@@ -77,29 +79,33 @@ public class Algoritmo {
 
 	public void checkConstraints(Settings settings) {
 		this.semestres = new HashMap<>();
-		List<Disciplina> disciplinas = new LinkedList<>();
+		this.semestres.put(1, new Semestre(new ArrayList<>()));
 
-		for (String s : getDisciplinasByRank()) {
-			disciplinas.add(this.disciplinas.get(s));
+		for (String d : getDisciplinasByRank()) {
+			int qtSemestres = this.semestres.size();
+			Disciplina disciplina = this.disciplinas.get(d);
+			Semestre s = this.semestres.get(qtSemestres);
+			s.getDisciplinas().add(disciplina);
+
 			try {
-				Semestre semestre = new Semestre(disciplinas);
-				Constraint.applyAll(settings, semestre);
-				this.semestres.put(this.semestres.size() + 1, semestre);
-				break;
+				applyAll(settings, s);
 			} catch (ConstraintException e) {
-				continue;
+				if (Constraint.CARGA_HORARIA_MAXIMA.equals(e.getConstraint())) {
+					s.getDisciplinas().remove(disciplina);
+					List<Disciplina> l = new ArrayList<>();
+					l.add(disciplina);
+					qtSemestres++;
+					this.semestres.put(qtSemestres, new Semestre(l));
+				}
 			}
 		}
 	}
 
 	private List<String> getDisciplinasByRank() {
-		//@formatter:off
-		return this.rank.entrySet()
-				.stream()
-				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
-				.map(Entry::getKey)
-				.collect(Collectors.toList());
-		//@formatter:on
+		// @formatter:off
+		return this.rank.entrySet().stream().sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
+				.map(Entry::getKey).collect(Collectors.toList());
+		// @formatter:on
 	}
 
 }
