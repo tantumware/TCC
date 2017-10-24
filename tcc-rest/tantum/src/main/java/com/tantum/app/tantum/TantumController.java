@@ -6,10 +6,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.chocosolver.solver.Model;
-import org.chocosolver.solver.Solver;
-import org.chocosolver.solver.search.strategy.Search;
-import org.chocosolver.solver.variables.IntVar;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,34 +55,9 @@ public class TantumController {
 
 		Algoritmo a = new Algoritmo(new Curso(s.getDisciplinas()));
 		a.rankDisciplinas();
-		a.checkConstraints(new Settings(5, 3, true, false, false, Arrays.asList(), Arrays.asList()));
-		System.out.println(a.getRank());
-		a.getSemestres().entrySet().stream()
-				.forEach(e -> System.out.println(e.getKey() + " " + e.getValue().getDisciplinas()));
-		System.out.println(a.getSemestres().get(1).getDisciplinas());
+		a.applyConstraints(new Settings(5, 3, true, false, false, Arrays.asList(), Arrays.asList()));
 
 		StringBuilder sb = new StringBuilder();
-
-		// 1. Create a Model
-		Model model = new Model("my first problem");
-		// 2. Create variables
-		IntVar x = model.intVar("teste", 5);
-		IntVar y = model.intVar("teste2", 6);
-
-		IntVar max = model.intVar(6);
-
-		model.max(max, x, y).post();
-
-		Solver solver = model.getSolver();
-		// 5. Define the search strategy
-		solver.setSearch(Search.inputOrderLBSearch(x, y));
-		// 6. Launch the resolution process
-		solver.solve();
-
-		// sb.append(solver.getBestSolutionValue());
-		// 7. Print search statistics
-		solver.printStatistics();
-
 		return sb.toString();
 	}
 

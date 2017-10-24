@@ -41,12 +41,12 @@ public class ContraintCheckerTest {
 
 	@Test
 	public void testCargaHorariaMaxima() throws ConstraintException {
-		checkCargaHorariaMaxima(this.settings, this.semestre);
+		checkCargaHorariaMaxima(this.settings, this.semestre, null);
 	}
 
 	@Test(expected = ConstraintException.class)
 	public void testCargaHorariaMinima() throws ConstraintException {
-		checkCargaHorariaMinima(this.settings, this.semestre);
+		checkCargaHorariaMinima(this.settings, this.semestre, null);
 	}
 
 }

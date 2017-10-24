@@ -10,6 +10,9 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.chocosolver.solver.Model;
+import org.chocosolver.solver.Solver;
+
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Disciplina;
 import com.tantum.app.tantum.models.Semestre;
@@ -90,7 +93,7 @@ public class Algoritmo {
 			try {
 				applyAll(settings, s);
 			} catch (ConstraintException e) {
-				if (Constraint.CARGA_HORARIA_MAXIMA.equals(e.getConstraint())) {
+				if (ConstraintEnum.CARGA_HORARIA_MAXIMA.equals(e.getConstraint())) {
 					s.getDisciplinas().remove(disciplina);
 					List<Disciplina> l = new ArrayList<>();
 					l.add(disciplina);
@@ -108,4 +111,28 @@ public class Algoritmo {
 		// @formatter:on
 	}
 
+	public void applyConstraints(Settings settings) {
+		List<String> rankDisciplinas = getDisciplinasByRank();
+
+		List<Disciplina> semestre = new ArrayList<>();
+
+		for (String d : rankDisciplinas) {
+			Disciplina disciplina = this.disciplinas.get(d);
+			semestre.add(disciplina);
+
+			Model model = new Model();
+			Solver solver = model.getSolver();
+
+			int cargaHoraria = semestre.stream().mapToInt(Disciplina::getAulas).sum();
+			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
+			model.addClauseTrue(model.boolVar("carga horaria minima", cargaHoraria >= settings.getCargaHorariaMinima()));
+
+			boolean solve = solver.solve();
+			System.out.println(solve+": "+ cargaHoraria);
+
+			if (solve) {
+				System.out.println(semestre);
+			}
+		}
+	}
 }
