@@ -126,6 +126,7 @@ public class Algoritmo {
 			int cargaHoraria = semestre.stream().mapToInt(Disciplina::getAulas).sum();
 			model.addClauseTrue(
 					model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
+			model.addClauseTrue(model.boolVar("periodo", true));
 
 			boolean solve = solver.solve();
 			System.out.println(solve + ": " + cargaHoraria);
