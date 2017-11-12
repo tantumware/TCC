@@ -55,7 +55,7 @@ public class TantumController {
 
 		Algoritmo a = new Algoritmo(new Curso(s.getDisciplinas()));
 		a.rankDisciplinas();
-		a.applyConstraints(new Settings(5, 3, true, false, false, Arrays.asList(), Arrays.asList()));
+		a.applyConstraints(new Settings(5, true, false, false, Arrays.asList(), Arrays.asList()));
 
 		StringBuilder sb = new StringBuilder();
 		return sb.toString();
@@ -68,7 +68,7 @@ public class TantumController {
 
 		Algoritmo a = new Algoritmo(new Curso(s.getDisciplinas()));
 		a.rankDisciplinas();
-		a.checkConstraints(new Settings(22, 11, true, false, false, Arrays.asList(), Arrays.asList()));
+		a.checkConstraints(new Settings(22, true, false, false, Arrays.asList(), Arrays.asList()));
 
 		System.out.println(a.getSemestres());
 

@@ -1,7 +1,6 @@
 package com.tantum.app.tantum;
 
 import static com.tantum.app.tantum.algoritmo.ConstraintChecker.checkCargaHorariaMaxima;
-import static com.tantum.app.tantum.algoritmo.ConstraintChecker.checkCargaHorariaMinima;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +22,7 @@ public class ContraintCheckerTest {
 
 	@Before
 	public void before() {
-		this.settings = new Settings(22, 11, true, false, false, Arrays.asList(), Arrays.asList());
+		this.settings = new Settings(22, true, false, false, Arrays.asList(), Arrays.asList());
 
 		List<Disciplina> list = new ArrayList<>();
 		Disciplina d = new Disciplina();
@@ -42,11 +41,6 @@ public class ContraintCheckerTest {
 	@Test
 	public void testCargaHorariaMaxima() throws ConstraintException {
 		checkCargaHorariaMaxima(this.settings, this.semestre, null);
-	}
-
-	@Test(expected = ConstraintException.class)
-	public void testCargaHorariaMinima() throws ConstraintException {
-		checkCargaHorariaMinima(this.settings, this.semestre, null);
 	}
 
 }

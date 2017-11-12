@@ -15,8 +15,6 @@ public class Settings {
 
 	private int cargaHorariaMaxima;
 
-	private int cargaHorariaMinima;
-
 	private boolean noturno;
 
 	private boolean diurno;
