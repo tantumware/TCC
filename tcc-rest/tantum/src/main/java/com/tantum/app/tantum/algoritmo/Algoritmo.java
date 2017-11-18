@@ -42,7 +42,7 @@ public class Algoritmo {
 			if (!this.curriculo.containsKey(d.getFase())) {
 				this.curriculo.put(d.getFase(), new HashMap<>());
 			}
-			this.curriculo.get(d.getFase()).put(d.getNome(), d.getRequisitos());// TODO mudar para codigo
+			this.curriculo.get(d.getFase()).put(d.getCodigo(), d.getRequisitos());
 		});
 	}
 
@@ -118,6 +118,12 @@ public class Algoritmo {
 		}
 	}
 
+	/**
+	 * Verifica se a constraint da carga horária está ok
+	 *
+	 * @param solver
+	 * @return boolean
+	 */
 	private boolean checkCargaHorariaOk(Solver solver) {
 		return Stream.of(solver.getModel().getVars())
 				.filter(v -> v.getName().equals("carga horaria maxima"))
