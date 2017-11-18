@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.tantum.app.tantum.algoritmo.ConstraintException;
 import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Periodo;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
@@ -22,7 +23,7 @@ public class ContraintCheckerTest {
 
 	@Before
 	public void before() {
-		this.settings = new Settings(22, true, false, false, Arrays.asList(), Arrays.asList());
+		this.settings = new Settings(22, Arrays.asList(Periodo.NOTURNO), Arrays.asList(), Arrays.asList());
 
 		List<Disciplina> list = new ArrayList<>();
 		Disciplina d = new Disciplina();

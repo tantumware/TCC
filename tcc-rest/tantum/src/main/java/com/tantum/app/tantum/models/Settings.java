@@ -15,11 +15,7 @@ public class Settings {
 
 	private int cargaHorariaMaxima;
 
-	private boolean noturno;
-
-	private boolean diurno;
-
-	private boolean matutino;
+	private List<Periodo> periodos;
 
 	private List<Disciplina> selecionadas;
 

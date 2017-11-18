@@ -15,6 +15,7 @@ import org.chocosolver.solver.Solver;
 
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Periodo;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
@@ -126,14 +127,60 @@ public class Algoritmo {
 			int cargaHoraria = semestre.stream().mapToInt(Disciplina::getAulas).sum();
 			model.addClauseTrue(
 					model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
-			model.addClauseTrue(model.boolVar("periodo", true));
+			model.addClauseTrue(model.boolVar("horarios", validateHorario(semestre, disciplina)));
+			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(settings, disciplina)));
+			model.addClauseTrue(
+					model.boolVar("disciplias excluidas", validateDisciplinaExcluida(settings, disciplina)));
 
 			boolean solve = solver.solve();
 			System.out.println(solve + ": " + cargaHoraria);
+			solver.getModel().getVars();
 
 			if (solve) {
 				System.out.println(semestre);
 			}
 		}
+	}
+
+	/**
+	 * Valida as disciplinas que não devem ser pegas
+	 *
+	 * @param settings
+	 * @param disciplina
+	 * @return boolean
+	 */
+	private boolean validateDisciplinaExcluida(Settings settings, Disciplina disciplina) {
+		return settings.getExcluidas().contains(disciplina);
+	}
+
+	/**
+	 * Valida o períoo escolhido pelo aluno (matutino, vespertivo e noturno)
+	 *
+	 * @param settings
+	 * @param disciplina
+	 * @return boolean
+	 */
+	private boolean validadePeriodo(Settings settings, Disciplina disciplina) {
+		return disciplina.getHorarios()
+				.stream()
+				.map(Periodo::getPeriodoByHorario)
+				.allMatch(settings.getPeriodos()::contains);
+	}
+
+	/**
+	 * Valida o horário das disciplinas para nao haver choque de horários
+	 *
+	 * @param semestre
+	 * @param currentDisciplina
+	 * @return boolean
+	 */
+	private boolean validateHorario(List<Disciplina> semestre, Disciplina currentDisciplina) {
+		return semestre.stream().filter(d -> {
+			return d.getHorarios()
+					.stream()
+					.filter(currentDisciplina.getHorarios()::contains)
+					.findAny()
+					.isPresent();
+		}).findAny().isPresent();
 	}
 }
