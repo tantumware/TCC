@@ -6,7 +6,7 @@
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["3.0820-2"],
             "requisitos": []
         },
         {
@@ -15,7 +15,7 @@
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["3.1620-2"],
             "requisitos": []
         },
         {
@@ -24,7 +24,7 @@
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["2.1330-4"],
             "requisitos": []
         },
         {
@@ -33,7 +33,7 @@
             "fase": 2,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["2.0820-2"],
             "requisitos": [
                 "A"
             ]
@@ -44,7 +44,7 @@
             "fase": 2,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["2.1010-2"],
             "requisitos": []
         },
         {
@@ -53,7 +53,7 @@
             "fase": 2,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["5.1330-3"],
             "requisitos": []
         },
         {
@@ -62,7 +62,7 @@
             "fase": 3,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["5.1330-3"],
             "requisitos": [
                 "F"
             ]
@@ -73,7 +73,7 @@
             "fase": 3,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["2.1010-2"],
             "requisitos": [
                 "D"
             ]
@@ -84,7 +84,7 @@
             "fase": 4,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["4.1620-2"],
             "requisitos": []
         },
         {
@@ -93,7 +93,7 @@
             "fase": 4,
             "aulas": 2,
             "obrigatoria": true,
-            "horarios": [],
+            "horarios": ["2.1010-2"],
             "requisitos": [
                 "H",
                 "B"

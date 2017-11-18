@@ -1,10 +1,7 @@
 package com.tantum.app.tantum;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,66 +11,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.tantum.app.tantum.algoritmo.Algoritmo;
+import com.tantum.app.tantum.helper.Helper;
 import com.tantum.app.tantum.models.Curso;
-import com.tantum.app.tantum.models.Periodo;
+import com.tantum.app.tantum.models.Disciplina;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
 @RestController
 public class TantumController {
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
-
-	@RequestMapping(path = "/greeting", method = RequestMethod.GET)
-	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return new Greeting(this.counter.incrementAndGet(), String.format(template, name));
-	}
-
 	@RequestMapping(path = "/test", method = RequestMethod.GET)
 	public String test() {
-		StringBuilder result = new StringBuilder("");
-
-		// Get file from resources folder
-		ClassLoader classLoader = TantumApplication.class.getClassLoader();
-		File file = new File(classLoader.getResource("test.json").getFile());
-
-		try (Scanner scanner = new Scanner(file)) {
-
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				result.append(line).append("\n");
-			}
-
-			scanner.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		Gson g = new Gson();
-		Semestre s = g.fromJson(result.toString(), Semestre.class);
-
-		Algoritmo a = new Algoritmo(new Curso(s.getDisciplinas()));
-		a.rankDisciplinas();
-		a.applyConstraints(new Settings(5, Arrays.asList(Periodo.NOTURNO), Arrays.asList(), Arrays.asList()));
-
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
+		return "This is a test!";
 	}
 
-	@RequestMapping(path = "/semestre", method = RequestMethod.POST)
-	public Semestre semestre(@RequestBody String teste) { // TODO vir o settings
+	@RequestMapping(path = "/semestre", method = RequestMethod.POST, consumes = "application/json")
+	public Semestre semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token") String token) {
+		String c = Helper.readJson("test.json");
+
 		Gson g = new Gson();
-		Semestre s = g.fromJson(teste, Semestre.class);
+		Curso curso = g.fromJson(c, Curso.class);
 
-		Algoritmo a = new Algoritmo(new Curso(s.getDisciplinas()));
+		Algoritmo a = new Algoritmo(curso);
 		a.rankDisciplinas();
-		a.checkConstraints(new Settings(22, Arrays.asList(Periodo.NOTURNO), Arrays.asList(), Arrays.asList()));
+		a.applyConstraints(settings);
 
-		System.out.println(a.getSemestres());
+		Map<Integer, List<Disciplina>> result = a.getSemestres();
 
-		return s;
+		return new Semestre(result.get(1));
 	}
 
 }

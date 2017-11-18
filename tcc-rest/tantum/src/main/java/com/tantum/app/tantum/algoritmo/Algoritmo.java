@@ -1,22 +1,22 @@
 package com.tantum.app.tantum.algoritmo;
 
-import static com.tantum.app.tantum.algoritmo.ConstraintChecker.applyAll;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solver;
+import org.chocosolver.solver.variables.impl.FixedBoolVarImpl;
 
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Disciplina;
 import com.tantum.app.tantum.models.Periodo;
-import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
 import lombok.Getter;
@@ -30,7 +30,7 @@ public class Algoritmo {
 
 	private Map<Integer, Map<String, List<String>>> curriculo;
 
-	private Map<Integer, Semestre> semestres;
+	private Map<Integer, List<Disciplina>> semestres = new HashMap<>();
 
 	public Algoritmo(Curso curso) {
 		this.disciplinas = curso.getDisciplinas().stream()
@@ -81,65 +81,49 @@ public class Algoritmo {
 		}
 	}
 
-	public void checkConstraints(Settings settings) {
-		this.semestres = new HashMap<>();
-		this.semestres.put(1, new Semestre(new ArrayList<>()));
-
-		for (String d : getDisciplinasByRank()) {
-			int qtSemestres = this.semestres.size();
-			Disciplina disciplina = this.disciplinas.get(d);
-			Semestre s = this.semestres.get(qtSemestres);
-			s.getDisciplinas().add(disciplina);
-
-			try {
-				applyAll(settings, s);
-			} catch (ConstraintException e) {
-				if (ConstraintEnum.CARGA_HORARIA_MAXIMA.equals(e.getConstraint())) {
-					s.getDisciplinas().remove(disciplina);
-					List<Disciplina> l = new ArrayList<>();
-					l.add(disciplina);
-					qtSemestres++;
-					this.semestres.put(qtSemestres, new Semestre(l));
-				}
-			}
-		}
-	}
-
 	private List<String> getDisciplinasByRank() {
 		// @formatter:off
-		return this.rank.entrySet().stream().sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
-				.map(Entry::getKey).collect(Collectors.toList());
+		return this.rank.entrySet()
+				.stream()
+				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
+				.map(Entry::getKey)
+				.collect(Collectors.toList());
 		// @formatter:on
 	}
 
 	public void applyConstraints(Settings settings) {
 		List<String> rankDisciplinas = getDisciplinasByRank();
 
-		List<Disciplina> semestre = new ArrayList<>();
-
+		int i = 1;
+		this.semestres.put(i, new ArrayList<>());
 		for (String d : rankDisciplinas) {
 			Disciplina disciplina = this.disciplinas.get(d);
-			semestre.add(disciplina);
 
 			Model model = new Model();
 			Solver solver = model.getSolver();
 
-			int cargaHoraria = semestre.stream().mapToInt(Disciplina::getAulas).sum();
-			model.addClauseTrue(
-					model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
-			model.addClauseTrue(model.boolVar("horarios", validateHorario(semestre, disciplina)));
+			int cargaHoraria = this.semestres.get(i).stream().mapToInt(Disciplina::getAulas).sum();
+			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
+			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(i), disciplina)));
 			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(settings, disciplina)));
-			model.addClauseTrue(
-					model.boolVar("disciplias excluidas", validateDisciplinaExcluida(settings, disciplina)));
+			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(settings, disciplina)));
 
 			boolean solve = solver.solve();
-			System.out.println(solve + ": " + cargaHoraria);
-			solver.getModel().getVars();
-
 			if (solve) {
-				System.out.println(semestre);
+				this.semestres.get(i).add(disciplina);
+			} else if (!checkCargaHorariaOk(solver)) {
+				i++;
+				this.semestres.put(i, new ArrayList<>(Arrays.asList(disciplina)));
 			}
 		}
+	}
+
+	private boolean checkCargaHorariaOk(Solver solver) {
+		return Stream.of(solver.getModel().getVars())
+				.filter(v -> v.getName().equals("carga horaria maxima"))
+				.map(v -> ((FixedBoolVarImpl) v).getValue() == 1 ? true : false)
+				.findAny()
+				.orElse(false);
 	}
 
 	/**
@@ -175,12 +159,6 @@ public class Algoritmo {
 	 * @return boolean
 	 */
 	private boolean validateHorario(List<Disciplina> semestre, Disciplina currentDisciplina) {
-		return semestre.stream().filter(d -> {
-			return d.getHorarios()
-					.stream()
-					.filter(currentDisciplina.getHorarios()::contains)
-					.findAny()
-					.isPresent();
-		}).findAny().isPresent();
+		return semestre.stream().noneMatch(d -> d.getHorarios().retainAll(currentDisciplina.getHorarios()));
 	}
 }
