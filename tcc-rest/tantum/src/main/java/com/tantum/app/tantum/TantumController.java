@@ -14,6 +14,7 @@ import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.helper.Helper;
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
@@ -39,6 +40,12 @@ public class TantumController {
 		Map<Integer, List<Disciplina>> result = a.getSemestres();
 
 		return new Semestre(result.get(1));
+	}
+
+	@RequestMapping(path = "/estatisticas", method = RequestMethod.GET)
+	public Estatisticas estatisticas(@RequestParam(value = "token") String token) {
+		Estatisticas e = new Estatisticas(1, 2, 3, 4, 5, "2019-2");
+		return e;
 	}
 
 }

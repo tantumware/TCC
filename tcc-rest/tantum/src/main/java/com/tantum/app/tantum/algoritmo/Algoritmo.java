@@ -42,7 +42,7 @@ public class Algoritmo {
 			if (!this.curriculo.containsKey(d.getFase())) {
 				this.curriculo.put(d.getFase(), new HashMap<>());
 			}
-			this.curriculo.get(d.getFase()).put(d.getCodigo(), d.getRequisitos());
+			this.curriculo.get(d.getFase()).put(d.getNome(), d.getRequisitos());// TODO mudar para codigo
 		});
 	}
 
