@@ -47,4 +47,8 @@ export class LoginPage {
       toast.present();
     });
   }
+
+  onSobreClick(): void {
+    console.log("sobre");
+  }
 }
