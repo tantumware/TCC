@@ -37,14 +37,15 @@ export class MyApp {
     { title: 'Tabs', component: 'TabsPage' },
     { title: 'Cards', component: 'CardsPage' },
     { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
+    { title: 'Login', component: 'LoginPage' },//
     { title: 'Signup', component: 'SignupPage' },
     { title: 'Map', component: 'MapPage' },
     { title: 'Master Detail', component: 'ListMasterPage' },
     { title: 'Menu', component: 'MenuPage' },
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
-    { titçe: 'Sobre', component: 'SobrePage' }
+    { title: 'Sobre', component: 'SobrePage' }, //
+    { title: 'Main', component: 'MainPage'} //
   ]
 
   constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
