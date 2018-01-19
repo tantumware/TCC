@@ -14,10 +14,12 @@ export class LoginPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { email: string, password: string } = {
-    email: 'test@example.com',
+  account: { username: string, password: string } = {
+    username: 'idufsc',
     password: 'test'
   };
+
+  manterConectado: boolean = true;
 
   // Our translated text strings
   private loginErrorString: string;
