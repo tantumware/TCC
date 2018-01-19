@@ -3,15 +3,18 @@
   <ion-slides pager="true">
       <ion-slide (click)='onSlideClicked()'>
         <h1>Slide 1</h1>
+        <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       </ion-slide>
       <ion-slide>
         <h1>Slide 2</h1>
+        <img src="assets/img/icons8-calendar-240.png" class="slide-image" />
       </ion-slide>
       <ion-slide>
         <h1>Slide 3</h1>
+        <img src="assets/img/icons8-gráfico-combinado-100.png" class="slide-image" />
       </ion-slide>
   </ion-slides>
 
-  <button ion-button>Sair</button>
+  <button ion-button (click)='onSairClicked()'>Sair</button>
 
 </ion-content>

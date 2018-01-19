@@ -26,4 +26,8 @@ export class MainPage {
     console.log('teste');
   }
 
+  onSairClicked(): void {
+    
+  }
+
 }
