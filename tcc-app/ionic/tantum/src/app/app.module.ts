@@ -1,5 +1,3 @@
-import { TesteComponent } from './../components/teste/teste.component';
-import { ComponentsModule } from './../components/components.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +16,8 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 
+import { CapsulasComponent } from './../components/capsulas/capsulas';
+import { TesteComponent } from './../components/teste/teste.component';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function HttpLoaderFactory(http: Http) {
@@ -42,7 +42,8 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
-    TesteComponent
+    TesteComponent,
+    CapsulasComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +60,7 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    TesteComponent
+    MyApp
   ],
   providers: [
     Api,
@@ -73,9 +73,6 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
-  ],
-  exports: [
-    TesteComponent
   ]
 })
 export class AppModule { }
