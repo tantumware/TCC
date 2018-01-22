@@ -2,16 +2,16 @@
 
   <ion-slides pager="true">
       <ion-slide (click)='onSlideClicked()'>
-        <h1>Slide 1</h1>
         <img src="assets/img/calendar.png" class="slide-image" />
+        <h1>Horários do Dia</h1>
       </ion-slide>
-      <ion-slide>
-        <h1>Slide 2</h1>
+      <ion-slide (click)='onGerarHorarioClicked()'>
         <img src="assets/img/calendar-edit.png" class="slide-image" />
+        <h1>Geração de grade de horários</h1>
       </ion-slide>
       <ion-slide>
-        <h1>Slide 3</h1>
         <img src="assets/img/analytics.png" class="slide-image" />
+        <h1>Estatísticas</h1>
       </ion-slide>
   </ion-slides>
 

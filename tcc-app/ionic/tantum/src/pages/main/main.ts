@@ -19,6 +19,10 @@ export class MainPage {
     console.log('teste');
   }
 
+  onGerarHorarioClicked(): void {
+    this.navCtrl.push('DefinirCriteriosPage');
+  }
+
   onSairClicked(): void {
     this.navCtrl.pop();
   }

@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Definir criterios para geração</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged($event)">
+        <ion-segment-button value="1">
+          Passo 1
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          Passo 2
+        </ion-segment-button>
+        <ion-segment-button value="3">
+          Passo 3
+        </ion-segment-button>
+      </ion-segment>
+
+  <div *ngIf="passo == 1">
+      <ion-chip color="primary">
+          <ion-label>Default</ion-label>
+        </ion-chip>
+        
+        <ion-chip>
+          <ion-label color="secondary">Secondary Label</ion-label>
+        </ion-chip>
+  </div>
+
+  <div *ngIf="passo == 2">
+    Passo 2
+  </div>
+
+  <div *ngIf="passo == 3">
+    Passo 3
+  </div>
+
+  <button ion-button>{{botao}}</button>
+
+</ion-content>
