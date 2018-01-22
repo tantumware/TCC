@@ -16,8 +16,6 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 
-import { CapsulasComponent } from './../components/capsulas/capsulas';
-import { TesteComponent } from './../components/teste/teste.component';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function HttpLoaderFactory(http: Http) {
@@ -41,9 +39,7 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp,
-    TesteComponent,
-    CapsulasComponent
+    MyApp
   ],
   imports: [
     BrowserModule,
