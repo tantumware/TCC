@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DefinirCriteriosPage {
 
-  passo: string;
+  passo: string = '1';
 
   private botao: string = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
 

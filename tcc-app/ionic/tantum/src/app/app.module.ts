@@ -1,3 +1,5 @@
+import { TesteComponent } from './../components/teste/teste.component';
+import { ComponentsModule } from './../components/components.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,7 +41,8 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    TesteComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TesteComponent
   ],
   providers: [
     Api,
@@ -69,6 +73,9 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
+  ],
+  exports: [
+    TesteComponent
   ]
 })
 export class AppModule { }

@@ -20,21 +20,25 @@
         </ion-segment-button>
       </ion-segment>
 
-  <div *ngIf="passo == 1">
-      <ion-chip color="primary">
-          <ion-label>Default</ion-label>
-        </ion-chip>
+  <div *ngIf="passo == 1" class="passo">
+      <ion-chip color="primary" (click)="onManhaClicked()">
+          <ion-label>Manha</ion-label>
+      </ion-chip>
+
+      <ion-chip color="secondary" (click)="onTardeClicked()">
+          <ion-label>Tarde</ion-label>
+      </ion-chip>
         
-        <ion-chip>
-          <ion-label color="secondary">Secondary Label</ion-label>
-        </ion-chip>
+      <ion-chip color="primary" (click)="onNoiteClicked()">
+          <ion-label>Noite</ion-label>
+      </ion-chip>
   </div>
 
-  <div *ngIf="passo == 2">
+  <div *ngIf="passo == 2" class="passo">
     Passo 2
   </div>
 
-  <div *ngIf="passo == 3">
+  <div *ngIf="passo == 3" class="passo">
     Passo 3
   </div>
 
