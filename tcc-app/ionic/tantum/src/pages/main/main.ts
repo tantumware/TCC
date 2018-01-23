@@ -27,4 +27,8 @@ export class MainPage {
     this.navCtrl.pop();
   }
 
+  onEstatisticaClicked(): void {
+    this.navCtrl.push('EstatísticasPage');
+  }
+
 }

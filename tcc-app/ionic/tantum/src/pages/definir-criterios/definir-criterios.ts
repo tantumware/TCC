@@ -12,6 +12,17 @@ export class DefinirCriteriosPage {
 
   private botao: string = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
 
+  manha: boolean = false;
+  tarde: boolean = true;
+  noite: boolean = false;  
+
+  busca: string;
+
+  structure = {
+    lower: 20,
+    upper: 30
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -19,8 +30,24 @@ export class DefinirCriteriosPage {
     console.log('ionViewDidLoad DefinirCriteriosPage');
   }
 
+  searchMateria(): void {
+    console.log(this.busca);
+  }
+
   onPassoChanged(event: any): void {
     this.botao = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
+  }  
+
+  onManhaClicked(): void {
+    this.manha = !this.manha;
+  }
+
+  onTardeClicked(): void {
+    this.tarde = !this.tarde;
+  }
+
+  onNoiteClicked(): void {
+    this.noite = !this.noite;
   }
 
 }

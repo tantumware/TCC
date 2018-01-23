@@ -39,7 +39,7 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp    
   ],
   imports: [
     BrowserModule,
