@@ -3,6 +3,7 @@ package com.tantum.app.tantum;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
+@CrossOrigin(origins = "http://localhost:8100")
 @RestController
 public class TantumController {
 
@@ -44,7 +46,7 @@ public class TantumController {
 
 	@RequestMapping(path = "/estatisticas", method = RequestMethod.GET)
 	public Estatisticas estatisticas(@RequestParam(value = "token") String token) {
-		Estatisticas e = new Estatisticas(1, 2, 3, 4, 5, "2019-2");
+		Estatisticas e = new Estatisticas(1, 2, 3, 4, 5, "2019-1");
 		return e;
 	}
 

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Chart } from 'chart.js';
+import { EstatisticaProvider } from '../../providers/estatistica/estatistica';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,8 @@ export class EstatísticasPage {
   doughnutChart: any;
   lineChart: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public estatisticaProvider: EstatisticaProvider) {
+    estatisticaProvider.getEstatisticas().subscribe(e => console.log(e));
   }
 
   ionViewDidLoad() {
