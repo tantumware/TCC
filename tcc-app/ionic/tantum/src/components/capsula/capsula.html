@@ -10,6 +10,6 @@
     <ion-label>Noite</ion-label>
 </ion-chip> -->
 
-<ion-chip *ngFor='let periodo of periodos' (click)="onItemClicked(periodo)">
+<ion-chip *ngFor='let periodo of periodos' (click)="onItemClicked(periodo)" [ngClass]="noite ? 'capsule-ative' : 'capsule-inative'">
   <ion-label>{{periodo}}</ion-label>
 </ion-chip>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 /**
  * Generated class for the CapsulaComponent component.
@@ -14,12 +14,18 @@ export class CapsulaComponent {
 
   @Input() periodos: string[];
 
+  @Output() periodoSelected = new EventEmitter<string>();
+
+  allPeriodosSelected: string[];
+
   constructor() {
-    this.periodos = ['teste', 'teste2'];
   }
 
   onItemClicked(periodo: string) {
-    console.log(periodo);
+    if (this.allPeriodosSelected.indexOf(periodo) > -1){
+      this.allPeriodosSelected.push(periodo);
+    }
+    this.periodoSelected.emit(periodo);
   }
 
 }

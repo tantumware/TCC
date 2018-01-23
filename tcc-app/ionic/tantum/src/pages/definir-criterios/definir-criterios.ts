@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CapsulaComponent } from '../../components/capsula/capsula';
 
 @IonicPage()
 @Component({
@@ -16,6 +17,8 @@ export class DefinirCriteriosPage {
   tarde: boolean = true;
   noite: boolean = false;  
 
+  @ViewChild (CapsulaComponent) capsulaComponent;
+
   busca: string;
 
   structure = {
@@ -27,7 +30,11 @@ export class DefinirCriteriosPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DefinirCriteriosPage');
+    this.capsulaComponent.periodos = ['teste1', 'teste2', 'teste3'];
+  }
+
+  onPeriodoSelected(event: string) {
+    console.log(event);
   }
 
   searchMateria(): void {

@@ -1,3 +1,14 @@
 capsula {
 
+    .capsule-ative {
+        background-color: color($colors, main-color);
+        border: 1px solid color($colors, main-color);
+    }
+    
+    .capsule-inative {
+        color: color($colors, main-color);
+        border: 1px solid color($colors, main-color);
+        background-color: white;
+    }
+    
 }
