@@ -50,4 +50,12 @@ export class DefinirCriteriosPage {
     this.noite = !this.noite;
   }
 
+  btnProximoPassoClicked(): void {
+    if (this.passo == '3') {
+
+    } else {
+      this.passo = (Number(this.passo) + 1).toString();    
+    }
+  }
+
 }

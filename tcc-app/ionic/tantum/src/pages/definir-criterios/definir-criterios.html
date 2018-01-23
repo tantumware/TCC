@@ -68,6 +68,6 @@
     <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
   </div>
 
-  <button ion-button>{{botao}}</button>
+  <button ion-button (click)="btnProximoPassoClicked()">{{botao}}</button>
 
 </ion-content>

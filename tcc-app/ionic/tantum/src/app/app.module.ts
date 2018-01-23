@@ -1,4 +1,6 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ComponentsModule } from './../components/components.module';
+import { GradeHorarioComponent } from './../components/grade-horario/grade-horario';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
@@ -40,7 +42,7 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp    
+    MyApp,
   ],
   imports: [
     BrowserModule,
