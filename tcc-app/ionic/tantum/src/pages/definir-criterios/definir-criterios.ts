@@ -13,9 +13,7 @@ export class DefinirCriteriosPage {
 
   private botao: string = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
 
-  manha: boolean = false;
-  tarde: boolean = true;
-  noite: boolean = false;  
+  private  periodosSelected: string[];
 
   @ViewChild (CapsulaComponent) capsulaComponent;
 
@@ -30,36 +28,34 @@ export class DefinirCriteriosPage {
   }
 
   ionViewDidLoad() {
-    this.capsulaComponent.periodos = ['teste1', 'teste2', 'teste3'];
   }
 
-  onPeriodoSelected(event: string) {
-    console.log(event);
+  onPeriodoSelected(event: string[]) {
+    this.periodosSelected = event;
   }
 
   searchMateria(): void {
     console.log(this.busca);
   }
 
+  getClass(passo: string): string {
+    if (this.passo == passo) {
+      return "passo";
+    } else {
+      return "passo passo-hidden";
+    }
+  }
+
   onPassoChanged(event: any): void {
+    if (this.passo == '1'){
+      // this.capsulaComponent.periodos = ['Manhã', 'Tarde', 'Noite'];
+    }
     this.botao = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
-  }  
-
-  onManhaClicked(): void {
-    this.manha = !this.manha;
-  }
-
-  onTardeClicked(): void {
-    this.tarde = !this.tarde;
-  }
-
-  onNoiteClicked(): void {
-    this.noite = !this.noite;
-  }
+  } 
 
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
-
+      this.navCtrl.push('ResultadoPage');
     } else {
       this.passo = (Number(this.passo) + 1).toString();    
     }

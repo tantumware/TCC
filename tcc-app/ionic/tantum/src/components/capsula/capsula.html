@@ -1,15 +1,3 @@
-<!-- <ion-chip color="primary" (click)="onManhaClicked()" [ngClass]="manha ? 'capsule-ative' : 'capsule-inative'">
-    <ion-label>Manha</ion-label>
-</ion-chip>
-
-<ion-chip color="secondary" (click)="onTardeClicked()" [ngClass]="tarde ? 'capsule-ative' : 'capsule-inative'">
-    <ion-label>Tarde</ion-label>
-</ion-chip>
-  
-<ion-chip color="primary" (click)="onNoiteClicked()" [ngClass]="noite ? 'capsule-ative' : 'capsule-inative'">
-    <ion-label>Noite</ion-label>
-</ion-chip> -->
-
-<ion-chip *ngFor='let periodo of periodos' (click)="onItemClicked(periodo)" [ngClass]="noite ? 'capsule-ative' : 'capsule-inative'">
+<ion-chip *ngFor='let periodo of periodos' (click)="onItemClicked(periodo)" [ngClass]="getClass(periodo)">
   <ion-label>{{periodo}}</ion-label>
 </ion-chip>

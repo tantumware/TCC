@@ -46,7 +46,8 @@ export class MyApp {
     { title: 'Search', component: 'SearchPage' },
     { title: 'Sobre', component: 'SobrePage' }, //
     { title: 'Main', component: 'MainPage'}, //
-    { title: 'Definir Critérios', component: 'DefinirCriteriosPage'} //
+    { title: 'Definir Critérios', component: 'DefinirCriteriosPage'}, //
+    { title: 'Resultado', component: 'ResultadoPage'}
   ]
 
   constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {

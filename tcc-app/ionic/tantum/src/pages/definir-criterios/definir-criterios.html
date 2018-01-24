@@ -19,21 +19,9 @@
         </ion-segment-button>
       </ion-segment>
 
-  <div *ngIf="passo == 1" class="passo">
+  <div [ngClass]="getClass('1')">
     <span>Turno de estudo</span>
-      <ion-chip color="primary" (click)="onManhaClicked()" [ngClass]="manha ? 'capsule-ative' : 'capsule-inative'">
-          <ion-label>Manha</ion-label>
-      </ion-chip>
-
-      <ion-chip color="secondary" (click)="onTardeClicked()" [ngClass]="tarde ? 'capsule-ative' : 'capsule-inative'">
-          <ion-label>Tarde</ion-label>
-      </ion-chip>
-        
-      <ion-chip color="primary" (click)="onNoiteClicked()" [ngClass]="noite ? 'capsule-ative' : 'capsule-inative'">
-          <ion-label>Noite</ion-label>
-      </ion-chip>
-
-      <capsula (periodoSelected)="onPeriodoSelected($event)"></capsula>
+    <capsula [periodos]="['Manhã', 'Tarde', 'Noite']" (periodoSelected)="onPeriodoSelected($event)"></capsula>
 
       <p>Intervalo de créditos</p>
       <ion-item>
@@ -49,7 +37,7 @@
       </ion-item>
   </div>
 
-  <div *ngIf="passo == 2" class="passo">
+  <div [ngClass]="getClass('2')">
     <p>Matérias que quero cursas nesse semestre</p>
     <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
     <ion-item>
@@ -65,7 +53,7 @@
       </ion-item>
   </div>  
 
-  <div *ngIf="passo == 3" class="passo">
+  <div [ngClass]="getClass('3')">
     <p>Matérias que não quero cursas nesse semestre</p>
     <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
   </div>
