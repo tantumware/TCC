@@ -1,41 +1,39 @@
-<!-- <ion-header>-->
-
-  <!-- <ion-navbar> -->
-    <!--  <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>-->
-  <!-- </ion-navbar> -->
-
-<!-- </ion-header> -->
-
-
 <ion-content>
-  <form (submit)="doLogin()">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-      </ion-item>
-     
+  <ion-list>
+    <img src="assets/img/scholarship.svg" class="logo-tantum" />
 
-      <ion-item>
-        <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label>Idioma</ion-label>
+      <ion-select [(ngModel)]="idioma" (ionChange)="idiomaChanged()">
+        <ion-option value="pt-br">Português</ion-option>
+        <ion-option value="en-us">English</ion-option>
+        <ion-option value="es">Español</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <div padding>
+    <form (submit)="doLogin()">
+      <ion-list>
         <ion-item>
-          <ion-label>Manter-me conectado</ion-label>
-          <ion-toggle [(ngModel)]="manterConectado" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+          <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
         </ion-item>
-      </div>
 
-      <div padding>
-        <button ion-button color="main-color">{{ 'LOGIN_BUTTON' | translate }}</button>
-      </div>
+        <ion-item>
+          <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
+          <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        </ion-item>
 
-      
-    </ion-list>
-  </form>
-          <div padding>
-            <button ion-button color="main-color" (click)='onSobreClick()'>Sobre</button>
-          </div>
+        <ion-item class="manter-conectado">
+          <ion-label>Manter-me conectado</ion-label>
+          <ion-toggle [(ngModel)]="manterConectado" color="main-color" [ngModelOptions]="{standalone: true}"></ion-toggle>
+        </ion-item>
+
+        <button ion-button color="main-color" class="login-button">{{ 'LOGIN_BUTTON' | translate }}</button>
+
+      </ion-list>
+    </form>
+
+    <button ion-button color="main-color" (click)='onSobreClick()' class="sobre-button">Sobre</button>
+
+  </ion-list>
 </ion-content>

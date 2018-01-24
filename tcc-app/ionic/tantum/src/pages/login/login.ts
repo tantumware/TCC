@@ -20,6 +20,8 @@ export class LoginPage {
     password: 'test'
   };
 
+  idioma = "pt-br";
+
   manterConectado: boolean = true;
 
   // Our translated text strings
@@ -33,6 +35,10 @@ export class LoginPage {
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+  }
+
+  idiomaChanged(): void {
+    console.log(this.idioma);
   }
 
   // Attempt to login in through our User service
