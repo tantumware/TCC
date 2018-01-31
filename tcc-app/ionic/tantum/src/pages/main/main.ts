@@ -15,8 +15,8 @@ export class MainPage {
     console.log('ionViewDidLoad MainPage');
   }
 
-  onSlideClicked(): void {
-    console.log('teste');
+  onHorariosClicked(): void {
+    this.navCtrl.push('GradeHorariosPage');
   }
 
   onGerarHorarioClicked(): void {

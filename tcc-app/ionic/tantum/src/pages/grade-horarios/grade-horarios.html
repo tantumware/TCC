@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>GradeHorarios</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged()" color="main-color">
+    <ion-segment-button value="1">
+      Diário
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      Semanal
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="passo == '1'" class="div-diario">
+    <ion-slides pager="true">
+      <ion-slide>
+        <h1>Segunda-feira</h1>
+        <lista-disciplinas></lista-disciplinas>
+      </ion-slide>
+      <ion-slide>
+        <h1>Terça-feira</h1>
+      </ion-slide>
+      <ion-slide>
+        <h1>Quarta-feira</h1>
+      </ion-slide>
+      <ion-slide>
+        <h1>Quinta-feira</h1>
+      </ion-slide>
+      <ion-slide>
+        <h1>Sexta-feira</h1>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div *ngIf="passo == '2'">
+    passo 2
+  </div>
+
+
+</ion-content>
