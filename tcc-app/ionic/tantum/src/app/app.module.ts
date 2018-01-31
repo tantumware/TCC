@@ -1,6 +1,4 @@
-import { ComponentsModule } from './../components/components.module';
-import { GradeHorarioComponent } from './../components/grade-horario/grade-horario';
-import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
