@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Disciplina } from './../../models/disciplina';
+import { Semestre } from './../../models/semestre';
+import { Component, Input } from '@angular/core';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'lista-disciplinas',
@@ -6,11 +9,9 @@ import { Component } from '@angular/core';
 })
 export class ListaDisciplinasComponent {
 
-  text: string;
+  @Input() disciplinas: Disciplina[]; 
 
   constructor() {
-    console.log('Hello ListaDisciplinasComponent Component');
-    this.text = 'Hello World';
   }
 
 }

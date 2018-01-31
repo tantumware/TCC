@@ -1,3 +1,4 @@
+import { Disciplina } from './../../models/disciplina';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -19,6 +20,10 @@ export class GradeHorariosPage {
 
   onPassoChanged(): void {
 
+  }
+
+  getDisciplinas(): Disciplina[] {
+    return [new Disciplina('Disciplina 1'), new Disciplina('Disciplina 2'), new Disciplina('Disciplina 3')]
   }
 
 }

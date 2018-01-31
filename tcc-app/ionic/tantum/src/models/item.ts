@@ -1,4 +1,4 @@
-/**
+ /**
  * A generic model that our Master-Detail pages list, create, and delete.
  *
  * Change "Item" to the noun your app will use. For example, a "Contact," or a
