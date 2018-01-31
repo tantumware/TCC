@@ -1,16 +1,17 @@
 page-login {
 
     .logo-tantum {
-        width: 40%;
-        margin-left: 30%;
+        width: 28%;
+        margin-left: 36%;
         margin-top: 10%
     }
 
     .sobre-button {
-        position: absolute;
         margin-top: 100px;
+        position: absolute;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 80px;
     }
 
     .login-button{
@@ -18,13 +19,13 @@ page-login {
         position: absolute;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 80px;
     }
 
     .manter-conectado {
         width: 80%;
         margin-left: 10%;
     }
-
 }
 
 .item-inner {
