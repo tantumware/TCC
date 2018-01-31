@@ -16,10 +16,10 @@
   </ion-segment>
 
   <div *ngIf="passo == '1'" class="div-diario">
-    <ion-slides pager="true">
+    <ion-slides pager="true" #slides>
       <ion-slide>
         <h1>Segunda-feira</h1>
-        <lista-disciplinas [disciplinas]="getDisciplinas()"></lista-disciplinas>
+        <lista-disciplinas [disciplinas]="getDisciplinas()" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
         <h1>Terça-feira</h1>

@@ -1,6 +1,6 @@
 import { Disciplina } from './../../models/disciplina';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,6 +11,8 @@ export class GradeHorariosPage {
 
   passo: string;
 
+  @ViewChild('slides') slides: Slides;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -20,6 +22,11 @@ export class GradeHorariosPage {
 
   onPassoChanged(): void {
 
+  }
+
+  onSwiped(event: boolean): void {
+    console.log(event);
+    this.slides.slideTo(1, 500);
   }
 
   getDisciplinas(): Disciplina[] {
