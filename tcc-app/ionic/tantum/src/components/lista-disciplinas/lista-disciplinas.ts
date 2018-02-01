@@ -1,5 +1,4 @@
 import { Disciplina } from './../../models/disciplina';
-import { Semestre } from './../../models/semestre';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
