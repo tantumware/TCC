@@ -19,6 +19,7 @@ import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
+@RequestMapping("/v1/")
 @CrossOrigin(origins = "http://localhost:8100")
 @RestController
 public class TantumController {
@@ -48,6 +49,11 @@ public class TantumController {
 	public Estatisticas estatisticas(@RequestParam(value = "token") String token) {
 		Estatisticas e = new Estatisticas(1, 2, 3, 4, 5, "2019-1");
 		return e;
+	}
+
+	@RequestMapping(path = "/semestre-atual", method = RequestMethod.GET)
+	public Semestre semestreAtual(@RequestParam(value = "token") String token) {
+		return new Semestre();
 	}
 
 }
