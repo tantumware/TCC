@@ -5,4 +5,21 @@ page-grade-horarios {
         height: 75%;
     }
 
+    .dias {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .dia-hidden {
+        display: none;
+    }
+
+    .dia-selected {
+        color: #e67e22;
+        font-size: 20px;
+        position: relative;
+        bottom: 5px;
+    }
+
 }

@@ -16,22 +16,29 @@
   </ion-segment>
 
   <div *ngIf="passo == '1'" class="div-diario">
-    <ion-slides pager="true" #slides>
+    <div class="dias">
+      <span *ngFor="let dia of dias" [ngClass]="getClass(dia)" (click)="onDiaClicked(dia)">{{dia.nomeAbreviado}}</span>
+    </div>
+    <ion-slides [initialSlide]="dia" [spaceBetween]=5 #slides (ionSlideWillChange)="onSlideChanged($event)">
       <ion-slide>
-        <h1>Segunda-feira</h1>
+        <p>Segunda-feira</p>
         <lista-disciplinas [disciplinas]="getDisciplinas()" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <h1>Terça-feira</h1>
+        <p>Terça-feira</p>
+        <lista-disciplinas [disciplinas]="getDisciplinas()" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <h1>Quarta-feira</h1>
+        <p>Quarta-feira</p>
+        <lista-disciplinas [disciplinas]="getDisciplinas()" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <h1>Quinta-feira</h1>
+        <p>Quinta-feira</p>
+        <lista-disciplinas [disciplinas]="getDisciplinas()" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <h1>Sexta-feira</h1>
+        <p>Sexta-feira</p>
+        <lista-disciplinas [disciplinas]="getDisciplinas()" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
     </ion-slides>
   </div>

@@ -1,5 +1,5 @@
 <ion-list no-lines (swipe)="itemSwiped($event)">
-    <ion-item *ngFor='let disciplina of disciplinas' class="disciplina-item">
+    <ion-item *ngFor='let disciplina of disciplinas' class="disciplina-item" (click)="onDisciplinaClicked(disciplina)">
         <span class="horario">4:20</span>
         <span>ALOCAR</span>
         <span>{{disciplina.nome}}</span> 
