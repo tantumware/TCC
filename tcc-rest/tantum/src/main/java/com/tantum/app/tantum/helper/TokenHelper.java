@@ -83,9 +83,9 @@ public class TokenHelper {
 
 	public static void main(String[] args) {
 		String criptografado = encrypt("so aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		System.out.println(key.getBytes());
-		System.out.println(initVector.getBytes());
-		// System.out.println(decrypt(criptografado));
+		System.out.println(criptografado);
+		System.out.println("-----");
+		System.out.println(decrypt(criptografado));
 	}
 
 }
