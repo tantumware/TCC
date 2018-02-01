@@ -25,12 +25,12 @@ import com.tantum.app.tantum.models.Settings;
 public class TantumController {
 
 	@RequestMapping(path = "/test", method = RequestMethod.GET)
-	public String test() {
+	public String test(@RequestParam(value = "token", defaultValue = "0") String token) {
 		return "This is a test!";
 	}
 
 	@RequestMapping(path = "/semestre", method = RequestMethod.POST, consumes = "application/json")
-	public Semestre semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token") String token) {
+	public Semestre semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
 		String c = Helper.readJson("test.json");
 
 		Gson g = new Gson();

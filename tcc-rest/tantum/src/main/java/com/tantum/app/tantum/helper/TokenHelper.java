@@ -2,16 +2,17 @@ package com.tantum.app.tantum.helper;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.tomcat.util.codec.binary.Base64;
-
 public class TokenHelper {
+
+	private static final String initVector = "xS5Qm39GG@MWFa86"; // 16 bytes IV
+	private static final String key = "p0fp#Tn5y8732O!L";
 
 	public static synchronized boolean validateToken(String token) {
 		try {
@@ -31,26 +32,24 @@ public class TokenHelper {
 		return false;
 	}
 
-	public static String encrypt(String key, String initVector, String value) {
+	public static String encrypt(String value) {
 		try {
 			/* Derive the key, given password and salt. */
-			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-			// KeySpec spec = new PBEKeySpec(password, salt, 65536, 256);
+			// SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+			// KeySpec spec = new PBEKeySpec(password.toCharArray(), salt2, 65536, 256);
 			// SecretKey tmp = factory.generateSecret(spec);
 			// SecretKey secret = new SecretKeySpec(tmp.getEncoded(), "AES");
-			//
 
+			SecretKeySpec secret = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+			/* Encrypt the message. */
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.ENCRYPT_MODE, secret, iv);
 
 			byte[] encrypted = cipher.doFinal(value.getBytes());
-			System.out.println("encrypted string: "
-					+ Base64.encodeBase64String(encrypted));
 
-			return Base64.encodeBase64String(encrypted);
+			return Base64.getEncoder().encodeToString(encrypted);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -58,15 +57,20 @@ public class TokenHelper {
 		return null;
 	}
 
-	public static String decrypt(String key, String initVector, String encrypted) {
+	public static String decrypt(String encrypted) {
 		try {
+			// /* Derive the key, given password and salt. */
+			// SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+			// KeySpec spec = new PBEKeySpec(password.toCharArray(), salt2, 65536, 256);
+			// SecretKey tmp = factory.generateSecret(spec);
+			// SecretKey secret = new SecretKeySpec(tmp.getEncoded(), "AES");
 			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+			SecretKeySpec secret = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-
-			byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
+			/* Decrypt the message, given derived key and initialization vector. */
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.DECRYPT_MODE, secret, iv);
+			byte[] original = cipher.doFinal(Base64.getDecoder().decode(encrypted));
 
 			return new String(original);
 		} catch (Exception ex) {
@@ -74,14 +78,14 @@ public class TokenHelper {
 		}
 
 		return null;
+
 	}
 
 	public static void main(String[] args) {
-		String key = "Bar12345Bar12345"; // 128 bit key
-		String initVector = "RandomInitVector"; // 16 bytes IV
-
-		System.out.println(decrypt(key, initVector,
-				encrypt(key, initVector, "Hello World")));
+		String criptografado = encrypt("so aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		System.out.println(key.getBytes());
+		System.out.println(initVector.getBytes());
+		// System.out.println(decrypt(criptografado));
 	}
 
 }
