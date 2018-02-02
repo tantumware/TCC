@@ -16,6 +16,7 @@ public class TokenHelper {
 
 	private static final String initVector = "xS5Qm39GG@MWFa86"; // 16 bytes IV
 	private static final String key = "p0fp#Tn5y8732O!L";
+	private static final Hashids hash = new Hashids(key);
 
 	public static synchronized boolean validateToken(String token) {
 		try {
@@ -88,37 +89,16 @@ public class TokenHelper {
 
 	}
 
-	public static String hashidEncode(String message) {
-		return new Hashids(key).encode(Long.valueOf(message));
+	public static synchronized String encode(String plainMessage) {
+		return hash.encodeHex(HexUtils.toHexString(plainMessage.getBytes()));
 	}
 
-	public static String hashidDecode(String message) {
-		return String.valueOf(new Hashids(key).decode(message));
-	}
-
-	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
-
-	public static String bytesToHex(byte[] bytes) {
-		char[] hexChars = new char[bytes.length * 2];
-		for (int j = 0; j < bytes.length; j++) {
-			int v = bytes[j] & 0xFF;
-			hexChars[j * 2] = hexArray[v >>> 4];
-			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-		}
-		return new String(hexChars);
+	public static synchronized String decode(String hashedMessage) {
+		return new String(HexUtils.fromHexString(hash.decodeHex(hashedMessage)));
 	}
 
 	public static void main(String[] args) {
-		// String criptografado = encrypt("TextMustBe16Byte");
-		// System.out.println(criptografado);
-		// System.out.println("-----");
-		// System.out.println(decrypt(criptografado));
-		String messgae = HexUtils.toHexString("testeeeeeeeeeeeeee".getBytes());
-		String decodeHex = new Hashids(key).encodeHex(messgae);
-		System.out.println(decodeHex);
-		String result = new String(HexUtils.fromHexString(new Hashids(key).decodeHex(decodeHex)));
-
-		System.out.println(result);
+		System.out.println(decode(encode("senha")));
 	}
 
 }
