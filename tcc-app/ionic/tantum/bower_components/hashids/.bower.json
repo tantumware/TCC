@@ -1,0 +1,28 @@
+{
+  "name": "hashids",
+  "description": "Generate YouTube-like ids from numbers. Use Hashids when you do not want to expose your database ids to the user.",
+  "main": "dist/hashids.js",
+  "homepage": "https://github.com/ivanakimov/hashids.js",
+  "license": "MIT",
+  "authors": [
+    "Ivan Akimov <ivan@barreleye.com> (https://twitter.com/IvanAkimov)"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "package.json"
+  ],
+  "version": "1.1.4",
+  "_release": "1.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.4",
+    "commit": "d208f522ffdd2356655911b90274a625e2262c0a"
+  },
+  "_source": "https://github.com/ivanakimov/hashids.js.git",
+  "_target": "^1.1.4",
+  "_originalSource": "hashids",
+  "_direct": true
+}

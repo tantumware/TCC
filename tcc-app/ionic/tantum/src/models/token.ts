@@ -1,12 +1,12 @@
-// import { Buffer } from 'buffer';
-// import { Hashids } from 'hashids';
+import { Buffer } from 'buffer';
+import { Hashids } from 'hashids/dist/hashids';
 
-// declare var System: any;
+declare var System: any;
 
 export class TokenHelper {
 
     static encodeToken(plainMessage: string): any {
-        // var hashids = new Hashids("this is my salt", 16);
+        var hashids = new Hashids("this is my salt", 16);
         // let aux;
         // let hex = Buffer.from(plainMessage).toString('hex');
         // aux = hash.encodeHex(hex)
@@ -15,7 +15,7 @@ export class TokenHelper {
     }
 
     static decodeToken(hashedMessage: string): any {
-        // let decodedHex;
+        let decodedHex;
         // decodedHex = Buffer.from(hash.decodeHex(hashedMessage), 'hex').toString('utf8')
 
         return "decodedHex";
