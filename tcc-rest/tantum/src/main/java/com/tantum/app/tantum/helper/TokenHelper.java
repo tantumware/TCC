@@ -9,6 +9,9 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.tomcat.util.buf.HexUtils;
+import org.hashids.Hashids;
+
 public class TokenHelper {
 
 	private static final String initVector = "xS5Qm39GG@MWFa86"; // 16 bytes IV
@@ -48,6 +51,10 @@ public class TokenHelper {
 			cipher.init(Cipher.ENCRYPT_MODE, secret, iv);
 
 			byte[] encrypted = cipher.doFinal(value.getBytes());
+			for (byte b : encrypted) {
+				System.out.print(Integer.toHexString(b));
+			}
+			System.out.println("####");
 
 			return Base64.getEncoder().encodeToString(encrypted);
 		} catch (Exception ex) {
@@ -81,11 +88,37 @@ public class TokenHelper {
 
 	}
 
+	public static String hashidEncode(String message) {
+		return new Hashids(key).encode(Long.valueOf(message));
+	}
+
+	public static String hashidDecode(String message) {
+		return String.valueOf(new Hashids(key).decode(message));
+	}
+
+	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+
+	public static String bytesToHex(byte[] bytes) {
+		char[] hexChars = new char[bytes.length * 2];
+		for (int j = 0; j < bytes.length; j++) {
+			int v = bytes[j] & 0xFF;
+			hexChars[j * 2] = hexArray[v >>> 4];
+			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		}
+		return new String(hexChars);
+	}
+
 	public static void main(String[] args) {
-		String criptografado = encrypt("so aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		System.out.println(criptografado);
-		System.out.println("-----");
-		System.out.println(decrypt(criptografado));
+		// String criptografado = encrypt("TextMustBe16Byte");
+		// System.out.println(criptografado);
+		// System.out.println("-----");
+		// System.out.println(decrypt(criptografado));
+		String messgae = HexUtils.toHexString("testeeeeeeeeeeeeee".getBytes());
+		String decodeHex = new Hashids(key).encodeHex(messgae);
+		System.out.println(decodeHex);
+		String result = new String(HexUtils.fromHexString(new Hashids(key).decodeHex(decodeHex)));
+
+		System.out.println(result);
 	}
 
 }
