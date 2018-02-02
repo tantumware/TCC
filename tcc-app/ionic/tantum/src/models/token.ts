@@ -1,22 +1,13 @@
-import { Buffer } from 'buffer';
-import { Hashids } from 'hashids/dist/hashids';
-
-declare var System: any;
+import { SHA256, AES } from "crypto-js";
 
 export class TokenHelper {
 
     static encodeToken(plainMessage: string): any {
-        var hashids = new Hashids("this is my salt", 16);
-        // let aux;
-        // let hex = Buffer.from(plainMessage).toString('hex');
-        // aux = hash.encodeHex(hex)
-
-        return "aux";
+        return SHA256(plainMessage);
     }
 
     static decodeToken(hashedMessage: string): any {
         let decodedHex;
-        // decodedHex = Buffer.from(hash.decodeHex(hashedMessage), 'hex').toString('utf8')
 
         return "decodedHex";
     }
