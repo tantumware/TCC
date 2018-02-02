@@ -1,5 +1,7 @@
+import { TokenHelper } from './../../models/token';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Token } from '@angular/compiler';
 
 @IonicPage()
 @Component({
@@ -12,6 +14,10 @@ export class MainPage {
   }
 
   ionViewDidLoad() {
+    let encoded = TokenHelper.encodeToken('teste');
+    console.log(encoded);
+    let plain = TokenHelper.decodeToken(encoded);
+    console.log(plain);
     console.log('ionViewDidLoad MainPage');
   }
 
