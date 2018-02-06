@@ -20,7 +20,6 @@ export class GradeHorariosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.dia = new Date().getDay() - 1; // começa na segunda
-    console.log(this.dia);
     this.dias = Dia.getAllDias();
   }
 
@@ -29,7 +28,6 @@ export class GradeHorariosPage {
   }
   
   onPassoChanged(): void {
-    console.log('passo');
   }
 
   onSlideChanged(event: any): void {
@@ -37,7 +35,6 @@ export class GradeHorariosPage {
   }
 
   onSwiped(event: boolean): void {
-    console.log("swipe");
     if (event) {
       this.swipeRight();
     } else {
@@ -47,15 +44,13 @@ export class GradeHorariosPage {
   
   swipeRight(): void {
     this.dia = this.dia + 1;
-    
-    console.log('right'+this.dia);
+    // arrumar qnd fica maior
     this.slides.slideTo(this.dia);
   }
 
   swipeLeft(): void {
     this.dia = this.dia - 1;
-    
-    console.log('left'+this.dia);
+    // arrumar quando fica menor
     this.slides.slideTo(this.dia);
   }
 
