@@ -1,7 +1,29 @@
 grade-horario {
 
+    .primeira-linha {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .ultima-linha {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
 }
 
 td {
-    height: 50px;
+    text-align: center;
+    height: 65px;
+    border: 1px solid black;
+}
+
+th, tr {
+    width: 30px;
+}
+
+table {
+    border-spacing: 5px 0px;
+    border-collapse: separate;
+    margin-top: 20px;
 }
