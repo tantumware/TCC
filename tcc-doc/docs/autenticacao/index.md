@@ -10,7 +10,7 @@ Título: Login
 
 ### Regras
 
-**x.** Os campos devem vir preenchidos como padrão de acordo com o seguinte mapeamento:
+**1.** Os campos devem vir preenchidos por padrão de acordo com o seguinte mapeamento:
 
 | Campo            | Valor       |
 | ---------------- | ----------- |
@@ -19,7 +19,7 @@ Título: Login
 | Senha ID UFSC    | Em branco   |
 | Manter conectado | Selecionado |
 
-**x.** Sobre o campo **Idioma**:
+**2.** Sobre o campo **Idioma**:
 
 - Deve possuir as seguintes opções de preenchimento:
 	- Português;
@@ -28,9 +28,9 @@ Título: Login
 
 - Uma vez selecionado o idioma, todo o sistema deve mudar se adequar a linguagem escolhida pelo usuário.
 
-**x.** Ao acionar a ação **Manter conectado**, pular a etapa de login a cada entrada do usuário no sistema.
+**3.** Ao acionar a ação **Manter conectado**, pular a etapa de login a cada entrada do usuário no sistema.
 
-**x.** Ao acionar a ação **Sobre** redirecionar o usuário para a tela **ADICIONAR LINK**
+**4.** Ao acionar a ação **Sobre** redirecionar o usuário para a tela **ADICIONAR LINK**
 
 ### Internacionalização
 
