@@ -39,7 +39,12 @@ export class MainPage {
   }
 
   onSairClicked(): void {
-    this.navCtrl.pop();
+    console.log(this.navCtrl.length());
+    if (this.navCtrl.length() > 1) {
+      console.log("hiuhsiuahishas");
+      this.navCtrl.remove(0);
+    }
+    this.navCtrl.push('LoginPage');
     this.storage.get('age').then((val) => {
       console.log('Your age is', val);
     });

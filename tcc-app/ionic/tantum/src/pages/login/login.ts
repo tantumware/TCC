@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { User } from '../../providers/providers';
 
@@ -13,10 +14,9 @@ export class LoginPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { username: string, password: string } = {
-    username: 'idufsc',
-    password: 'test'
-  };
+
+  username: string;
+  password: string;
 
   idioma = "pt-br";
 
@@ -28,7 +28,17 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    private storage: Storage) {
+
+    this.username = null;
+    this.password = null;
+    
+      this.storage.get('account').then((val) => {
+        if (val) {
+          this.navCtrl.push('MainPage');
+        }
+      });
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -41,18 +51,20 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push('MainPage');
-    }, (err) => {
-      this.navCtrl.push('MainPage');
+    this.storage.set('account', null);
+    this.navCtrl.push('MainPage');
+
+  //  this.user.login(this.account).subscribe((resp) => {
+  //  }, (err) => {
+  //    this.navCtrl.push('MainPage');
       // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
+    //  let toast = this.toastCtrl.create({
+     //   message: this.loginErrorString,
+    //    duration: 3000,
+    //    position: 'top'
+    //  });
+   //   toast.present();
+    //});
   }
 
   onSobreClick(): void {
