@@ -15,4 +15,8 @@ export class GradeHorarioComponent {
     this.text = 'aaaaaaaaaaaaaaaaa';
   }
 
+  getValue(horario: string): string {
+    return horario;
+  }
+
 }

@@ -1,7 +1,7 @@
 import { TokenHelper } from './../../models/token';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Token } from '@angular/compiler';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -10,7 +10,7 @@ import { Token } from '@angular/compiler';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -19,6 +19,15 @@ export class MainPage {
     let plain = TokenHelper.decodeToken(encoded);
     console.log(plain);
     console.log('ionViewDidLoad MainPage');
+    
+    // set a key/value
+  this.storage.set('age', 25);
+
+  // Or to get a key/value pair
+  this.storage.get('age').then((val) => {
+    console.log('Your age is', val);
+  });
+
   }
 
   onHorariosClicked(): void {
@@ -31,6 +40,9 @@ export class MainPage {
 
   onSairClicked(): void {
     this.navCtrl.pop();
+    this.storage.get('age').then((val) => {
+      console.log('Your age is', val);
+    });
   }
 
   onEstatisticaClicked(): void {

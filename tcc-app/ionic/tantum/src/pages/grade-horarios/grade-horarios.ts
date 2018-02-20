@@ -1,6 +1,6 @@
 import { Dia } from './../../models/dia';
 import { Disciplina } from './../../models/disciplina';
-import { Component, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 @IonicPage()
@@ -63,7 +63,7 @@ export class GradeHorariosPage {
     return [new Disciplina('Disciplina 1'), new Disciplina('Disciplina 2'), new Disciplina('Disciplina 3')]
   }
 
-  getClass(dia: Dia): string {
+  getClassDia(dia: Dia): string {
     let clazz: string = "";
     if (!dia.visible) {
       clazz += "dia-hidden ";
@@ -72,6 +72,14 @@ export class GradeHorariosPage {
       clazz += "dia-selected";
     }
     return clazz;
+  }
+
+  getClass(passo: string): string {
+    if (this.passo == passo) {
+      return "";
+    } else {
+      return "passo-hidden";
+    } 
   }
 
 }

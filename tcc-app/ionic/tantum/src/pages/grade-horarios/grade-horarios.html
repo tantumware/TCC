@@ -15,9 +15,9 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngIf="passo == '1'" class="div-diario">
+  <div [ngClass]="getClass('1')" class="div-diario">
     <div class="dias">
-      <span *ngFor="let dia of dias" [ngClass]="getClass(dia)" (click)="onDiaClicked(dia)">{{dia.nomeAbreviado}}</span>
+      <span *ngFor="let dia of dias" [ngClass]="getClassDia(dia)" (click)="onDiaClicked(dia)">{{dia.nomeAbreviado}}</span>
     </div>
     <ion-slides [initialSlide]="dia" [spaceBetween]=5 #slides (ionSlideWillChange)="onSlideChanged($event)">
       <ion-slide>
@@ -43,7 +43,7 @@
     </ion-slides>
   </div>
 
-  <div *ngIf="passo == '2'">
+  <div [ngClass]="getClass('2')">
     <grade-horario></grade-horario>
   </div>
 
