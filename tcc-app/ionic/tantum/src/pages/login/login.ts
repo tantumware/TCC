@@ -1,3 +1,4 @@
+import { Account } from './../../models/account';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
@@ -15,6 +16,8 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
 
+  showView: boolean = false;
+
   username: string;
   password: string;
 
@@ -25,24 +28,26 @@ export class LoginPage {
   // Our translated text strings
   private loginErrorString: string;
 
-  constructor(public navCtrl: NavController,
-    public user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService,
-    private storage: Storage) {
-
-    this.username = null;
-    this.password = null;
-    
-      this.storage.get('account').then((val) => {
-        if (val) {
-          this.navCtrl.push('MainPage');
-        }
-      });
+  constructor(public navCtrl: NavController, public user: User, public toastCtrl: ToastController, public translateService: TranslateService, private storage: Storage) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+  }
+
+  ionViewWillEnter() {
+    this.username = null;
+    this.password = null;
+    this.showView = false;
+
+    this.storage.get('account').then((val) => {
+      console.log(val);
+      if (val) {
+        this.navCtrl.push('MainPage');
+      } else {
+        this.showView = true;
+      }
+    });
   }
 
   idiomaChanged(): void {
@@ -51,7 +56,11 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.storage.set('account', null);
+    let acc = new Account(this.username, this.password);
+
+    if (this.manterConectado) {
+      this.storage.set('account', acc);
+    }
     this.navCtrl.push('MainPage');
 
   //  this.user.login(this.account).subscribe((resp) => {
