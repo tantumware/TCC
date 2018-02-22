@@ -1,20 +1,20 @@
-<ion-content padding>
+<ion-content padding class="main-content">
 
   <ion-slides pager="true">
       <ion-slide (click)='onHorariosClicked()'>
         <img src="assets/img/calendar.png" class="slide-image" />
-        <h1>Horários do Dia</h1>
+        <h1 class="slide-text">Horários do Dia</h1>
       </ion-slide>
       <ion-slide (click)='onGerarHorarioClicked()'>
         <img src="assets/img/calendar-edit.png" class="slide-image" />
-        <h1>Geração de grade de horários</h1>
+        <h1 class="slide-text">Geração de grade de horários</h1>
       </ion-slide>
       <ion-slide (click)='onEstatisticaClicked()'>
         <img src="assets/img/analytics.png" class="slide-image" />
-        <h1>Estatísticas</h1>
+        <h1 class="slide-text">Estatísticas</h1>
       </ion-slide>
   </ion-slides>
 
-  <button ion-button (click)='onSairClicked()'>Sair</button>
+  <button ion-button (click)='onSairClicked()' class="button-sair">Sair</button>
 
 </ion-content>

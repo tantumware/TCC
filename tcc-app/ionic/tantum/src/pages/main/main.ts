@@ -20,8 +20,7 @@ export class MainPage {
   // Or to get a key/value pair
   this.storage.get('age').then((val) => {
     console.log('Your age is', val);
-  });
-
+  }); 
   }
 
   onHorariosClicked(): void {

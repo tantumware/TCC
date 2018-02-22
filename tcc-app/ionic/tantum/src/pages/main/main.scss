@@ -4,4 +4,31 @@ page-main {
         height: 90%;
     }
 
+    .slide-text {
+        color: color($colors, main-color);
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: color($colors, main-color);
+    }
+
+    .main-content {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button-sair{
+        border: 1px solid color($colors, main-color);
+        background-color: $background-color;
+        color: color($colors, main-color);
+        width: 120px;
+        border-radius: 5px;
+        margin-top: 20px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
 }
