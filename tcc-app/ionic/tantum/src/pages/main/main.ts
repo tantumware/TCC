@@ -42,7 +42,7 @@ export class MainPage {
   }
 
   onEstatisticaClicked(): void {
-    this.navCtrl.push('EstatísticasPage');
+    this.navCtrl.push('EstatisticasPage');
   }
 
 }

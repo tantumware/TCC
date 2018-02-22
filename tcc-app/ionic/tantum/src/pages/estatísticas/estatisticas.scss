@@ -1,4 +1,4 @@
-page-estatísticas {
+page-estatisticas {
 
     .scroll-content {
         background-color: map-get($colors, light);
@@ -8,4 +8,11 @@ page-estatísticas {
         font-weight: bold;
     }
 
+    .passo-hidden {
+        display: none;
+    }
+}
+
+.grafico-margin {
+    margin-top: 20px !important;
 }

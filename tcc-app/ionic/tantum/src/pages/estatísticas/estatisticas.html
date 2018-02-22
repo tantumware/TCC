@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Estatísticas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged()" color="main-color">
+    <ion-segment-button value="1">
+      Resumo
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      Próximos semestres
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list [ngClass]="getClass('1')">
+      <canvas class="grafico-margin" #doughnutCanvas></canvas>
+  
+      <canvas class="grafico-margin" #lineCanvas></canvas>
+  </ion-list>
+
+  <ion-list [ngClass]="getClass('2')">
+
+  </ion-list>
+
+</ion-content>
