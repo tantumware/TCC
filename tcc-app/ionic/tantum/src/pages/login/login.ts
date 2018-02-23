@@ -1,6 +1,6 @@
 import { Account } from './../../models/account';
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
@@ -12,27 +12,19 @@ import { User } from '../../providers/providers';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
 
   showView: boolean = false;
 
   username: string;
   password: string;
 
-  idioma = "pt-br";
+  idioma = "pt";
 
   manterConectado: boolean = true;
 
-  // Our translated text strings
-  private loginErrorString: string;
-
   constructor(public navCtrl: NavController, public user: User, public toastCtrl: ToastController, public translateService: TranslateService, private storage: Storage) {
-
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
-    })
+    this.translateService.setDefaultLang('pt');
+    this.storage.set('idioma', this.idioma);
   }
 
   ionViewWillEnter() {
@@ -40,8 +32,15 @@ export class LoginPage {
     this.password = null;
     this.showView = false;
 
+    this.idioma = this.translateService.currentLang;
+
+    this.storage.get('idioma').then(idioma => {
+      if (idioma) {
+        this.idioma == idioma;
+      }
+    });
+
     this.storage.get('account').then((val) => {
-      console.log(val);
       if (val) {
         this.navCtrl.push('MainPage');
       } else {
@@ -51,10 +50,10 @@ export class LoginPage {
   }
 
   idiomaChanged(): void {
-    console.log(this.idioma);
+    this.translateService.use(this.idioma);
+    this.storage.set('idioma', this.idioma);
   }
 
-  // Attempt to login in through our User service
   doLogin() {
     let acc = new Account(this.username, this.password);
 

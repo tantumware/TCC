@@ -2,6 +2,7 @@ import { TokenHelper } from './../../models/token';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -10,7 +11,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService) {
   }
 
   ionViewDidLoad() {    

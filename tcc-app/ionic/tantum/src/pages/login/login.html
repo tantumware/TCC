@@ -3,10 +3,10 @@
     <img src="assets/img/scholarship.svg" class="logo-tantum" />
 
     <ion-item>
-      <ion-label>Idioma</ion-label>
+      <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
       <ion-select [(ngModel)]="idioma" (ionChange)="idiomaChanged()">
-        <ion-option value="pt-br">Português</ion-option>
-        <ion-option value="en-us">English</ion-option>
+        <ion-option value="pt">Português</ion-option>
+        <ion-option value="en">English</ion-option>
         <ion-option value="es">Español</ion-option>
       </ion-select>
     </ion-item>
@@ -24,7 +24,7 @@
         </ion-item>
 
         <ion-item class="manter-conectado">
-          <ion-label>Manter-me conectado</ion-label>
+          <ion-label>{{ 'KEEP_LOGGED_IN' | translate }}</ion-label>
           <ion-toggle [(ngModel)]="manterConectado" color="main-color" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
 
@@ -33,6 +33,6 @@
       </ion-list>
     </form>    
     
-    <button ion-button color="main-color" (click)='onSobreClick()' class="sobre-button">Sobre</button>
+    <button ion-button color="main-color" (click)='onSobreClick()' class="sobre-button">{{ 'ABOUT' | translate }}</button>
   </ion-list>
 </ion-content>

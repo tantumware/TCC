@@ -3,18 +3,18 @@
   <ion-slides pager="true">
       <ion-slide (click)='onHorariosClicked()'>
         <img src="assets/img/calendar.png" class="slide-image" />
-        <h1 class="slide-text">Horários do Dia</h1>
+        <h1 class="slide-text">{{ 'DAILY_SCHEDULES' | translate }}</h1>
       </ion-slide>
       <ion-slide (click)='onGerarHorarioClicked()'>
         <img src="assets/img/calendar-edit.png" class="slide-image" />
-        <h1 class="slide-text">Geração de grade de horários</h1>
+        <h1 class="slide-text">{{ 'SCHEDULE_GENERATION' | translate }}</h1>
       </ion-slide>
       <ion-slide (click)='onEstatisticaClicked()'>
         <img src="assets/img/analytics.png" class="slide-image" />
-        <h1 class="slide-text">Estatísticas</h1>
+        <h1 class="slide-text">{{ 'STATISTICS' | translate }}</h1>
       </ion-slide>
   </ion-slides>
 
-  <button ion-button (click)='onSairClicked()' class="button-sair">Sair</button>
+  <button ion-button (click)='onSairClicked()' class="button-sair">{{ 'SIGN_OUT' | translate }}</button>
 
 </ion-content>

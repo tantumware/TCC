@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { LoginPage } from './login';
+import { Http } from '@angular/http';
+import {TranslateService} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function TranslateLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -10,7 +17,14 @@ import { LoginPage } from './login';
   ],
   imports: [
     IonicPageModule.forChild(LoginPage),
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (TranslateLoaderFactory),
+        deps: [ Http ]
+      }
+    })
   ],
   exports: [
     LoginPage
