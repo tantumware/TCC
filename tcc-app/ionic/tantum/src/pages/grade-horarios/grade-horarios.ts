@@ -1,7 +1,9 @@
+import { DisciplinaListItem } from './../../models/discipliaListItem';
 import { Dia } from './../../models/dia';
 import { Disciplina } from './../../models/disciplina';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { HorariosProvider } from '../../providers/horarios/horarios';
 
 @IonicPage()
 @Component({
@@ -16,17 +18,29 @@ export class GradeHorariosPage {
 
   private dias: Dia[];
 
+  private disciplinas: Disciplina[];
+
   @ViewChild('slides') slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private horarios: HorariosProvider) {
     this.dia = new Date().getDay() - 1; // começa na segunda
     this.dias = Dia.getAllDias();
+
+    horarios.gradeDeHorarios()
+      .map(res => res.json())
+      .subscribe(res => {
+        // if (res.success) {
+        this.disciplinas = res.result.disciplinas;
+        //  }
+      }, err => {
+        console.error('ERROR', err);
+      });
   }
 
   ionViewDidLoad() {
     this.passo = '1';
   }
-  
+
   onPassoChanged(): void {
   }
 
@@ -38,10 +52,10 @@ export class GradeHorariosPage {
     if (event) {
       this.swipeRight();
     } else {
-      this.swipeLeft(); 
+      this.swipeLeft();
     }
   }
-  
+
   swipeRight(): void {
     this.dia = this.dia + 1;
     // arrumar qnd fica maior
@@ -59,8 +73,22 @@ export class GradeHorariosPage {
     this.slides.slideTo(this.dia);
   }
 
-  getDisciplinas(): Disciplina[] {
-    return [new Disciplina('Disciplina 1'), new Disciplina('Disciplina 2'), new Disciplina('Disciplina 3')]
+  getDisciplinas(dia: string): DisciplinaListItem[] {
+    let disciplinasDia: DisciplinaListItem[] = [];
+
+    for (let k in this.disciplinas) {
+      let disciplina = this.disciplinas[k];
+      for (let j in disciplina.horarios) {
+        let horario = disciplina.horarios[j];
+        if (horario.startsWith(dia)){
+          let aux = horario.split("/");
+          let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, aux[0].trim(), aux[1].trim());
+          disciplinasDia.push(item);
+        }
+      }
+    }
+
+    return disciplinasDia;
   }
 
   getClassDia(dia: Dia): string {
@@ -68,7 +96,7 @@ export class GradeHorariosPage {
     if (!dia.visible) {
       clazz += "dia-hidden ";
     }
-    if (this.dias[this.dia].nomeAbreviado == dia.nomeAbreviado){
+    if (this.dias[this.dia].nomeAbreviado == dia.nomeAbreviado) {
       clazz += "dia-selected";
     }
     return clazz;
@@ -79,7 +107,7 @@ export class GradeHorariosPage {
       return "";
     } else {
       return "passo-hidden";
-    } 
+    }
   }
 
 }

@@ -8,12 +8,12 @@ import { Http, RequestOptions, URLSearchParams } from '@angular/http';
  */
 @Injectable()
 export class Api {
-  url: string = 'https://example.com/api/v1';
+  url: string = 'http://localhost:8080/v1';
 
   constructor(public http: Http) {
   }
 
-  get(endpoint: string, params?: any, options?: RequestOptions) {
+  get(endpoint: string, params?: any, vals?: any, options?: RequestOptions) {
     if (!options) {
       options = new RequestOptions();
     }
@@ -22,7 +22,7 @@ export class Api {
     if (params) {
       let p = new URLSearchParams();
       for (let k in params) {
-        p.set(k, params[k]);
+        p.set(params[k], vals[k]);
       }
       // Set the search field if we have params and don't already have
       // a search field set in options.

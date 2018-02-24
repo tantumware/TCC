@@ -1,3 +1,4 @@
+import { DisciplinaListItem } from './../../models/discipliaListItem';
 import { AlertController } from 'ionic-angular';
 import { Disciplina } from './../../models/disciplina';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
@@ -8,7 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ListaDisciplinasComponent {
 
-  @Input() disciplinas: Disciplina[];
+  @Input() disciplinas: DisciplinaListItem[];
 
   @Output() onSwiped = new EventEmitter<boolean>();
 

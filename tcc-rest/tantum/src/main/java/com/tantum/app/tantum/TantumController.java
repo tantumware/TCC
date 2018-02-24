@@ -24,7 +24,7 @@ import com.tantum.app.tantum.models.Semestre;
 import com.tantum.app.tantum.models.Settings;
 
 @RequestMapping("/v1/")
-@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin
 @RestController
 public class TantumController {
 
