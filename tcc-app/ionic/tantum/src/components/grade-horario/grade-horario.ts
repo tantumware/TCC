@@ -1,4 +1,4 @@
-import { Disciplina } from './../../models/disciplina';
+import { DisciplinaListItem } from './../../models/discipliaListItem';
 import { Component, Input } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
@@ -8,13 +8,18 @@ import { AlertController } from 'ionic-angular';
 })
 export class GradeHorarioComponent {
 
-  @Input() disciplinas: Disciplina[];
+  @Input() disciplinas: DisciplinaListItem[];
 
   constructor(private alertCtrl: AlertController) {
   }
 
   getValue(horario: string): string {
-    return horario;
+    for (let i in this.disciplinas) {
+      if (this.disciplinas[i].horario.startsWith(horario)){
+        return this.disciplinas[i].local;
+      }
+    }
+    return "";
   }
 
   onDisciplinaClicked(event: any) {

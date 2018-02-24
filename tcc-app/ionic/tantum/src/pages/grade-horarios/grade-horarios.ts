@@ -73,14 +73,14 @@ export class GradeHorariosPage {
     this.slides.slideTo(this.dia);
   }
 
-  getDisciplinas(dia: string): DisciplinaListItem[] {
+  getDisciplinas(dia?: string): DisciplinaListItem[] {
     let disciplinasDia: DisciplinaListItem[] = [];
 
     for (let k in this.disciplinas) {
       let disciplina = this.disciplinas[k];
       for (let j in disciplina.horarios) {
         let horario = disciplina.horarios[j];
-        if (horario.startsWith(dia)){
+        if (dia == null || horario.startsWith(dia)){
           let aux = horario.split("/");
           let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, aux[0].trim(), aux[1].trim());
           disciplinasDia.push(item);
