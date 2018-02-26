@@ -2,6 +2,7 @@ import { DisciplinaListItem } from './../../models/discipliaListItem';
 import { Dia } from './../../models/dia';
 import { Disciplina } from './../../models/disciplina';
 import { Component, ViewChild } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { HorariosProvider } from '../../providers/horarios/horarios';
 
@@ -22,16 +23,19 @@ export class GradeHorariosPage {
 
   @ViewChild('slides') slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private horarios: HorariosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private horarios: HorariosProvider, private storage: Storage) {
     this.dia = new Date().getDay() - 1; // começa na segunda
     this.dias = Dia.getAllDias();
+
+    this.storage.get('disciplinas').then(d => this.disciplinas = d);
 
     horarios.gradeDeHorarios()
       .map(res => res.json())
       .subscribe(res => {
-        // if (res.success) {
-        this.disciplinas = res.result.disciplinas;
-        //  }
+        if (res.success) {
+          this.disciplinas = res.result.disciplinas;
+          this.storage.set('disciplinas', this.disciplinas);
+        }
       }, err => {
         console.error('ERROR', err);
       });
@@ -80,7 +84,7 @@ export class GradeHorariosPage {
       let disciplina = this.disciplinas[k];
       for (let j in disciplina.horarios) {
         let horario = disciplina.horarios[j];
-        if (dia == null || horario.startsWith(dia)){
+        if (dia == null || horario.startsWith(dia)) {
           let aux = horario.split("/");
           let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, aux[0].trim(), aux[1].trim());
           disciplinasDia.push(item);
