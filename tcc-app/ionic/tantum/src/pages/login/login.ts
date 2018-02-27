@@ -1,6 +1,6 @@
 import { Account } from './../../models/account';
 import { Component } from '@angular/core';
-import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
@@ -24,7 +24,13 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public user: User, public toastCtrl: ToastController, public translateService: TranslateService, private storage: Storage) {
     this.translateService.setDefaultLang('pt');
-    this.storage.set('idioma', this.idioma);
+
+    this.storage.get('idioma').then(idioma => {
+      if (idioma) {
+        this.idioma = idioma;
+        this.translateService.use(this.idioma);
+      }
+    });
   }
 
   ionViewWillEnter() {
@@ -33,12 +39,6 @@ export class LoginPage {
     this.showView = false;
 
     this.idioma = this.translateService.currentLang;
-
-    this.storage.get('idioma').then(idioma => {
-      if (idioma) {
-        this.idioma == idioma;
-      }
-    });
 
     this.storage.get('account').then((val) => {
       if (val) {
@@ -50,6 +50,7 @@ export class LoginPage {
   }
 
   idiomaChanged(): void {
+    console.log(this.idioma);
     this.translateService.use(this.idioma);
     this.storage.set('idioma', this.idioma);
   }
