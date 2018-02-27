@@ -1,6 +1,6 @@
 <ion-content padding class="main-content">
 
-  <ion-slides pager="true">
+  <!--<ion-slides pager="true">
       <ion-slide (click)='onHorariosClicked()'>
         <img src="assets/img/calendar.png" class="slide-image" />
         <h1 class="slide-text">{{ 'DAILY_SCHEDULES' | translate }}</h1>
@@ -13,7 +13,24 @@
         <img src="assets/img/analytics.png" class="slide-image" />
         <h1 class="slide-text">{{ 'STATISTICS' | translate }}</h1>
       </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
+
+  <ion-list>
+    <ion-item class="main-item" (click)='onHorariosClicked()'>
+      <img src="assets/img/scholarship.svg" class="main-icon" />
+      <span>{{ 'DAILY_SCHEDULES' | translate }}</span>
+    </ion-item>
+    <ion-item class="main-item" (click)='onGerarHorarioClicked()'>
+      <img src="assets/img/scholarship.svg" class="main-icon" />
+      <span>{{ 'SCHEDULE_GENERATION' | translate }}</span>
+    </ion-item>
+    <ion-item class="main-item" (click)='onEstatisticaClicked()'>
+      <img src="assets/img/scholarship.svg" class="main-icon" />
+      <span>{{ 'STATISTICS' | translate }}</span>
+    </ion-item>
+  </ion-list>
+
+
 
   <button ion-button (click)='onSairClicked()' class="button-sair">{{ 'SIGN_OUT' | translate }}</button>
 

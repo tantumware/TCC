@@ -1,7 +1,7 @@
 page-main {
 
-    ion-slides {
-        height: 90%;
+    ion-list {
+        height: 85%;
     }
 
     .slide-text {
@@ -31,4 +31,18 @@ page-main {
         transform: translate(-50%, -50%);
     }
 
+    .main-button {
+        width: 200px;
+        height: 50px !important;
+    }
+
+    .main-icon {
+        width: 10%;
+    }
+
+    .main-item {
+        border: 1px solid black !important;
+        margin-top: 10px;
+    }
+    
 }
