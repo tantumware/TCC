@@ -1,36 +1,22 @@
 <ion-content padding class="main-content">
 
-  <!--<ion-slides pager="true">
-      <ion-slide (click)='onHorariosClicked()'>
-        <img src="assets/img/calendar.png" class="slide-image" />
-        <h1 class="slide-text">{{ 'DAILY_SCHEDULES' | translate }}</h1>
-      </ion-slide>
-      <ion-slide (click)='onGerarHorarioClicked()'>
-        <img src="assets/img/calendar-edit.png" class="slide-image" />
-        <h1 class="slide-text">{{ 'SCHEDULE_GENERATION' | translate }}</h1>
-      </ion-slide>
-      <ion-slide (click)='onEstatisticaClicked()'>
-        <img src="assets/img/analytics.png" class="slide-image" />
-        <h1 class="slide-text">{{ 'STATISTICS' | translate }}</h1>
-      </ion-slide>
-  </ion-slides> -->
-
   <ion-list>
     <ion-item class="main-item" (click)='onHorariosClicked()'>
-      <img src="assets/img/scholarship.svg" class="main-icon" />
-      <span>{{ 'DAILY_SCHEDULES' | translate }}</span>
+      <img src="assets/img/calendar.svg" class="main-icon" />
+      <span class="main-div"></span>
+      <span class="main-label">{{ 'DAILY_SCHEDULES' | translate }}</span>
     </ion-item>
     <ion-item class="main-item" (click)='onGerarHorarioClicked()'>
-      <img src="assets/img/scholarship.svg" class="main-icon" />
-      <span>{{ 'SCHEDULE_GENERATION' | translate }}</span>
+      <img src="assets/img/calendar_generate.svg" class="main-icon" />
+      <span class="main-div"></span>
+      <span class="main-label">{{ 'SCHEDULE_GENERATION' | translate }}</span>
     </ion-item>
     <ion-item class="main-item" (click)='onEstatisticaClicked()'>
-      <img src="assets/img/scholarship.svg" class="main-icon" />
-      <span>{{ 'STATISTICS' | translate }}</span>
+      <img src="assets/img/bars-chart.svg" class="main-icon" />
+      <span class="main-div"></span>
+      <span class="main-label">{{ 'STATISTICS' | translate }}</span>
     </ion-item>
   </ion-list>
-
-
 
   <button ion-button (click)='onSairClicked()' class="button-sair">{{ 'SIGN_OUT' | translate }}</button>
 
