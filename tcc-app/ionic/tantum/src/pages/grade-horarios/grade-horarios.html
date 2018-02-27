@@ -21,23 +21,18 @@
     </div>
     <ion-slides [initialSlide]="dia" [spaceBetween]=5 #slides (ionSlideWillChange)="onSlideChanged($event)">
       <ion-slide>
-        <p>Segunda-feira</p>
         <lista-disciplinas [disciplinas]="getDisciplinas('2')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <p>Terça-feira</p>
         <lista-disciplinas [disciplinas]="getDisciplinas('3')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <p>Quarta-feira</p>
         <lista-disciplinas [disciplinas]="getDisciplinas('4')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <p>Quinta-feira</p>
         <lista-disciplinas [disciplinas]="getDisciplinas('5')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
       <ion-slide>
-        <p>Sexta-feira</p>
         <lista-disciplinas [disciplinas]="getDisciplinas('6')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
       </ion-slide>
     </ion-slides>

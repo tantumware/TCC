@@ -4,6 +4,10 @@ page-main {
         height: 85%;
     }
 
+    .list-ios > .item-block:first-child {
+        border-top: none !important;
+    }
+
     .slide-text {
         color: color($colors, main-color);
     }

@@ -1,13 +1,15 @@
 {
   "ABOUT": "About",
+  "ABOUT_TEXT": "The purpose of this application is to help you set up your schedule for the next semester in order to minimize your training time and fit the disciplines in the study shifts that are more convenient with your routine. Also available are the grid display functions and course tracking statistics.",
+  "ABOUT_TEXT_2": "This application was developed as a Course Completion Work by students Isaac Silva and Pedro Pacheco of the course of Information Systems.",
   "BACK_BUTTON_TEXT": "Back",
   "DAILY_SCHEDULES": "Daily schedules",
-  "USERNAME": "idUFSC",
+  "KEEP_LOGGED_IN": "Keep me logged in",
+  "LANGUAGE": "Language",
+  "LOGIN_BUTTON": "Sign in",
   "PASSWORD": "Password",
   "SCHEDULE_GENERATION": "Schedule generation",
   "SIGN_OUT": "Sign out",
   "STATISTICS": "Statistics",
-  "LANGUAGE": "Language",
-  "KEEP_LOGGED_IN": "Keep me logged in",
-  "LOGIN_BUTTON": "Sign in"
+  "USERNAME": "idUFSC"
 }
