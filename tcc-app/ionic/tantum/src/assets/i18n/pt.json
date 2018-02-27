@@ -3,6 +3,7 @@
   "ABOUT_TEXT": "O objetivo dessa aplicação é auxiliar você a montar sua grade de horários para o próximo semestre de forma a minimizar seu tempo de formação e encaixar as disciplinas nos turnos de estudo que são mais convenientes com sua rotina. Também serão disponibilizadas as funções de visualização de grade de horários e estatísticas de acompanhamento do curso.",
   "ABOUT_TEXT_2": "Este aplicativo foi desenvolvido como TCC (Trabalho de conclusão de curso) pelos alunos Isaac Silva e Pedro Pacheco do curso de Sistemas de Informação.",
   "BACK_BUTTON_TEXT": "Voltar",
+  "DAILY": "Diário",
   "DAILY_SCHEDULES": "Horários do dia",
   "KEEP_LOGGED_IN": "Manter-me conectado",
   "LANGUAGE": "Idioma",
@@ -11,5 +12,20 @@
   "SCHEDULE_GENERATION": "Geração de horários",
   "SIGN_OUT": "Sair",
   "STATISTICS": "Estatísticas",
-  "USERNAME": "idUFSC ou CPF"
+  "USERNAME": "idUFSC ou CPF",
+  "WEEKLY": "Semanal",
+
+  "MONDAY": "Segunda",
+  "TUESDAY": "Terça",
+  "WEDNESDAY": "Quarta",
+  "THURSDAY": "Quinta",	
+  "FRIDAY": "Sexta",	
+  "SATURDAY": "Sábado",
+  
+  "MONDAY_SHORT": "Seg",
+  "TUESDAY_SHORT": "Terç",
+  "WEDNESDAY_SHORT": "Qua",
+  "THURSDAY_SHORT": "Qui",	
+  "FRIDAY_SHORT": "Sex",	
+  "SATURDAY_SHORT": "Sáb"
 }

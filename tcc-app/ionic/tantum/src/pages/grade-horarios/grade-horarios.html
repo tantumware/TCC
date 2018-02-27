@@ -8,10 +8,10 @@
 
   <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged()" color="main-color">
     <ion-segment-button value="1">
-      Diário
+      {{ 'DAILY' | translate }}
     </ion-segment-button>
     <ion-segment-button value="2">
-      Semanal
+      {{ 'WEEKLY' | translate }}
     </ion-segment-button>
   </ion-segment>
 
