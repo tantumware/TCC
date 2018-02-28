@@ -1,4 +1,5 @@
-import { TokenHelper } from './../../models/token';
+import { UserDataProvider } from './../../providers/user-data/user-data';
+import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -11,17 +12,41 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService) {
+  private userData: UserData = new UserData("", "");
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService, public userDataProvider: UserDataProvider) {
   }
 
-  ionViewDidLoad() {    
-    // set a key/value
-  this.storage.set('age', 25);
+  ionViewDidLoad() {
+    this.getUserData();
 
-  // Or to get a key/value pair
-  this.storage.get('age').then((val) => {
-    console.log('Your age is', val);
-  }); 
+    // set a key/value
+    this.storage.set('age', 25);
+
+    // Or to get a key/value pair
+    this.storage.get('age').then((val) => {
+      console.log('Your age is', val);
+    });
+  }
+
+  getUserData(): void {
+    this.storage.get('userData').then(val => {
+      if (val) {
+        this.userData = val;
+      }
+    });
+    this.userData = new UserData("nome", "2018.1");
+
+    /*this.userData = this.userDataProvider.userData()
+      .map(res => res.json())
+      .subscribe(res => {
+        if (res.success) {
+          this.userData = res;
+          this.storage.set('userData', this.userData);
+        }
+      }, err => {
+        console.error('ERROR', err);
+      }); */
   }
 
   onHorariosClicked(): void {

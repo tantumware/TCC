@@ -16,6 +16,17 @@ page-main {
         background-color: color($colors, main-color);
     }
 
+    .semestre {
+        color: #2d2d2d;
+        margin-top: 0px;
+        font-size: 14px;
+    }
+
+    .nome {
+        color: #2d2d2d;
+        margin-bottom: 0px;
+    }
+
     .main-content {
         display: flex;
         display: -webkit-flex;

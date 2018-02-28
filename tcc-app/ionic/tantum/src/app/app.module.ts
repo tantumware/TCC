@@ -17,6 +17,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { EstatisticaProvider } from '../providers/estatistica/estatistica';
 import { HorariosProvider } from '../providers/horarios/horarios';
+import { UserDataProvider } from '../providers/user-data/user-data';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -72,7 +73,8 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     EstatisticaProvider,
-    HorariosProvider
+    HorariosProvider,
+    UserDataProvider
   ]
 })
 export class AppModule { }

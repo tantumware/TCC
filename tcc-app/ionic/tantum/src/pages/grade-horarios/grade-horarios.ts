@@ -1,5 +1,5 @@
+import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { FormatterUtils } from './../../utils/formatter';
-import { DisciplinaListItem } from './../../models/discipliaListItem';
 import { Dia } from './../../models/dia';
 import { Disciplina } from './../../models/disciplina';
 import { Component, ViewChild } from '@angular/core';
@@ -30,7 +30,7 @@ export class GradeHorariosPage {
 
     this.storage.get('disciplinas').then(d => this.disciplinas = d);
 
-    horarios.gradeDeHorarios()
+    this.horarios.gradeDeHorarios()
       .map(res => res.json())
       .subscribe(res => {
         if (res.success) {

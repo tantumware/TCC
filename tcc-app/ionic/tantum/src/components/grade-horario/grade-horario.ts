@@ -1,4 +1,4 @@
-import { DisciplinaListItem } from './../../models/discipliaListItem';
+import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { Component, Input } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
