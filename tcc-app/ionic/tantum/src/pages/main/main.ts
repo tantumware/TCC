@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { DisciplinaListItem } from '../../models/disciplia-list-item';
 
 @IonicPage()
 @Component({
@@ -68,6 +69,10 @@ export class MainPage {
 
   onEstatisticaClicked(): void {
     this.navCtrl.push('EstatisticasPage');
+  }
+
+  getDisciplinas() {
+    return [new DisciplinaListItem("Nome Disciplina", "INE1337", "04:20", "CTC-123")];
   }
 
 }

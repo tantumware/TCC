@@ -1,12 +1,18 @@
 <ion-content padding class="main-content">
 
 
-  <ion-list>
-    <ion-item>
+  <ion-list class="main-list">
+    <!--  <ion-item>
       <ion-label class="nome">{{ userData.name }}</ion-label>
     </ion-item>
     <ion-item>
       <ion-label class="semestre">{{ userData.semester }}</ion-label>
+    </ion-item> -->
+    <ion-item>
+      <ion-label>Próximas aulas</ion-label>
+    </ion-item>
+    <ion-item>
+      <lista-disciplinas [disciplinas]="getDisciplinas()"></lista-disciplinas>
     </ion-item>
     <ion-item class="main-item" (click)='onHorariosClicked()'>
       <img src="assets/img/calendar.svg" class="main-icon" />
