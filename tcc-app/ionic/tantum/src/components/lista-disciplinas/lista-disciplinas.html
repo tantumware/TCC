@@ -1,7 +1,9 @@
-<ion-list no-lines (swipe)="itemSwiped($event)">
+<ion-list no-lines (swipe)="itemSwiped($event)" *ngIf="showLista()">
     <ion-item *ngFor='let disciplina of disciplinas' class="disciplina-item" (click)="onDisciplinaClicked(disciplina)">
         <span class="horario">{{disciplina.horario}}</span>
         <span>{{disciplina.local}}</span>
         <span>{{disciplina.nome}}</span> 
     </ion-item>
 </ion-list>
+
+<p *ngIf="!showLista()">Não tem nada</p>

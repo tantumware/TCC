@@ -34,4 +34,8 @@ export class ListaDisciplinasComponent {
     alert.present();
   }
 
+  showLista(): boolean {
+    return this.disciplinas.length > 0;
+  }
+
 }

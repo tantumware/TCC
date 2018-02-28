@@ -72,7 +72,7 @@ export class MainPage {
   }
 
   getDisciplinas() {
-    return [new DisciplinaListItem("Nome Disciplina", "INE1337", "04:20", "CTC-123")];
+    return [new DisciplinaListItem("Nome Disciplinaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "INE1337", "04:20", "CTC-123")];
   }
 
 }
