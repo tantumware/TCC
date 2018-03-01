@@ -1,5 +1,5 @@
 import { DisciplinaListItem } from './../../models/disciplia-list-item';
-import { AlertController } from 'ionic-angular';
+import { AlertController, Platform } from 'ionic-angular';
 import { Disciplina } from './../../models/disciplina';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
@@ -13,7 +13,7 @@ export class ListaDisciplinasComponent {
 
   @Output() onSwiped = new EventEmitter<boolean>();
 
-  constructor(private alertCtrl: AlertController) {
+  constructor(private alertCtrl: AlertController, public plt: Platform) {
   }
 
   itemSwiped(s: any) {
@@ -36,6 +36,22 @@ export class ListaDisciplinasComponent {
 
   showLista(): boolean {
     return this.disciplinas.length > 0;
+  }
+
+  getLocalClass(): string {
+    let clazz: string = "disciplia-local"
+    if (this.plt.is('windows')) {
+      clazz += " disciplia-local-wp"
+    }
+    return clazz;
+  }
+
+  getNomeClass(): string {
+    let clazz: string = "disciplia-nome"
+    if (this.plt.is('windows')) {
+      clazz += " disciplia-nome-wp"
+    }
+    return clazz;
   }
 
 }

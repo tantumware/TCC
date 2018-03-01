@@ -12,8 +12,8 @@
         <div class="horario">{{disciplina.horario}}</div>
         <div class="disciplina-div"></div>
         <div class="nomes">
-            <div class="disciplia-local">{{disciplina.local}}</div>
-            <div class="disciplia-nome">{{disciplina.nome}}</div>
+            <div [ngClass]="getLocalClass()">{{disciplina.local}}</div>
+            <div [ngClass]="getNomeClass()">{{disciplina.nome}}</div>
         </div>
         <!-- <span class="disciplia-local">{{disciplina.local}}</span> -->
         <!-- <span class="disciplia-nome">{{disciplina.nome}}</span>  -->

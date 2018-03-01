@@ -33,14 +33,22 @@ lista-disciplinas {
         bottom: 5px;
     }
 
+    .disciplia-local-wp {
+        bottom: 8px !important;
+    }
+
     .disciplia-nome {
         position: relative;
         bottom: 5px;
         color: #9d9ea0;
         text-overflow: ellipsis;
         white-space: nowrap; 
-        overflow:hidden;
-        display:block;
+        overflow: hidden;
+        display: block;
+    }
+
+    .disciplia-nome-wp {
+        bottom: 8px !important;
     }
     
     .nomes {
