@@ -1,5 +1,10 @@
-Cabeçalho
-Titulo: Detalhes de disciplina
+---
+layout: doc
+title: Detalhes da disciplina
+id: detalhes_disciplina
+parent: geral
+order: 1
+---
 
 # Campos
 
