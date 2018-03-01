@@ -1,4 +1,10 @@
-Cabeçalho
+---
+layout: doc
+title: Definir critérios - Passo 3
+id: definir_criterios_passo_3
+parent: definir_criterios
+order: 3
+---
 Titulo: Definir critérios - Passo 3
 
 # Campos 

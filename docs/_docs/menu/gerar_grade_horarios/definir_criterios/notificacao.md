@@ -1,5 +1,10 @@
-Cabeçalho
-Titulo: Notificação sobre completude de geração
+---
+layout: doc
+title: Notificação sobre completude de geração
+id: notificacao_resultado
+parent: gerar_grade_horarios
+order: 3
+---
 
 # Regras
 

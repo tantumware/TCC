@@ -1,5 +1,9 @@
-Cabeçalho
-Título: Menu principal
+---
+layout: doc
+title: Menu principal
+id: menu_principal
+order: 2
+---
 
 ### Opções
 

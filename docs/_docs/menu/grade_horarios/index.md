@@ -1,5 +1,10 @@
-Cabeçalho
-Título: Grade de horários
+---
+layout: doc
+title: Grade de horários
+id: grade_horarios
+parent: menu_principal
+order: 1
+---
 
 ### Modos de exibição
 

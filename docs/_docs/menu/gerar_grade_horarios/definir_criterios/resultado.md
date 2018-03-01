@@ -1,5 +1,11 @@
-Cabeçalho
-Titulo: Resultado da geração de grade de horários
+---
+layout: doc
+title: Resultado da geração de grade de horários
+id: resultado_da_geracao_de_grade
+parent: gerar_grade_horarios
+order: 3
+---
+Titulo: 
 
 # Regras
 

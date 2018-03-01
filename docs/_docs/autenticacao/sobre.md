@@ -1,5 +1,10 @@
-Cabeçalho
-Título: Sobre
+---
+layout: doc
+title: Sobre
+id: sobre
+parent: login
+order: 1
+---
 
 ### Conteúdo
 

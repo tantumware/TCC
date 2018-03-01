@@ -1,5 +1,10 @@
-Cabeçalho
-Titulo: Definir critérios - Passo 2
+---
+layout: doc
+title: Definir critérios - Passo 2
+id: definir_criterios_passo_2
+parent: definir_criterios
+order: 2
+---
 
 # Campos 
 
