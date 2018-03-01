@@ -13,4 +13,8 @@ export class FormatterUtils {
         return hour.slice(0, 2) + ":" + hour.slice(2);
     }
 
+    public static formatLocal(value: string) {
+        return value.split("-")[1];
+    }
+
 }

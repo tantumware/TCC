@@ -70,9 +70,9 @@ export class MainPage {
   onEstatisticaClicked(): void {
     this.navCtrl.push('EstatisticasPage');
   }
-
+  
   getDisciplinas() {
-    return [new DisciplinaListItem("Nome Disciplinaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "INE1337", "04:20", "CTC-123")];
+    return [new DisciplinaListItem("Linguagens formais e compiladores", "INE1337", "04:20", "CTC-123")];
   }
 
 }

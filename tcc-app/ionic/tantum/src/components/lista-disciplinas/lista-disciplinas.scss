@@ -2,14 +2,50 @@ lista-disciplinas {
 
     .horario {
         color: #e67e22;
+        font-size: 15px;
+        float: left;
     }
 
     .disciplina-item {
-        border: 1px solid black !important;
-        border-radius: 15px;
+        border: 1px solid #f1f1f1 !important;
+        background-color: white;
+        border-radius: 10px;
         margin-bottom: 5px;
         font-size: 13px;
-        text-overflow: string;
+        height: 50px;
+        text-align: left;
+        padding-top: 15px;
+        padding-left: 15px;
+        box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    .disciplina-div {
+        width: 1px;
+        height: 20px;
+        border: 1px solid #f1f1f1;
+        margin-left: 20px;
+        margin-right: 20px;
+        float: left;
+    }
+
+    .disciplia-local {
+        position: relative;
+        bottom: 5px;
+    }
+
+    .disciplia-nome {
+        position: relative;
+        bottom: 5px;
+        color: #9d9ea0;
+        text-overflow: ellipsis;
+        white-space: nowrap; 
+        overflow:hidden;
+        display:block;
+    }
+    
+    .nomes {
+        text-overflow: ellipsis;
+        white-space: nowrap; 
     }
 
 }

@@ -1,11 +1,15 @@
 page-main {
 
     .main-list {
-        height: 85%;
+        height: 88%;
     }
 
     .list-ios > .item-block:first-child {
         border-top: none !important;
+    }
+
+    .list {
+        margin: 0px !important;
     }
 
     .slide-text {
@@ -54,6 +58,7 @@ page-main {
         height: 80px;
         margin-top: 10px;
         box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.2);
+        background-color: white;
     }
 
     .main-div {
