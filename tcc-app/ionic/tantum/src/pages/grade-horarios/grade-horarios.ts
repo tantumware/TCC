@@ -1,3 +1,4 @@
+import { CalendarUtils } from './../../utils/calendar';
 import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { FormatterUtils } from './../../utils/formatter';
 import { Dia } from './../../models/dia';
@@ -24,9 +25,9 @@ export class GradeHorariosPage {
 
   @ViewChild('slides') slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private horarios: HorariosProvider, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private horarios: HorariosProvider, private storage: Storage, private cal: CalendarUtils) {
     this.dia = new Date().getDay() - 1; // começa na segunda
-    this.dias = Dia.getAllDias();
+    this.dias = this.cal.getAllDias();
 
     this.storage.get('disciplinas').then(d => this.disciplinas = d);
 

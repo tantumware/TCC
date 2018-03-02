@@ -1,3 +1,4 @@
+import { CalendarUtils } from './../../utils/calendar';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';
@@ -21,7 +22,7 @@ export class MainPage {
   ionViewDidLoad() {
     this.getUserData();
 
-    // set a key/value
+    // set a key/valuer
     this.storage.set('age', 25);
 
     // Or to get a key/value pair

@@ -1,3 +1,4 @@
+import { CalendarUtils } from './../utils/calendar';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -74,7 +75,8 @@ export function provideSettings(storage: Storage) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     EstatisticaProvider,
     HorariosProvider,
-    UserDataProvider
+    UserDataProvider,
+    CalendarUtils
   ]
 })
 export class AppModule { }
