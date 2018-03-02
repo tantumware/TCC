@@ -1,0 +1,294 @@
+// Using media queries with like this:
+// @include media-query($small-device) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Basic styling
+ */
+body {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: $font-weight-normal;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+/**
+ * Images
+ */
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: $small-font-size;
+}
+
+/**
+ * Lists
+ */
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+         margin-bottom: 0;
+    }
+}
+
+/**
+ * Links
+ */
+a {
+    color: $brand-color;
+    text-decoration: underline;
+    transition: all 0.4s;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+    color: $grey-color;
+    border-left: 4px solid $grey-color-light;
+    padding-left: $spacing-unit / 2;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+    font-family: $monospace-font-family;
+    font-size: $base-font-size;
+    border: 1px solid $grey-color-light;
+    border-radius: 3px;
+    background-color: #eee;
+}
+
+code {
+    padding: 1px 5px;
+}
+
+pre {
+    padding: 8px 12px;
+    white-space: pre-line;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+    max-width: $content-max-width;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $spacing-unit * 2;
+    padding-left: $spacing-unit * 2;
+    @extend %clearfix;
+
+    @include media-query($medium-device) {
+        max-width: $content-max-width;
+        padding-right: $spacing-unit;
+        padding-left: $spacing-unit;
+    }
+}
+
+/**
+ * Clearfix
+ */
+%clearfix {
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+/**
+ * Icons
+ */
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: $grey-color;
+        }
+    }
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid #ddd;
+    margin-bottom: 18px;
+}
+
+dl dt {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+dl dd {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+label {
+  cursor: pointer;
+  display: block;
+}
+
+li p {
+  margin-bottom: 7px;
+}
+
+li ul {
+  margin-bottom: 14px;
+}
+
+/**
+ * Text selection color
+ */
+::-moz-selection {
+   background: $brand-color;
+   color: #fff;
+}
+::selection {
+  background: $brand-color;
+  color: #fff;
+}
+
+/* Helper classes */
+
+.pull-right {
+    float:right;
+
+    @include media-query($small-device) {
+        float: none;
+    }
+}
+
+.pull-left {
+    float: left;
+
+    @include media-query($small-device) {
+        float: none;
+    }
+}
+
+.block {
+  display: block;
+}
+
+// Animação de carregamento de resultados enquanto a página não trouxe todos os resultados esperados
+#resultados {
+  padding-top: 3%;
+}
+
+.searchLoader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #005baa;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: auto;
+  margin-top: 10%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+#resultados .label {
+  margin-bottom: 1.5rem;
+  width: 55%;
+  text-align: center;
+}
+
+#resultados .label b {
+  color: #007bff;
+}
+
+// Fim dos efeitos da animação
