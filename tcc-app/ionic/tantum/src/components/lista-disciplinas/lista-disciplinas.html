@@ -1,12 +1,3 @@
-<!--<ion-list (swipe)="itemSwiped($event)" *ngIf="showLista()">
-    <ion-item *ngFor='let disciplina of disciplinas' class="disciplina-item" (click)="onDisciplinaClicked(disciplina)">
-        <span class="horario">{{disciplina.horario}}</span>
-        <span class="disciplina-div"></span>
-        <span>{{disciplina.local}}</span>
-        <span>{{disciplina.nome}}</span> 
-    </ion-item>
-</ion-list> -->
-
 <div (swipe)="itemSwiped($event)" *ngIf="showLista()">
     <div *ngFor='let disciplina of disciplinas' class="disciplina-item" (click)="onDisciplinaClicked(disciplina)">
         <div class="horario">{{disciplina.horario}}</div>
@@ -15,8 +6,6 @@
             <div [ngClass]="getLocalClass()">{{disciplina.local}}</div>
             <div [ngClass]="getNomeClass()">{{disciplina.nome}}</div>
         </div>
-        <!-- <span class="disciplia-local">{{disciplina.local}}</span> -->
-        <!-- <span class="disciplia-nome">{{disciplina.nome}}</span>  -->
     </div>
 </div>
 

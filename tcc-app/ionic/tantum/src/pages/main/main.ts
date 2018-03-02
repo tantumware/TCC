@@ -72,7 +72,8 @@ export class MainPage {
   }
   
   getDisciplinas() {
-    return [new DisciplinaListItem("Linguagens formais e compiladores", "INE1337", "04:20", "CTC-123")];
+    return [new DisciplinaListItem("Linguagens formais e compiladores", "INE1337", "04:20", "CTC-123"), 
+    new DisciplinaListItem("Linguagens formais e compiladores", "INE1337", "05:10", "CTC-123")];
   }
 
 }

@@ -1,7 +1,7 @@
 page-main {
 
     .main-list {
-        height: 88%;
+        height: 60%;
     }
 
     .list-ios > .item-block:first-child {
@@ -78,6 +78,20 @@ page-main {
 
     .main-disciplina {
         height: 50px;
+    }
+
+    .next-classes {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .separator {
+        margin-top: 10px;
+        height: 1px;
+        background-color: lightgray;
+        width: 80%;
+        position: relative;
+        left: 10%;
     }
     
     .activated {
