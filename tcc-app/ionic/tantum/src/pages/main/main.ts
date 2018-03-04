@@ -1,4 +1,3 @@
-import { CalendarUtils } from './../../utils/calendar';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';

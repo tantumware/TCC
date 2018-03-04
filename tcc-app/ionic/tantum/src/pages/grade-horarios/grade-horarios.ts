@@ -27,6 +27,9 @@ export class GradeHorariosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private horarios: HorariosProvider, private storage: Storage, private cal: CalendarUtils) {
     this.dia = new Date().getDay() - 1; // começa na segunda
+    if (this.dia < 0) {
+      this.dia = 0;
+    }
     this.dias = this.cal.getAllDias();
 
     this.storage.get('disciplinas').then(d => this.disciplinas = d);

@@ -1,5 +1,15 @@
 page-definir-criterios {
 
+    .next-step-button {
+        border: 1px solid color($colors, main-color);
+        background-color: $background-color;
+        color: color($colors, main-color);
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+    }
+
 }
 
 .passo {
@@ -14,3 +24,9 @@ page-definir-criterios {
 .intervalo {
     // padding-top: 0px !important;
 }
+
+.activated {
+    background-color: white !important;
+}
+
+

@@ -4,7 +4,6 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { LoginPage } from './login';
 import { Http } from '@angular/http';
-import {TranslateService} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function TranslateLoaderFactory(http: Http) {
