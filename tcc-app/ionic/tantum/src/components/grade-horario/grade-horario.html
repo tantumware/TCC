@@ -1,145 +1,394 @@
-<ion-slides direction="vertical">
-  <ion-slide>
-    <p>Manhã</p>
-    <table class="grade-horario-table">
-      <tr>
-        <th>Seg</th>
-        <th>Terç</th>
-        <th>Qua</th>
-        <th>Qui</th>
-        <th>Sex</th>
-      </tr>
-      <tr>
-        <td class="primeira-linha" id="2.0730" (click)='onDisciplinaClicked($event)'>07:30<br><br><span [innerHTML]="getValue('2.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('3.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('4.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('5.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('6.0730')"></span></td>
-      </tr>
-      <tr>
-        <td>08:20<br><br><span [innerHTML]="getValue('2.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('3.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('4.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('5.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('6.0820')"></span></td>
-      </tr>
-      <tr>
-        <td>09:10<br><br><span [innerHTML]="getValue('2.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('3.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('4.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('5.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('6.0910')"></span></td>
-      </tr>
-      <tr>
-        <td>10:10<br><br><span [innerHTML]="getValue('2.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('3.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('4.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('5.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('6.1010')"></span></td>
-      </tr>
-      <tr>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('2.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('3.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('4.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('5.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('6.1100')"></span></td>
-      </tr>
-    </table>
-  </ion-slide>
-  <ion-slide>
-    <p>Tarde</p>
-    <table class="grade-horario-table">
-      <tr>
-        <th>Seg</th>
-        <th>Terç</th>
-        <th>Qua</th>
-        <th>Qui</th>
-        <th>Sex</th>
-      </tr>
-      <tr>
-        <td class="primeira-linha" id="2.0730" (click)='onDisciplinaClicked($event)'>07:30<br><br><span [innerHTML]="getValue('2.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('3.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('4.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('5.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('6.0730')"></span></td>
-      </tr>
-      <tr>
-        <td>08:20<br><br><span [innerHTML]="getValue('2.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('3.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('4.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('5.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('6.0820')"></span></td>
-      </tr>
-      <tr>
-        <td>09:10<br><br><span [innerHTML]="getValue('2.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('3.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('4.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('5.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('6.0910')"></span></td>
-      </tr>
-      <tr>
-        <td>10:10<br><br><span [innerHTML]="getValue('2.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('3.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('4.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('5.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('6.1010')"></span></td>
-      </tr>
-      <tr>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('2.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('3.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('4.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('5.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('6.1100')"></span></td>
-      </tr>
-    </table>
-  </ion-slide>
-  <ion-slide>
-    <p>Noite</p>
-    <table class="grade-horario-table">
-      <tr>
-        <th>Seg</th>
-        <th>Terç</th>
-        <th>Qua</th>
-        <th>Qui</th>
-        <th>Sex</th>
-      </tr>
-      <tr>
-        <td class="primeira-linha" id="2.0730" (click)='onDisciplinaClicked($event)'>07:30<br><br><span [innerHTML]="getValue('2.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('3.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('4.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('5.0730')"></span></td>
-        <td class="primeira-linha">07:30<br><br><span [innerHTML]="getValue('6.0730')"></span></td>
-      </tr>
-      <tr>
-        <td>08:20<br><br><span [innerHTML]="getValue('2.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('3.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('4.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('5.0820')"></span></td>
-        <td>08:20<br><br><span [innerHTML]="getValue('6.0820')"></span></td>
-      </tr>
-      <tr>
-        <td>09:10<br><br><span [innerHTML]="getValue('2.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('3.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('4.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('5.0910')"></span></td>
-        <td>09:10<br><br><span [innerHTML]="getValue('6.0910')"></span></td>
-      </tr>
-      <tr>
-        <td>10:10<br><br><span [innerHTML]="getValue('2.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('3.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('4.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('5.1010')"></span></td>
-        <td>10:10<br><br><span [innerHTML]="getValue('6.1010')"></span></td>
-      </tr>
-      <tr>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('2.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('3.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('4.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('5.1100')"></span></td>
-        <td class="ultima-linha">11:00<br><br><span [innerHTML]="getValue('6.1100')"></span></td>
-      </tr>
-    </table>
-  </ion-slide>
-</ion-slides>
-
-
+<p>{{ morning }}</p>
+<table class="grade-horario-table" (onSwiped)="onSwiped($event)">
+  <tr>
+    <th>{{ monday }}</th>
+    <th>{{ tuesday }}</th>
+    <th>{{ wednesday }}</th>
+    <th>{{ thursday }}</th>
+    <th>{{ friday }}</th>
+  </tr>
+  <tr>
+    <td class="primeira-linha" id="2.0730" (click)='onDisciplinaClicked($event)'>07:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.0730')"></span>
+    </td>
+    <td class="primeira-linha">07:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.0730')"></span>
+    </td>
+    <td class="primeira-linha">07:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.0730')"></span>
+    </td>
+    <td class="primeira-linha">07:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.0730')"></span>
+    </td>
+    <td class="primeira-linha">07:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.0730')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>08:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.0820')"></span>
+    </td>
+    <td>08:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.0820')"></span>
+    </td>
+    <td>08:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.0820')"></span>
+    </td>
+    <td>08:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.0820')"></span>
+    </td>
+    <td>08:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.0820')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>09:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.0910')"></span>
+    </td>
+    <td>09:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.0910')"></span>
+    </td>
+    <td>09:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.0910')"></span>
+    </td>
+    <td>09:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.0910')"></span>
+    </td>
+    <td>09:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.0910')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>10:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1010')"></span>
+    </td>
+    <td>10:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1010')"></span>
+    </td>
+    <td>10:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1010')"></span>
+    </td>
+    <td>10:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1010')"></span>
+    </td>
+    <td>10:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1010')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td class="ultima-linha">11:00
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1100')"></span>
+    </td>
+    <td class="ultima-linha">11:00
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1100')"></span>
+    </td>
+    <td class="ultima-linha">11:00
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1100')"></span>
+    </td>
+    <td class="ultima-linha">11:00
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1100')"></span>
+    </td>
+    <td class="ultima-linha">11:00
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1100')"></span>
+    </td>
+  </tr>
+</table>
+<p>{{ afternoon }}</p>
+<table class="grade-horario-table">
+  <tr>
+    <td class="primeira-linha" id="2.1330" (click)='onDisciplinaClicked($event)'>13:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1330')"></span>
+    </td>
+    <td class="primeira-linha">13:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1330')"></span>
+    </td>
+    <td class="primeira-linha">13:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1330')"></span>
+    </td>
+    <td class="primeira-linha">13:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1330')"></span>
+    </td>
+    <td class="primeira-linha">13:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1330')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>14:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1420')"></span>
+    </td>
+    <td>14:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1420')"></span>
+    </td>
+    <td>14:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1420')"></span>
+    </td>
+    <td>14:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1420')"></span>
+    </td>
+    <td>14:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1420')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>15:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1510')"></span>
+    </td>
+    <td>15:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1510')"></span>
+    </td>
+    <td>15:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1510')"></span>
+    </td>
+    <td>15:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1510')"></span>
+    </td>
+    <td>15:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1510')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>16:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1620')"></span>
+    </td>
+    <td>16:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1620')"></span>
+    </td>
+    <td>16:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1620')"></span>
+    </td>
+    <td>16:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1620')"></span>
+    </td>
+    <td>16:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1620')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td class="ultima-linha">17:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1710')"></span>
+    </td>
+    <td class="ultima-linha">17:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1710')"></span>
+    </td>
+    <td class="ultima-linha">17:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1710')"></span>
+    </td>
+    <td class="ultima-linha">17:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1710')"></span>
+    </td>
+    <td class="ultima-linha">17:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1710')"></span>
+    </td>
+  </tr>
+</table>
+<p>{{ night }}</p>
+<table class="grade-horario-table">
+  <tr>
+    <td class="primeira-linha" id="2.1830" (click)='onDisciplinaClicked($event)'>18:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1830')"></span>
+    </td>
+    <td class="primeira-linha">18:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1830')"></span>
+    </td>
+    <td class="primeira-linha">18:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1830')"></span>
+    </td>
+    <td class="primeira-linha">18:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1830')"></span>
+    </td>
+    <td class="primeira-linha">18:30
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1830')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>19:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.1920')"></span>
+    </td>
+    <td>19:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.1920')"></span>
+    </td>
+    <td>19:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.1920')"></span>
+    </td>
+    <td>19:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.1920')"></span>
+    </td>
+    <td>19:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.1920')"></span>
+    </td>
+  </tr>
+  <tr>
+    <td>20:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.2020')"></span>
+    </td>
+    <td>20:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.2020')"></span>
+    </td>
+    <td>20:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.2020')"></span>
+    </td>
+    <td>20:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.2020')"></span>
+    </td>
+    <td>20:20
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.2020')"></span>
+    </td>
+  </tr>  
+  <tr>
+    <td class="ultima-linha">21:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('2.2110')"></span>
+    </td>
+    <td class="ultima-linha">21:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('3.2110')"></span>
+    </td>
+    <td class="ultima-linha">21:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('4.2110')"></span>
+    </td>
+    <td class="ultima-linha">21:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('5.2110')"></span>
+    </td>
+    <td class="ultima-linha">21:10
+      <br>
+      <br>
+      <span [innerHTML]="getValue('6.2110')"></span>
+    </td>
+  </tr>
+</table>
