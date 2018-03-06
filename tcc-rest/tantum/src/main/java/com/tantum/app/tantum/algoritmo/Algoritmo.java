@@ -15,7 +15,7 @@ import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.variables.impl.FixedBoolVarImpl;
 
 import com.tantum.app.tantum.models.Curso;
-import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Subject;
 import com.tantum.app.tantum.models.Periodo;
 import com.tantum.app.tantum.models.Settings;
 
@@ -24,17 +24,17 @@ import lombok.Getter;
 @Getter
 public class Algoritmo {
 
-	private Map<String, Disciplina> disciplinas;
+	private Map<String, Subject> disciplinas;
 
 	private Map<String, Integer> rank;
 
 	private Map<Integer, Map<String, List<String>>> curriculo;
 
-	private Map<Integer, List<Disciplina>> semestres = new HashMap<>();
+	private Map<Integer, List<Subject>> semestres = new HashMap<>();
 
 	public Algoritmo(Curso curso) {
 		this.disciplinas = curso.getDisciplinas().stream()
-				.collect(Collectors.toMap(Disciplina::getNome, Function.identity()));
+				.collect(Collectors.toMap(Subject::getNome, Function.identity()));
 		// recebe a lista de disciplinas do curso e monta do map
 		this.curriculo = new HashMap<>();
 
@@ -97,12 +97,12 @@ public class Algoritmo {
 		int i = 1;
 		this.semestres.put(i, new ArrayList<>());
 		for (String d : rankDisciplinas) {
-			Disciplina disciplina = this.disciplinas.get(d);
+			Subject disciplina = this.disciplinas.get(d);
 
 			Model model = new Model();
 			Solver solver = model.getSolver();
 
-			int cargaHoraria = this.semestres.get(i).stream().mapToInt(Disciplina::getAulas).sum();
+			int cargaHoraria = this.semestres.get(i).stream().mapToInt(Subject::getAulas).sum();
 			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
 			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(i), disciplina)));
 			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(settings, disciplina)));
@@ -139,7 +139,7 @@ public class Algoritmo {
 	 * @param disciplina
 	 * @return boolean
 	 */
-	private boolean validateDisciplinaExcluida(Settings settings, Disciplina disciplina) {
+	private boolean validateDisciplinaExcluida(Settings settings, Subject disciplina) {
 		return settings.getExcluidas().contains(disciplina);
 	}
 
@@ -150,7 +150,7 @@ public class Algoritmo {
 	 * @param disciplina
 	 * @return boolean
 	 */
-	private boolean validadePeriodo(Settings settings, Disciplina disciplina) {
+	private boolean validadePeriodo(Settings settings, Subject disciplina) {
 		return disciplina.getHorarios()
 				.stream()
 				.map(Periodo::getPeriodoByHorario)
@@ -164,7 +164,7 @@ public class Algoritmo {
 	 * @param currentDisciplina
 	 * @return boolean
 	 */
-	private boolean validateHorario(List<Disciplina> semestre, Disciplina currentDisciplina) {
+	private boolean validateHorario(List<Subject> semestre, Subject currentDisciplina) {
 		return semestre.stream().noneMatch(d -> d.getHorarios().retainAll(currentDisciplina.getHorarios()));
 	}
 }

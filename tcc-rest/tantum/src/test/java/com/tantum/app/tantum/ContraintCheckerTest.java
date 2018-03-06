@@ -10,23 +10,23 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.tantum.app.tantum.algoritmo.ConstraintException;
-import com.tantum.app.tantum.models.Disciplina;
+import com.tantum.app.tantum.models.Subject;
 import com.tantum.app.tantum.models.Periodo;
-import com.tantum.app.tantum.models.Semestre;
+import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.Settings;
 
 public class ContraintCheckerTest {
 
 	private Settings settings;
 
-	private Semestre semestre;
+	private Semester semestre;
 
 	@Before
 	public void before() {
 		this.settings = new Settings(22, Arrays.asList(Periodo.NOTURNO), Arrays.asList(), Arrays.asList());
 
-		List<Disciplina> list = new ArrayList<>();
-		Disciplina d = new Disciplina();
+		List<Subject> list = new ArrayList<>();
+		Subject d = new Subject();
 		d.setAulas(4);
 		d.setFase(1);
 		d.setHorarios(Arrays.asList("21830", "41830"));
@@ -35,7 +35,7 @@ public class ContraintCheckerTest {
 		d.setRequisitos(Arrays.asList());
 		list.add(d);
 
-		this.semestre = new Semestre();
+		this.semestre = new Semester();
 		this.semestre.setDisciplinas(list);
 	}
 

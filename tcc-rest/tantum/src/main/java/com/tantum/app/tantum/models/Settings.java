@@ -17,8 +17,8 @@ public class Settings {
 
 	private List<Periodo> periodos;
 
-	private List<Disciplina> selecionadas;
+	private List<Subject> selecionadas;
 
-	private List<Disciplina> excluidas;
+	private List<Subject> excluidas;
 
 }

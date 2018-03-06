@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Semestre {
+public class Semester {
 
-	public List<Disciplina> disciplinas;
+	public List<Subject> disciplinas;
 
 }

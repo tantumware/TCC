@@ -2,7 +2,7 @@ package com.tantum.app.tantum.algoritmo;
 
 import org.chocosolver.solver.Model;
 
-import com.tantum.app.tantum.models.Semestre;
+import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.Settings;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public enum ConstraintEnum {
 	@FunctionalInterface
 	public interface Rule {
 
-		void apply(Settings setting, Semestre semestre, Model model) throws ConstraintException;
+		void apply(Settings setting, Semester semestre, Model model) throws ConstraintException;
 
 	}
 

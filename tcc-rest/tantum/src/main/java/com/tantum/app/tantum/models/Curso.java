@@ -13,6 +13,6 @@ import lombok.Setter;
 @Setter
 public class Curso {
 	
-	private List<Disciplina> disciplinas;
+	private List<Subject> disciplinas;
 
 }

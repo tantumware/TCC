@@ -2,7 +2,7 @@ import { CalendarUtils } from './../../utils/calendar';
 import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { FormatterUtils } from './../../utils/formatter';
 import { Dia } from './../../models/dia';
-import { Disciplina } from './../../models/disciplina';
+import { Subject } from './../../models/disciplina';
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
@@ -21,7 +21,7 @@ export class GradeHorariosPage {
 
   private dias: Dia[];
 
-  private disciplinas: Disciplina[];
+  private disciplinas: Subject[];
 
   @ViewChild('slides') slides: Slides;
 

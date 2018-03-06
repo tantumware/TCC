@@ -15,12 +15,12 @@ import com.google.gson.Gson;
 import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.helper.Helper;
 import com.tantum.app.tantum.models.Curso;
-import com.tantum.app.tantum.models.Disciplina;
-import com.tantum.app.tantum.models.DisciplinasDTO;
+import com.tantum.app.tantum.models.Subject;
+import com.tantum.app.tantum.models.SubjectsDTO;
 import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
-import com.tantum.app.tantum.models.Semestre;
+import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.Settings;
 
 @RequestMapping("/v1/")
@@ -44,7 +44,7 @@ public class TantumController {
 	}
 
 	@RequestMapping(path = "/semestre", method = RequestMethod.POST, consumes = "application/json")
-	public Semestre semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
+	public Semester semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
 		String c = Helper.readJson("test.json");
 
 		Gson g = new Gson();
@@ -54,19 +54,19 @@ public class TantumController {
 		a.rankDisciplinas();
 		a.applyConstraints(settings);
 
-		Map<Integer, List<Disciplina>> result = a.getSemestres();
+		Map<Integer, List<Subject>> result = a.getSemestres();
 
-		return new Semestre(result.get(1));
+		return new Semester(result.get(1));
 	}
 
 	@RequestMapping(path = "/disciplinas/{semestre}", method = RequestMethod.GET)
-	public DisciplinasDTO disciplinas(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @PathVariable String semestre) {
+	public SubjectsDTO disciplinas(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @PathVariable String semestre) {
 		String c = Helper.readJson("test.json");
 
 		Gson g = new Gson();
-		Semestre s = g.fromJson(c, Semestre.class);
+		Semester s = g.fromJson(c, Semester.class);
 
-		DisciplinasDTO disciplinasDTO = new DisciplinasDTO(true, s);
+		SubjectsDTO disciplinasDTO = new SubjectsDTO(true, s);
 		disciplinasDTO.setSemestre(semestre);
 		return disciplinasDTO;
 	}
@@ -78,8 +78,8 @@ public class TantumController {
 	}
 
 	@RequestMapping(path = "/semestre-atual", method = RequestMethod.GET)
-	public Semestre semestreAtual(@RequestParam(value = "token") String token) {
-		return new Semestre();
+	public Semester semestreAtual(@RequestParam(value = "token") String token) {
+		return new Semester();
 	}
 
 }
