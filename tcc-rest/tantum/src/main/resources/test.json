@@ -2,7 +2,7 @@
     "disciplinas": [
         {
             "nome": "A",
-            "codigo": "A1",
+            "codigo": "INE5666",
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,

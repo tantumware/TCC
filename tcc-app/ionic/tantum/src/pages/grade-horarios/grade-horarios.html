@@ -6,7 +6,7 @@
 
 <ion-content padding>
 
-  <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged()" color="main-color">
+  <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged()" color="main-color" class="segment-sticky">
     <ion-segment-button value="1">
       {{ 'DAILY' | translate }}
     </ion-segment-button>
@@ -39,7 +39,7 @@
   </div>
 
   <div [ngClass]="getClass('2')">
-    <grade-horario [disciplinas]="getDisciplinas()"></grade-horario>
+    <grade-horario [disciplinas]="getAllDisciplinas()"></grade-horario>
   </div>
 
 

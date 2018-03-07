@@ -26,5 +26,10 @@ page-grade-horarios {
         display: none;
     }
     
+    .segment-sticky {
+        position: sticky;
+        top: 0px;
+        background-color: $background-color;
+    }
 
 }

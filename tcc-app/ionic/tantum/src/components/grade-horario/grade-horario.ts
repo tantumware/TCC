@@ -34,9 +34,11 @@ export class GradeHorarioComponent {
   }
 
   getValue(horario: string): string {
-    for (let i in this.disciplinas) {
-      if (this.disciplinas[i].horario.startsWith(horario)) {
-        return this.disciplinas[i].local;
+    if (this.disciplinas.length > 0) {
+      for (let i in this.disciplinas) {
+        if (this.disciplinas[i].horario.startsWith(horario)) {
+          return this.disciplinas[i].codigo;
+        }
       }
     }
     return "";

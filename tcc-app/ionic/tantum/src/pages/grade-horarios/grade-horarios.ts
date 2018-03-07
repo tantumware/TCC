@@ -2,7 +2,7 @@ import { CalendarUtils } from './../../utils/calendar';
 import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { FormatterUtils } from './../../utils/formatter';
 import { Dia } from './../../models/dia';
-import { Subject } from './../../models/disciplina';
+import { Subject } from './../../models/subject';
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
@@ -54,7 +54,9 @@ export class GradeHorariosPage {
   }
 
   onSlideChanged(event: any): void {
-    this.dia = event._activeIndex;
+    if (event._activeIndex < 5 && event._activeIndex >= 0) {
+      this.dia = event._activeIndex;
+    }
   }
 
   onSwiped(event: boolean): void {
@@ -66,14 +68,16 @@ export class GradeHorariosPage {
   }
 
   swipeRight(): void {
-    this.dia = this.dia + 1;
-    // arrumar qnd fica maior
+    if (this.dia < 5) {
+      this.dia = this.dia + 1;
+    }
     this.slides.slideTo(this.dia);
   }
 
   swipeLeft(): void {
-    this.dia = this.dia - 1;
-    // arrumar quando fica menor
+    if (this.dia > 0) {
+      this.dia = this.dia - 1;
+    }
     this.slides.slideTo(this.dia);
   }
 
@@ -98,6 +102,23 @@ export class GradeHorariosPage {
     }
 
     return disciplinasDia;
+  }
+
+  getAllDisciplinas(): DisciplinaListItem[] {
+    let disciplinasDia: DisciplinaListItem[] = [];
+
+    for (let k in this.disciplinas) {
+      let disciplina = this.disciplinas[k];
+      for (let j in disciplina.horarios) {
+        let horario = disciplina.horarios[j];        
+          let aux = horario.split("/");
+          let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, aux[0].trim(), aux[1].trim());
+          disciplinasDia.push(item);        
+      }
+    }
+
+    return disciplinasDia;
+
   }
 
   getClassDia(dia: Dia): string {

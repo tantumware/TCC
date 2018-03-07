@@ -1,7 +1,7 @@
 import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { AlertController, Platform } from 'ionic-angular';
-import { Disciplina } from './../../models/disciplina';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Subject } from '../../models/subject';
 
 @Component({
   selector: 'lista-disciplinas',
@@ -24,7 +24,7 @@ export class ListaDisciplinasComponent {
     }
   }
 
-  onDisciplinaClicked(disciplina: Disciplina): void {
+  onDisciplinaClicked(disciplina: Subject): void {
     console.log(disciplina);
     let alert = this.alertCtrl.create({
       title: 'Detalhes da disciplina',
