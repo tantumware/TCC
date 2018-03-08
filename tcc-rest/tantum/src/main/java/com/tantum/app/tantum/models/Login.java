@@ -9,8 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Login {
 
-	private boolean hasPassword;
-
 	private boolean hasUsername;
+
+	private boolean hasPassword;
 
 }

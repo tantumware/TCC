@@ -1,10 +1,9 @@
+import { LoginProvider } from './../../providers/login-provider/login-provider';
 import { Account } from './../../models/account';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
-import { User } from '../../providers/providers';
 
 @IonicPage()
 @Component({
@@ -22,7 +21,7 @@ export class LoginPage {
 
   manterConectado: boolean = true;
 
-  constructor(public navCtrl: NavController, public user: User, public toastCtrl: ToastController, public translateService: TranslateService, private storage: Storage) {
+  constructor(public navCtrl: NavController, public loginProvider: LoginProvider, public toastCtrl: ToastController, public translateService: TranslateService, private storage: Storage) {
     this.translateService.setDefaultLang('pt');
 
     this.storage.get('idioma').then(idioma => {
@@ -50,18 +49,25 @@ export class LoginPage {
   }
 
   idiomaChanged(): void {
-    console.log(this.idioma);
     this.translateService.use(this.idioma);
     this.storage.set('idioma', this.idioma);
   }
 
   doLogin() {
-    let acc = new Account(this.username, this.password);
+    let userName = this.username == null ? "" : this.username;
+    let password = this.password == null ? "" : this.password;
+
+    let acc = new Account(userName, password);
 
     if (this.manterConectado) {
       this.storage.set('account', acc);
     }
-    this.navCtrl.push('MainPage');
+
+    this.loginProvider.login(acc).subscribe(res => {
+      console.log(res);
+      this.navCtrl.push('MainPage');
+    })
+
 
   //  this.user.login(this.account).subscribe((resp) => {
   //  }, (err) => {

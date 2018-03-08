@@ -37,6 +37,7 @@ export class GradeHorariosPage {
     this.horarios.gradeDeHorarios()
       .map(res => res.json())
       .subscribe(res => {
+        console.log(res);
         if (res.success) {
           this.disciplinas = res.result.disciplinas;
           this.storage.set('disciplinas', this.disciplinas);

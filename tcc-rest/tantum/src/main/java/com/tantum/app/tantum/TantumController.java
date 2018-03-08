@@ -3,6 +3,7 @@ package com.tantum.app.tantum;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,30 +16,32 @@ import com.google.gson.Gson;
 import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.helper.Helper;
 import com.tantum.app.tantum.models.Curso;
-import com.tantum.app.tantum.models.Subject;
-import com.tantum.app.tantum.models.SubjectsDTO;
 import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
 import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.Settings;
+import com.tantum.app.tantum.models.Subject;
+import com.tantum.app.tantum.models.SubjectsDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RequestMapping("/v1/")
 @CrossOrigin
 @RestController
 public class TantumController {
 
-	@RequestMapping(path = "/test", method = RequestMethod.GET)
-	public String test(@RequestParam(value = "token", defaultValue = "0") String token) {
-		return "This is a test!";
-	}
-
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public LoginDTO login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
+		boolean userOk = StringUtils.isNotBlank(username);
+		boolean passwordOk = StringUtils.isNotBlank(password);
 
-		Login login = new Login(true, true);
+		Login login = new Login(userOk, passwordOk);
 
-		LoginDTO loginDto = new LoginDTO(true, login);
+		LoginDTO loginDto = new LoginDTO(userOk && passwordOk, login);
+
+		log.info("Feito login com: " + username + "/" + password);
 
 		return loginDto;
 	}

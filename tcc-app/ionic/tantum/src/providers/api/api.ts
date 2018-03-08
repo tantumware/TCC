@@ -15,8 +15,11 @@ export class Api {
 
   get(endpoint: string, params?: any, vals?: any, options?: RequestOptions) {
     if (!options) {
+      // let headers = new Headers();
+      // headers.append('Access-Control-Allow-Origin','*');
       options = new RequestOptions();
     }
+
 
     // Support easy query params for GET requests
     if (params) {
