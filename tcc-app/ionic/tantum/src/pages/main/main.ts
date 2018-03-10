@@ -55,7 +55,7 @@ export class MainPage {
   }
 
   onGerarHorarioClicked(): void {
-    this.navCtrl.push('DefinirCriteriosPage');
+    this.navCtrl.push('DefineConstraintsPage');
   }
 
   onSairClicked(): void {

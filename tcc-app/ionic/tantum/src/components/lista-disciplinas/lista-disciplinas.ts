@@ -35,7 +35,11 @@ export class ListaDisciplinasComponent {
   }
 
   showLista(): boolean {
-    return this.disciplinas.length > 0;
+    if (this.disciplinas) {
+      return this.disciplinas.length > 0;
+    } else {
+      return false;
+    }
   }
 
   getLocalClass(): string {

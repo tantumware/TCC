@@ -34,7 +34,7 @@ export class GradeHorarioComponent {
   }
 
   getValue(horario: string): string {
-    if (this.disciplinas.length > 0) {
+    if (this.disciplinas && this.disciplinas.length > 0) {
       for (let i in this.disciplinas) {
         if (this.disciplinas[i].horario.startsWith(horario)) {
           return this.disciplinas[i].codigo;
@@ -68,7 +68,5 @@ export class GradeHorarioComponent {
     });
     alert.present();
   }
-
-
-
+  
 }

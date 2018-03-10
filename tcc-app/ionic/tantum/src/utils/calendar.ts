@@ -1,5 +1,4 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
 import { Dia } from '../models/dia';
@@ -7,7 +6,7 @@ import { Dia } from '../models/dia';
 @Injectable()
 export class CalendarUtils {
 
-    constructor(private storage: Storage, public translateService: TranslateService) {
+    constructor(public translateService: TranslateService) {
     }
 
     public getAllDias(): Dia[] {        

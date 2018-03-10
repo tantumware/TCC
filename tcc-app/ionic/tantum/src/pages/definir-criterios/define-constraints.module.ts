@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { DefinirCriteriosPage } from './definir-criterios';
+import { DefineConstraintsPage } from './define-constraints';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    DefinirCriteriosPage,
+    DefineConstraintsPage,
   ],
   imports: [
-    IonicPageModule.forChild(DefinirCriteriosPage),
+    IonicPageModule.forChild(DefineConstraintsPage),
     ComponentsModule
   ],
 })
-export class DefinirCriteriosPageModule {}
+export class DefineConstraintsPageModule {}

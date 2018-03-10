@@ -44,7 +44,7 @@ export class MyApp {
     { title: 'Search', component: 'SearchPage' },
     { title: 'Sobre', component: 'SobrePage' }, //
     { title: 'Main', component: 'MainPage'}, //
-    { title: 'Definir Critérios', component: 'DefinirCriteriosPage'}, //
+    { title: 'Definir Critérios', component: 'DefineConstraintsPage'}, //
     { title: 'Resultado', component: 'ResultadoPage'}
   ]
 

@@ -10,7 +10,7 @@ import { Api } from '../api/api';
 export class LoginProvider {
   _user: any;
 
-  constructor(public http: Http, public api: Api, private storage: Storage) {
+  constructor(public http: Http, public api: Api) {
   }
 
   /**

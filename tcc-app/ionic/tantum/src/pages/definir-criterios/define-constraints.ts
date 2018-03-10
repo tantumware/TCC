@@ -4,10 +4,10 @@ import { CapsulaComponent } from '../../components/capsula/capsula';
 
 @IonicPage()
 @Component({
-  selector: 'page-definir-criterios',
-  templateUrl: 'definir-criterios.html',
+  selector: 'page-define-constraints',
+  templateUrl: 'define-constraints.html',
 })
-export class DefinirCriteriosPage {
+export class DefineConstraintsPage {
 
   passo: string = '1';
 
