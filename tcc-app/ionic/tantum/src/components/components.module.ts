@@ -1,18 +1,19 @@
+import { SubjectActionListComponent } from './subject-action-list/subject-action-list';
 import { NgModule } from '@angular/core';
 import { GradeHorarioComponent } from './grade-horario/grade-horario';
 import { CapsulaComponent } from './capsula/capsula';
 import { ListaDisciplinasComponent } from './lista-disciplinas/lista-disciplinas';
 import { IonicModule } from 'ionic-angular';
-import { DisciplinaCriterioComponent } from './disciplina-criterio/disciplina-criterio';
+
 @NgModule({
 	declarations: [GradeHorarioComponent,
     CapsulaComponent,
     ListaDisciplinasComponent,
-    DisciplinaCriterioComponent],
+    SubjectActionListComponent],
 	imports: [IonicModule],
 	exports: [GradeHorarioComponent,
     CapsulaComponent,
     ListaDisciplinasComponent,
-    DisciplinaCriterioComponent]
+    SubjectActionListComponent]
 })
 export class ComponentsModule {}
