@@ -154,7 +154,7 @@ export class DefineConstraintsPage {
     alert.addButton({
       text: 'Okay',
       handler: (data: any) => {
-          console.log('Checkbox data:', data);
+          this.busca = "";
           data.forEach(element => {
             if (this.passo == '2') {
               this.subjectsWanted.push(new DisciplinaListItem(element, "INE6666", null, null));

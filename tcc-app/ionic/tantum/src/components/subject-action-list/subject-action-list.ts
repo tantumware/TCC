@@ -17,15 +17,7 @@ export class SubjectActionListComponent {
     let index = this.subjects.indexOf(disciplina);
     this.subjects.splice(index, 1);
   }
-
-  getRemoveClass(): string {
-    let clazz: string = "remove-subject"
-    if (this.plt.is('android')) {
-      clazz += " remove-subject-android"
-    }
-    return clazz;
-  }
-
+  
   getValue(disciplia: DisciplinaListItem): string {
     return disciplia.codigo + " - " + disciplia.nome;
   }

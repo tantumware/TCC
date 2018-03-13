@@ -9,15 +9,9 @@ subject-action-list {
     }
 
     .remove-subject {
+        float: right;
         position: relative;
-        bottom: 23px;
-        left: 95%;
-        font-size: 30px;
-    }
-
-    .remove-subject-android {
-        bottom: 18px;
-        font-size: 20px;
+        bottom: 16px;
     }
 
     .base-subject {
