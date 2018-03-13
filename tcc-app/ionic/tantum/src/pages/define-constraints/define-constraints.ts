@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CapsulaComponent } from '../../components/capsula/capsula';
+import { TranslateService } from '@ngx-translate/core';
+import { DisciplinaListItem } from '../../models/disciplia-list-item';
 
 @IonicPage()
 @Component({
@@ -11,16 +13,21 @@ export class DefineConstraintsPage {
 
   passo: string = '1';
 
-  testCheckboxOpen = false;
-  testCheckboxResult: any;
-
-
-  testRadioOpen = false;
-  testRadioResult: any;
-
   private botao: string = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
 
   private  periodosSelected: string[];
+
+  private subjectsWanted = [
+    new DisciplinaListItem("Introdução a compiladores", "INE1231", null, null),
+    new DisciplinaListItem("Introdução a compiladores", "INE1232", null, null),
+    new DisciplinaListItem("Introdução a compiladores", "INE1233", null, null)
+  ]
+
+  private subjectsExcluded = [
+    new DisciplinaListItem("Introdução a compiladores", "INE1231", null, null),
+    new DisciplinaListItem("Introdução a compiladores", "INE1232", null, null),
+    new DisciplinaListItem("Introdução a compiladores", "INE1233", null, null)
+  ]
 
   @ViewChild (CapsulaComponent) capsulaComponent;
 
@@ -31,7 +38,7 @@ export class DefineConstraintsPage {
     upper: 30
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public translate: TranslateService) {
   }
 
   ionViewDidLoad() {
@@ -55,9 +62,6 @@ export class DefineConstraintsPage {
   }
 
   onPassoChanged(event: any): void {
-    if (this.passo == '1'){
-      // this.capsulaComponent.periodos = ['Manhã', 'Tarde', 'Noite'];
-    }
     this.botao = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
   } 
 
@@ -69,64 +73,22 @@ export class DefineConstraintsPage {
     }
   }
 
-  doRadio() {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Lightsaber color');
+  getPeriods(): string[] {
+    let periods: string[] = [];
 
-    alert.addInput({
-      type: 'radio',
-      label: 'Blue',
-      value: 'blue',
-      checked: true
-    });
+    periods.push(this.translate.instant('MORNING'));
+    periods.push(this.translate.instant('AFTERNOON'));
+    periods.push(this.translate.instant('NIGHT'));
 
-    alert.addInput({
-      type: 'radio',
-      label: 'Green',
-      value: 'green'
-    });
+    return periods; 
+  }
 
-    alert.addInput({
-      type: 'radio',
-      label: 'Red',
-      value: 'red'
-    });
+  getSubjectsWanted() {
+    return this.subjectsWanted;
+  }
 
-    alert.addInput({
-      type: 'radio',
-      label: 'Yellow',
-      value: 'yellow'
-    });
-
-    alert.addInput({
-      type: 'radio',
-      label: 'Purple',
-      value: 'purple'
-    });
-
-    alert.addInput({
-      type: 'radio',
-      label: 'White',
-      value: 'white'
-    });
-
-    alert.addInput({
-      type: 'radio',
-      label: 'Black',
-      value: 'black'
-    });
-
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'Ok',
-      handler: (data: any) => {
-        console.log('Radio data:', data);
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
-      }
-    });
-
-    alert.present();
+  getSubjectsExcluded() {
+    return this.subjectsExcluded;
   }
 
   doCheckbox(search: string) {
@@ -136,7 +98,7 @@ export class DefineConstraintsPage {
     alert.addInput({
         type: 'checkbox',
         label: search,
-        value: 'value1',
+        value: search,
         checked: true
     });
 
@@ -193,13 +155,17 @@ export class DefineConstraintsPage {
       text: 'Okay',
       handler: (data: any) => {
           console.log('Checkbox data:', data);
-          this.testCheckboxOpen = false;
-          this.testCheckboxResult = data;
+          data.forEach(element => {
+            if (this.passo == '2') {
+              this.subjectsWanted.push(new DisciplinaListItem(element, "INE6666", null, null));
+            } else if (this.passo == '3') {
+              this.subjectsExcluded.push(new DisciplinaListItem(element, "INE6666", null, null));
+            }
+          });
       }
     });
 
     alert.present();
   }
-
 
 }

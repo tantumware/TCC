@@ -9,19 +9,19 @@
 <ion-content padding>
   <ion-segment [(ngModel)]="passo" (ionChange)="onPassoChanged($event)" color="main-color">
     <ion-segment-button value="1">
-      Passo 1
+      {{ 'STEP_1' | translate }}
     </ion-segment-button>
     <ion-segment-button value="2">
-      Passo 2
+      {{ 'STEP_2' | translate }}
     </ion-segment-button>
     <ion-segment-button value="3">
-      Passo 3
+      {{ 'STEP_3' | translate }}
     </ion-segment-button>
   </ion-segment>
 
   <div [ngClass]="getClass('1')">
     <span>Turno de estudo</span>
-    <capsula [periodos]="['Manhã', 'Tarde', 'Noite']" (periodoSelected)="onPeriodoSelected($event)"></capsula>
+    <capsula [periodos]="getPeriods()" (periodoSelected)="onPeriodoSelected($event)"></capsula> 
 
     <p>Intervalo de créditos</p>
     <ion-item>
@@ -38,16 +38,15 @@
   </div>
 
   <div [ngClass]="getClass('2')">
-    <p>Matérias que quero cursas nesse semestre</p>
-    
-    <subject-action-list></subject-action-list>
-    
+    <p>Matérias que quero cursas nesse semestre</p>    
     <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
+    <subject-action-list [subjects]="getSubjectsWanted()"></subject-action-list>
   </div>
 
   <div [ngClass]="getClass('3')">
     <p>Matérias que não quero cursas nesse semestre</p>
     <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
+    <subject-action-list [subjects]="getSubjectsExcluded()"></subject-action-list>
   </div>
 
   <button ion-button class="next-step-button" (click)="btnProximoPassoClicked()">{{botao}}</button>

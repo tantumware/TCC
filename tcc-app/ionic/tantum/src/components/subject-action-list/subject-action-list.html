@@ -1,7 +1,8 @@
-<div>
-  <div>
-    <span>INE5421 - Introdução a Compiladores</span>
-    <button>Remover</button>
+<div class="subject-list">
+  <div class="base-subject" *ngFor='let subject of subjects'>
+    <span class="name-subject" [innerHTML]="getValue(subject)"></span>
+    <ion-icon name="close" [ngClass]="getRemoveClass()" (click)="remove(subject)"></ion-icon>
+    <!-- <button class="remove-subject">Remover</button> -->
   </div>
   <div></div>
 </div>

@@ -1,3 +1,31 @@
 subject-action-list {
 
+    .name-subject {
+        text-overflow: ellipsis;
+        white-space: nowrap; 
+        overflow: hidden;
+        display: block;
+        width: 95%;
+    }
+
+    .remove-subject {
+        position: relative;
+        bottom: 23px;
+        left: 95%;
+        font-size: 30px;
+    }
+
+    .remove-subject-android {
+        bottom: 18px;
+        font-size: 20px;
+    }
+
+    .base-subject {
+        height: 30px;
+    }
+
+    .subject-list {
+        margin-top: 20px;
+    }
+
 }
