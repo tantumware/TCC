@@ -1,8 +1,10 @@
+import { SubjectsProvider } from './../../providers/subjects/subjects';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CapsulaComponent } from '../../components/capsula/capsula';
 import { TranslateService } from '@ngx-translate/core';
-import { DisciplinaListItem } from '../../models/disciplia-list-item';
+import { Storage } from '@ionic/storage';
+import { Subject } from '../../models/subject';
 
 @IonicPage()
 @Component({
@@ -17,31 +19,39 @@ export class DefineConstraintsPage {
 
   private  periodosSelected: string[];
 
-  private subjectsWanted = [
-    new DisciplinaListItem("Introdução a compiladores", "INE1231", null, null),
-    new DisciplinaListItem("Introdução a compiladores", "INE1232", null, null),
-    new DisciplinaListItem("Introdução a compiladores", "INE1233", null, null)
-  ]
+  private subjectsWanted = []
 
-  private subjectsExcluded = [
-    new DisciplinaListItem("Introdução a compiladores", "INE1231", null, null),
-    new DisciplinaListItem("Introdução a compiladores", "INE1232", null, null),
-    new DisciplinaListItem("Introdução a compiladores", "INE1233", null, null)
-  ]
+  private subjectsExcluded = []
 
   @ViewChild (CapsulaComponent) capsulaComponent;
 
   busca: string;
+
+  private subjects;
 
   structure = {
     lower: 20,
     upper: 30
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public translate: TranslateService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public translate: TranslateService, private subjectsProvider: SubjectsProvider, private storage: Storage) {
   }
 
   ionViewDidLoad() {
+    this.storage.get('allSubjects').then((val) => {
+      this.subjects = val;
+    });
+
+   this.subjectsProvider.allSubjects()
+    .map(res => res.json())
+    .subscribe(res => {
+      if (res.success) {
+        this.subjects = res.result.disciplinas;
+        this.storage.set('allSubjects', this.subjects);
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
   }
 
   onPeriodoSelected(event: string[]) {
@@ -49,7 +59,6 @@ export class DefineConstraintsPage {
   }
 
   searchMateria(): void {
-    console.log(this.busca);
     this.doCheckbox(this.busca);
   }
 
@@ -62,7 +71,7 @@ export class DefineConstraintsPage {
   }
 
   onPassoChanged(event: any): void {
-    this.botao = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
+    this.botao = this.passo == "3" ? this.translate.instant('GENERATE_TIME_GRID') : this.translate.instant('NEXT_STEP');
   } 
 
   btnProximoPassoClicked(): void {
@@ -95,60 +104,14 @@ export class DefineConstraintsPage {
     let alert = this.alertCtrl.create();
     alert.setTitle('Which planets have you visited?');
 
-    alert.addInput({
+    let subjects: Subject[] = this.getPossibleSubjects();
+    subjects.forEach(s => {
+      alert.addInput({
         type: 'checkbox',
-        label: search,
-        value: search,
-        checked: true
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: search,
-        value: 'value2'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: search,
-        value: 'value3'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: 'Endor',
-        value: 'value4'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: 'Hoth',
-        value: 'value5'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: 'Jakku',
-        value: 'value6'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: 'Naboo',
-        value: 'value6'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: 'Takodana',
-        value: 'value6'
-    });
-
-    alert.addInput({
-        type: 'checkbox',
-        label: 'Tatooine',
-        value: 'value6'
-    });
+        label: s.codigo + " - " + s.nome,
+        value: s.codigo
+      })
+    })
 
     alert.addButton('Cancel');
     alert.addButton({
@@ -157,15 +120,42 @@ export class DefineConstraintsPage {
           this.busca = "";
           data.forEach(element => {
             if (this.passo == '2') {
-              this.subjectsWanted.push(new DisciplinaListItem(element, "INE6666", null, null));
+              this.subjectsWanted.push(this.getSubjectByCode(element));
             } else if (this.passo == '3') {
-              this.subjectsExcluded.push(new DisciplinaListItem(element, "INE6666", null, null));
+              this.subjectsExcluded.push(this.getSubjectByCode(element));
             }
           });
       }
     });
 
     alert.present();
+  }
+
+  getSubjectByCode(code: string): Subject {
+    for (let i in this.subjects) {
+      let subject: Subject = this.subjects[i];
+      if (subject.codigo == code) {
+        return subject;
+      }
+    }
+
+    return undefined;
+  }
+
+  getPossibleSubjects(): Subject[] {
+    let subjects: Subject[] = [];
+
+    for (let i in this.subjects) {
+      let subject: Subject = this.subjects[i];
+      let nome: string = subject.nome;
+      let codigo: string = subject.codigo;
+
+      if (nome.toLowerCase().includes(this.busca.toLowerCase()) || codigo.toLowerCase().includes(this.busca.toLowerCase())) {
+        subjects.push(subject);
+      }
+    }
+
+    return subjects;
   }
 
 }

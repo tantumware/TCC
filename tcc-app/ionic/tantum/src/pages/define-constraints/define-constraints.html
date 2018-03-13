@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Definir criterios para geração</ion-title>
+    <ion-title>{{ 'DEFINE_CRITERIA' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,10 +20,10 @@
   </ion-segment>
 
   <div [ngClass]="getClass('1')">
-    <span>Turno de estudo</span>
+    <span>{{ 'STUDY_SHIFT' | translate }}</span>
     <capsula [periodos]="getPeriods()" (periodoSelected)="onPeriodoSelected($event)"></capsula> 
 
-    <p>Intervalo de créditos</p>
+    <p>{{ 'CREDIT_INTERVAL' | translate }}</p>
     <ion-item>
       <ion-range dualKnobs="true" pin="true" [(ngModel)]="structure" class="intervalo" color="main-color">
         <ion-label range-left>-0</ion-label>
@@ -32,23 +32,23 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Considerar matérias equivalentes</ion-label>
+      <ion-label>{{ 'CONSIDER_EQUIVALENT_COURSES' | translate }}</ion-label>
       <ion-toggle color="main-color" checked="false"></ion-toggle>
     </ion-item>
   </div>
 
   <div [ngClass]="getClass('2')">
-    <p>Matérias que quero cursas nesse semestre</p>    
-    <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
+    <p>{{ 'SUBJECTS_I_WANT_TO_STUDY' | translate }}</p>
+    <ion-searchbar (search)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
     <subject-action-list [subjects]="getSubjectsWanted()"></subject-action-list>
   </div>
 
   <div [ngClass]="getClass('3')">
-    <p>Matérias que não quero cursas nesse semestre</p>
-    <ion-searchbar (ionInput)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
+    <p>{{ 'SUBJECTS_I_DONT_WANT_TO_STUDY' | translate }}</p>
+    <ion-searchbar (search)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
     <subject-action-list [subjects]="getSubjectsExcluded()"></subject-action-list>
   </div>
 
-  <button ion-button class="next-step-button" (click)="btnProximoPassoClicked()">{{botao}}</button>
+  <button ion-button class="next-step-button" (click)="btnProximoPassoClicked()">{{ botao }}</button>
 
 </ion-content>

@@ -64,7 +64,6 @@ export class LoginPage {
     }
 
     this.loginProvider.login(acc).subscribe(res => {
-      console.log(res);
       this.navCtrl.push('MainPage');
     })
 

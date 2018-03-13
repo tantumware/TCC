@@ -74,6 +74,17 @@ public class TantumController {
 		return disciplinasDTO;
 	}
 
+	@RequestMapping(path = "/disciplinas", method = RequestMethod.GET)
+	public SubjectsDTO disciplinas() {
+		String c = Helper.readJson("test.json");
+
+		Gson g = new Gson();
+		Semester s = g.fromJson(c, Semester.class);
+
+		SubjectsDTO disciplinasDTO = new SubjectsDTO(true, s);
+		return disciplinasDTO;
+	}
+
 	@RequestMapping(path = "/estatisticas", method = RequestMethod.GET)
 	public Estatisticas estatisticas(@RequestParam(value = "token") String token) {
 		Estatisticas e = new Estatisticas(1, 2, 3, 4, 5, "2019-1");

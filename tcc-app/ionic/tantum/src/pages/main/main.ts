@@ -20,14 +20,6 @@ export class MainPage {
 
   ionViewDidLoad() {
     this.getUserData();
-
-    // set a key/valuer
-    this.storage.set('age', 25);
-
-    // Or to get a key/value pair
-    this.storage.get('age').then((val) => {
-      console.log('Your age is', val);
-    });
   }
 
   getUserData(): void {
