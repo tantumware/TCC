@@ -6,6 +6,7 @@ import { CapsulaComponent } from '../../components/capsula/capsula';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { Subject } from '../../models/subject';
+import { DisciplinaListItem } from '../../models/disciplia-list-item';
 
 @IonicPage()
 @Component({
@@ -24,7 +25,7 @@ export class DefineConstraintsPage {
 
   private subjectsExcluded = [];
 
-  @ViewChild (CapsulaComponent) capsulaComponent;
+  @ViewChild(CapsulaComponent) capsulaComponent;
 
   busca: string;
 
@@ -40,7 +41,9 @@ export class DefineConstraintsPage {
 
   ionViewDidLoad() {
     this.storage.get('allSubjects').then((val) => {
-      this.subjects = val;
+      if (val) {
+        this.subjects = val;
+      }
     });
 
     this.subjectsProvider.allSubjects()
@@ -77,6 +80,7 @@ export class DefineConstraintsPage {
 
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
+      this.storage.set('x', this.subjectsWanted);
       this.navCtrl.push('ResultadoPage');
     } else {
       this.passo = (Number(this.passo) + 1).toString();
@@ -103,7 +107,7 @@ export class DefineConstraintsPage {
 
   doCheckbox(search: string) {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Which planets have you visited?');
+    alert.setTitle(this.translate.instant('SELECT_SUBJECT'));
 
     let subjects: Subject[] = this.getPossibleSubjects();
     subjects.forEach(s => {
@@ -114,13 +118,14 @@ export class DefineConstraintsPage {
       })
     })
 
-    alert.addButton('Cancel');
+    alert.addButton(this.translate.instant('BACK_BUTTON_TEXT'));
     alert.addButton({
-      text: 'Okay',
+      text: 'Ok',
       handler: (data: any) => {
         this.busca = "";
         if (data) {
           data.forEach(element => {
+            console.log(element);
             if (this.passo == '2') {
               this.subjectsWanted.push(this.getSubjectByCode(element));
             } else if (this.passo == '3') {

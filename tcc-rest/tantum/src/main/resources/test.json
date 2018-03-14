@@ -1,7 +1,7 @@
 {
     "disciplinas": [
         {
-            "nome": "A",
+            "nome": "Materia Aleatoria 1",
             "codigo": "INE5666",
             "fase": 1,
             "aulas": 2,
@@ -10,8 +10,8 @@
             "requisitos": []
         },
         {
-            "nome": "B",
-            "codigo": "A2",
+            "nome": "Materia Aleatoria 2",
+            "codigo": "INE5661",
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,
@@ -19,8 +19,8 @@
             "requisitos": []
         },
         {
-            "nome": "C1",
-            "codigo": "A3",
+            "nome": "Materia Aleatoria 3",
+            "codigo": "INE5612",
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,
@@ -28,19 +28,19 @@
             "requisitos": []
         },
         {
-            "nome": "D",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 4",
+            "codigo": "INE5656",
             "fase": 2,
             "aulas": 2,
             "obrigatoria": true,
             "horarios": ["2.0820-2 / CTC-CTC102"],
             "requisitos": [
-                "A"
+                "INE5666"
             ]
         },
         {
-            "nome": "E",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 5",
+            "codigo": "INE5156",
             "fase": 2,
             "aulas": 2,
             "obrigatoria": true,
@@ -48,8 +48,8 @@
             "requisitos": []
         },
         {
-            "nome": "F",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 6",
+            "codigo": "INE5612",
             "fase": 2,
             "aulas": 2,
             "obrigatoria": true,
@@ -57,30 +57,30 @@
             "requisitos": []
         },
         {
-            "nome": "G",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 7",
+            "codigo": "INE5688",
             "fase": 3,
             "aulas": 2,
             "obrigatoria": true,
             "horarios": ["5.1330-3 / CTC-CTC102"],
             "requisitos": [
-                "F"
+                "INE5612"
             ]
         },
         {
-            "nome": "H",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 8",
+            "codigo": "INE5132",
             "fase": 3,
             "aulas": 2,
             "obrigatoria": true,
             "horarios": ["2.1010-2 / CTC-CTC102"],
             "requisitos": [
-                "D"
+                "INE5656"
             ]
         },
         {
-            "nome": "I",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 9",
+            "codigo": "INE5133",
             "fase": 4,
             "aulas": 2,
             "obrigatoria": true,
@@ -88,15 +88,15 @@
             "requisitos": []
         },
         {
-            "nome": "J",
-            "codigo": "A4",
+            "nome": "Materia Aleatoria 10",
+            "codigo": "INE5134",
             "fase": 4,
             "aulas": 2,
             "obrigatoria": true,
             "horarios": ["2.1010-2 / CTC-CTC102"],
             "requisitos": [
-                "H",
-                "B"
+                "INE5132",
+                "INE5661"
             ]
         }
     ]

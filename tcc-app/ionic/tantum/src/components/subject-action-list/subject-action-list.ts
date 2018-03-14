@@ -1,6 +1,7 @@
 import { DisciplinaListItem } from './../../models/disciplia-list-item';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { Subject } from '../../models/subject';
 
 @Component({
   selector: 'subject-action-list',
@@ -8,7 +9,9 @@ import { Platform } from 'ionic-angular';
 })
 export class SubjectActionListComponent {
 
-  @Input() subjects: DisciplinaListItem[]; 
+  @Input() subjects: Subject[];
+
+  @Output() onRemoved = new EventEmitter<Subject>();
 
   constructor(public plt: Platform) {
   }
@@ -16,9 +19,10 @@ export class SubjectActionListComponent {
   remove(disciplina): void {
     let index = this.subjects.indexOf(disciplina);
     this.subjects.splice(index, 1);
+    this.onRemoved.emit(disciplina);
   }
   
-  getValue(disciplia: DisciplinaListItem): string {
+  getValue(disciplia: Subject): string {
     return disciplia.codigo + " - " + disciplia.nome;
   }
 

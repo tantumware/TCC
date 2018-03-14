@@ -32,7 +32,11 @@ export class GradeHorariosPage {
     }
     this.dias = this.cal.getAllDias();
 
-    this.storage.get('disciplinas').then(d => this.disciplinas = d);
+    this.storage.get('disciplinas').then(d => {
+      if (d) {
+        this.disciplinas = d;
+      }
+    });
 
     this.horarios.gradeDeHorarios()
       .map(res => res.json())

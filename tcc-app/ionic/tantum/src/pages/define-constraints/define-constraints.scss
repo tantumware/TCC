@@ -25,6 +25,10 @@ page-define-constraints {
     // padding-top: 0px !important;
 }
 
+.button-md:hover:not(.disable-hover) {
+    background-color: $background-color !important;
+}
+
 .activated {
     background-color: white !important;
 }

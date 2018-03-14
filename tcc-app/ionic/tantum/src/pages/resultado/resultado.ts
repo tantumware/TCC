@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -8,14 +9,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ResultadoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private subjects = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
 
   ionViewDidLoad() {
+    this.storage.get('x').then((val) => {
+      this.subjects = val;
+    });
   }
 
   getSubjects() {
-    
+    return this.subjects;
   }
 
 }
