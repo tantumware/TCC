@@ -1,18 +1,17 @@
+import { FormatterUtils } from './../../utils/formatter';
 import { Pipe, PipeTransform } from '@angular/core';
 
-/**
- * Generated class for the LocationPipe pipe.
- *
- * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
- */
 @Pipe({
   name: 'location',
 })
 export class LocationPipe implements PipeTransform {
+
   /**
-   * Takes a value and makes it lowercase.
+   * Takes a value like "3.0820-2 / CTC-CTC102" and return CTC102
    */
   transform(value: string, ...args) {
-    return value.toLowerCase();
+    let aux: string = value.split("/")[1].trim();
+
+    return FormatterUtils.formatLocal(aux);
   }
 }
