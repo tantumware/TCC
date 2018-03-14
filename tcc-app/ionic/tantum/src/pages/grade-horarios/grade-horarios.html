@@ -21,19 +21,19 @@
     </div>
     <ion-slides [initialSlide]="dia" [spaceBetween]=5 #slides (ionSlideWillChange)="onSlideChanged($event)">
       <ion-slide>
-        <lista-disciplinas [disciplinas]="getDisciplinas('2')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
+        <subject-list [disciplinas]="getDisciplinas('2')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <lista-disciplinas [disciplinas]="getDisciplinas('3')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
+        <subject-list [disciplinas]="getDisciplinas('3')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <lista-disciplinas [disciplinas]="getDisciplinas('4')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
+        <subject-list [disciplinas]="getDisciplinas('4')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <lista-disciplinas [disciplinas]="getDisciplinas('5')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
+        <subject-list [disciplinas]="getDisciplinas('5')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <lista-disciplinas [disciplinas]="getDisciplinas('6')" (onSwiped)="onSwiped($event)"></lista-disciplinas>
+        <subject-list [disciplinas]="getDisciplinas('6')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
     </ion-slides>
   </div>

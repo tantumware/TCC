@@ -1,12 +1,12 @@
-import { FormatterUtils } from './../../utils/formatter';
-import { SubjectsProvider } from './../../providers/subjects/subjects';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { CapsulaComponent } from '../../components/capsula/capsula';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+
+import { CapsulaComponent } from '../../components/capsula/capsula';
 import { Subject } from '../../models/subject';
-import { DisciplinaListItem } from '../../models/disciplia-list-item';
+import { FormatterUtils } from './../../utils/formatter';
+import { SubjectsProvider } from './../../providers/subjects/subjects';
 
 @IonicPage()
 @Component({

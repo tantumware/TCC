@@ -1,15 +1,14 @@
-import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { AlertController, Platform } from 'ionic-angular';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Subject } from '../../models/subject';
 
 @Component({
-  selector: 'lista-disciplinas',
-  templateUrl: 'lista-disciplinas.html'
+  selector: 'subject-list',
+  templateUrl: 'subject-list.html'
 })
-export class ListaDisciplinasComponent {
+export class SubjectListComponent {
 
-  @Input() disciplinas: DisciplinaListItem[];
+  @Input() disciplinas: Subject[];
 
   @Output() onSwiped = new EventEmitter<boolean>();
 

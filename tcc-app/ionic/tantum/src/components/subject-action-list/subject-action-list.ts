@@ -1,6 +1,6 @@
-import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Platform } from 'ionic-angular';
+
 import { Subject } from '../../models/subject';
 
 @Component({

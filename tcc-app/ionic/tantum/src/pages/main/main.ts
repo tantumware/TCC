@@ -1,10 +1,10 @@
+import { Subject } from './../../models/subject';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
-import { DisciplinaListItem } from '../../models/disciplia-list-item';
 
 @IonicPage()
 @Component({
@@ -15,11 +15,19 @@ export class MainPage {
 
   private userData: UserData = new UserData("", "");
 
+  private disciplinas: Subject[];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService, public userDataProvider: UserDataProvider) {
   }
 
   ionViewDidLoad() {
     this.getUserData();
+
+    this.storage.get('disciplinas').then(d => {
+      if (d) {
+        this.disciplinas = d;
+      }
+    });
   }
 
   getUserData(): void {
@@ -64,8 +72,8 @@ export class MainPage {
   }
   
   getDisciplinas() {
-    return [new DisciplinaListItem("Linguagens formais e compiladores", "INE1337", "04:20", "CTC-123"), 
-    new DisciplinaListItem("Linguagens formais e compiladores", "INE1337", "05:10", "CTC-123")];
+    return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, null, null), 
+    new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, null, null)];
   }
 
 }

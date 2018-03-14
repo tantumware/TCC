@@ -1,11 +1,11 @@
-import { CalendarUtils } from './../../utils/calendar';
-import { DisciplinaListItem } from './../../models/disciplia-list-item';
-import { FormatterUtils } from './../../utils/formatter';
-import { Dia } from './../../models/dia';
-import { Subject } from './../../models/subject';
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+
+import { CalendarUtils } from './../../utils/calendar';
+import { FormatterUtils } from './../../utils/formatter';
+import { Dia } from './../../models/dia';
+import { Subject } from './../../models/subject';
 import { HorariosProvider } from '../../providers/horarios/horarios';
 
 @IonicPage()
@@ -91,36 +91,36 @@ export class GradeHorariosPage {
     this.slides.slideTo(this.dia);
   }
 
-  getDisciplinas(dia?: string): DisciplinaListItem[] {
-    let disciplinasDia: DisciplinaListItem[] = [];
+  getDisciplinas(dia?: string): Subject[] {
+    let disciplinasDia: Subject[] = [];
 
-    for (let k in this.disciplinas) {
-      let disciplina = this.disciplinas[k];
-      for (let j in disciplina.horarios) {
-        let horario = disciplina.horarios[j];
-        if (dia == null || horario.startsWith(dia)) {
-          let aux = horario.split("/");
-          let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, FormatterUtils.formatHour(aux[0].trim()), aux[1].trim());
-          disciplinasDia.push(item);
-        }
-      }
-    }
+    // for (let k in this.disciplinas) {
+    //   let disciplina = this.disciplinas[k];
+    //   for (let j in disciplina.horarios) {
+    //     let horario = disciplina.horarios[j];
+    //     if (dia == null || horario.startsWith(dia)) {
+    //       let aux = horario.split("/");
+    //       let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, FormatterUtils.formatHour(aux[0].trim()), aux[1].trim());
+    //       disciplinasDia.push(item);
+    //     }
+    //   }
+    // }
 
     return disciplinasDia;
   }
 
-  getAllDisciplinas(): DisciplinaListItem[] {
-    let disciplinasDia: DisciplinaListItem[] = [];
+  getAllDisciplinas(): Subject[] {
+    let disciplinasDia: Subject[] = [];
 
-    for (let k in this.disciplinas) {
-      let disciplina = this.disciplinas[k];
-      for (let j in disciplina.horarios) {
-        let horario = disciplina.horarios[j];        
-          let aux = horario.split("/");
-          let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, aux[0].trim(), aux[1].trim());
-          disciplinasDia.push(item);        
-      }
-    }
+    // for (let k in this.disciplinas) {
+    //   let disciplina = this.disciplinas[k];
+    //   for (let j in disciplina.horarios) {
+    //     let horario = disciplina.horarios[j];        
+    //       let aux = horario.split("/");
+    //       let item = new DisciplinaListItem(disciplina.nome, disciplina.codigo, aux[0].trim(), aux[1].trim());
+    //       disciplinasDia.push(item);        
+    //   }
+    // }
 
     return disciplinasDia;
 

@@ -1,7 +1,8 @@
 import { TranslateService } from '@ngx-translate/core';
-import { DisciplinaListItem } from './../../models/disciplia-list-item';
 import { Component, Input } from '@angular/core';
 import { AlertController } from 'ionic-angular';
+
+import { Subject } from '../../models/subject';
 
 @Component({
   selector: 'grade-horario',
@@ -9,7 +10,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class GradeHorarioComponent {
 
-  @Input() disciplinas: DisciplinaListItem[];
+  @Input() disciplinas: Subject[];
 
   private afternoon: string;
   private morning: string;
@@ -36,9 +37,9 @@ export class GradeHorarioComponent {
   getValue(horario: string): string {
     if (this.disciplinas && this.disciplinas.length > 0) {
       for (let i in this.disciplinas) {
-        if (this.disciplinas[i].horario.startsWith(horario)) {
-          return this.disciplinas[i].codigo;
-        }
+        // if (this.disciplinas[i].horario.startsWith(horario)) {
+        //   return this.disciplinas[i].codigo;
+        // }
       }
     }
     return "";
