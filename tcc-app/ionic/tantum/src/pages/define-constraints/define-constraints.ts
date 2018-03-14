@@ -1,3 +1,4 @@
+import { FormatterUtils } from './../../utils/formatter';
 import { SubjectsProvider } from './../../providers/subjects/subjects';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -17,11 +18,11 @@ export class DefineConstraintsPage {
 
   private botao: string = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
 
-  private  periodosSelected: string[];
+  private periodosSelected: string[];
 
-  private subjectsWanted = []
+  private subjectsWanted = [];
 
-  private subjectsExcluded = []
+  private subjectsExcluded = [];
 
   @ViewChild (CapsulaComponent) capsulaComponent;
 
@@ -42,16 +43,16 @@ export class DefineConstraintsPage {
       this.subjects = val;
     });
 
-   this.subjectsProvider.allSubjects()
-    .map(res => res.json())
-    .subscribe(res => {
-      if (res.success) {
-        this.subjects = res.result.disciplinas;
-        this.storage.set('allSubjects', this.subjects);
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
+    this.subjectsProvider.allSubjects()
+      .map(res => res.json())
+      .subscribe(res => {
+        if (res.success) {
+          this.subjects = res.result.disciplinas;
+          this.storage.set('allSubjects', this.subjects);
+        }
+      }, err => {
+        console.error('ERROR', err);
+      });
   }
 
   onPeriodoSelected(event: string[]) {
@@ -72,13 +73,13 @@ export class DefineConstraintsPage {
 
   onPassoChanged(event: any): void {
     this.botao = this.passo == "3" ? this.translate.instant('GENERATE_TIME_GRID') : this.translate.instant('NEXT_STEP');
-  } 
+  }
 
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
       this.navCtrl.push('ResultadoPage');
     } else {
-      this.passo = (Number(this.passo) + 1).toString();    
+      this.passo = (Number(this.passo) + 1).toString();
     }
   }
 
@@ -89,7 +90,7 @@ export class DefineConstraintsPage {
     periods.push(this.translate.instant('AFTERNOON'));
     periods.push(this.translate.instant('NIGHT'));
 
-    return periods; 
+    return periods;
   }
 
   getSubjectsWanted() {
@@ -117,7 +118,8 @@ export class DefineConstraintsPage {
     alert.addButton({
       text: 'Okay',
       handler: (data: any) => {
-          this.busca = "";
+        this.busca = "";
+        if (data) {
           data.forEach(element => {
             if (this.passo == '2') {
               this.subjectsWanted.push(this.getSubjectByCode(element));
@@ -125,6 +127,8 @@ export class DefineConstraintsPage {
               this.subjectsExcluded.push(this.getSubjectByCode(element));
             }
           });
+        }
+
       }
     });
 
@@ -150,12 +154,16 @@ export class DefineConstraintsPage {
       let nome: string = subject.nome;
       let codigo: string = subject.codigo;
 
-      if (nome.toLowerCase().includes(this.busca.toLowerCase()) || codigo.toLowerCase().includes(this.busca.toLowerCase())) {
+      if (this.contains(nome, this.busca) || this.contains(codigo, this.busca)) {
         subjects.push(subject);
       }
     }
 
     return subjects;
+  }
+
+  contains(a: string, b: string): boolean {
+    return FormatterUtils.replaceSpecialChars(a).includes(FormatterUtils.replaceSpecialChars(b));
   }
 
 }

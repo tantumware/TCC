@@ -6,16 +6,27 @@ subject-action-list {
         overflow: hidden;
         display: block;
         width: 75%;
+        color: color($colors, main-color);
     }
 
     .remove-subject {
         float: right;
         position: relative;
-        bottom: 16px;
+        bottom: 21px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid color($colors, main-color);
+        border-radius: 10px;
+        background-color: white;
+        color: color($colors, main-color);
     }
 
     .base-subject {
+        margin-top: 15px;
         height: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid lightgray;
     }
 
     .subject-list {

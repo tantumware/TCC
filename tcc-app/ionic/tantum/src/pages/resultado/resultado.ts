@@ -14,4 +14,8 @@ export class ResultadoPage {
   ionViewDidLoad() {
   }
 
+  getSubjects() {
+    
+  }
+
 }
