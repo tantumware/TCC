@@ -10,7 +10,7 @@ import { Subject } from '../../models/subject';
 })
 export class GradeHorarioComponent {
 
-  @Input() disciplinas: Subject[];
+  @Input() subjects: Subject[];
 
   private afternoon: string;
   private morning: string;
@@ -35,11 +35,13 @@ export class GradeHorarioComponent {
   }
 
   getValue(horario: string): string {
-    if (this.disciplinas && this.disciplinas.length > 0) {
-      for (let i in this.disciplinas) {
-        // if (this.disciplinas[i].horario.startsWith(horario)) {
-        //   return this.disciplinas[i].codigo;
-        // }
+    if (this.subjects && this.subjects.length > 0) {
+      for (let i in this.subjects) {
+        for (let j in this.subjects[i].horarios) {
+          if (this.subjects[i].horarios[j].startsWith(horario)) {
+            return this.subjects[i].codigo;
+          }
+        }
       }
     }
     return "";

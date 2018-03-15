@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { GradeHorariosPage } from './grade-horarios';
@@ -11,7 +12,8 @@ import { ComponentsModule } from '../../components/components.module';
   imports: [
     IonicPageModule.forChild(GradeHorariosPage),
     TranslateModule.forChild(),
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
 })
 export class GradeHorariosPageModule {}
