@@ -72,8 +72,8 @@ export class MainPage {
   }
   
   getDisciplinas() {
-    return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, null, null), 
-    new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, null, null)];
+    return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null), 
+    new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null)];
   }
 
 }

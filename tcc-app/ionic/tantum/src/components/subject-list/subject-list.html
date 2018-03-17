@@ -1,9 +1,9 @@
 <div (swipe)="itemSwiped($event)" *ngIf="showLista()">
-    <div *ngFor='let disciplina of disciplinas' class="disciplina-item" (click)="onDisciplinaClicked(disciplina)">
-        <div class="horario">{{disciplina.horario}}</div>
+    <div *ngFor='let disciplina of getDisciplinas()' class="disciplina-item" (click)="onDisciplinaClicked(disciplina)">
+        <div class="horario">{{ disciplina.horarios | schedule}}</div>
         <div class="disciplina-div"></div>
         <div class="nomes">
-            <div [ngClass]="getLocalClass()">{{disciplina.local}}</div>
+            <div [ngClass]="getLocalClass()">{{ disciplina.horarios  | location }}</div>
             <div [ngClass]="getNomeClass()">{{disciplina.nome}}</div>
         </div>
     </div>

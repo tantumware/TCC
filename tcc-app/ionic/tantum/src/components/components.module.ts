@@ -4,13 +4,14 @@ import { NgModule } from '@angular/core';
 import { GradeHorarioComponent } from './grade-horario/grade-horario';
 import { CapsulaComponent } from './capsula/capsula';
 import { IonicModule } from 'ionic-angular';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
 	declarations: [GradeHorarioComponent,
     CapsulaComponent,
     SubjectListComponent,
     SubjectActionListComponent],
-	imports: [IonicModule],
+	imports: [IonicModule, PipesModule],
 	exports: [GradeHorarioComponent,
     CapsulaComponent,
     SubjectListComponent,

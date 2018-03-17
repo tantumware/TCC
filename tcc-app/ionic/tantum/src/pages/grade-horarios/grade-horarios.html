@@ -21,25 +21,25 @@
     </div>
     <ion-slides [initialSlide]="dia" [spaceBetween]=5 #slides (ionSlideWillChange)="onSlideChanged($event)">
       <ion-slide>
-        <subject-list [disciplinas]="getDisciplinas('2')" (onSwiped)="onSwiped($event)"></subject-list>
+        <subject-list [subjects]="getDisciplinas('2')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <subject-list [disciplinas]="getDisciplinas('3')" (onSwiped)="onSwiped($event)"></subject-list>
+        <subject-list [subjects]="getDisciplinas('3')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <subject-list [disciplinas]="getDisciplinas('4')" (onSwiped)="onSwiped($event)"></subject-list>
+        <subject-list [subjects]="getDisciplinas('4')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <subject-list [disciplinas]="getDisciplinas('5')" (onSwiped)="onSwiped($event)"></subject-list>
+        <subject-list [subjects]="getDisciplinas('5')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
       <ion-slide>
-        <subject-list [disciplinas]="getDisciplinas('6')" (onSwiped)="onSwiped($event)"></subject-list>
+        <subject-list [subjects]="getDisciplinas('6')" (onSwiped)="onSwiped($event)"></subject-list>
       </ion-slide>
     </ion-slides>
   </div>
 
   <div [ngClass]="getClass('2')">
-    <grade-horario [disciplinas]="getAllDisciplinas()"></grade-horario>
+    <grade-horario [subjects]="getAllDisciplinas()"></grade-horario>
   </div>
 
 

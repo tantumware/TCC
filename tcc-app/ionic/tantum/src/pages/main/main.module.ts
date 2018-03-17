@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MainPage } from './main';
@@ -11,7 +12,8 @@ import { ComponentsModule } from '../../components/components.module';
   imports: [
     IonicPageModule.forChild(MainPage),
     TranslateModule.forChild(),
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
 })
 export class MainPageModule {}

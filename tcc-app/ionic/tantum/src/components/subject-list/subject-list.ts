@@ -8,7 +8,7 @@ import { Subject } from '../../models/subject';
 })
 export class SubjectListComponent {
 
-  @Input() disciplinas: Subject[];
+  @Input() subjects: Subject[];
 
   @Output() onSwiped = new EventEmitter<boolean>();
 
@@ -23,6 +23,10 @@ export class SubjectListComponent {
     }
   }
 
+  getDisciplinas(): Subject[] {
+    return this.subjects;
+  }
+
   onDisciplinaClicked(disciplina: Subject): void {
     console.log(disciplina);
     let alert = this.alertCtrl.create({
@@ -34,8 +38,8 @@ export class SubjectListComponent {
   }
 
   showLista(): boolean {
-    if (this.disciplinas) {
-      return this.disciplinas.length > 0;
+    if (this.subjects) {
+      return this.subjects.length > 0;
     } else {
       return false;
     }
