@@ -1,10 +1,5 @@
 package com.tantum.app.tantum;
 
-import java.util.List;
-import java.util.Map;
-
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +17,11 @@ import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
 import com.tantum.app.tantum.models.Semester;
+import com.tantum.app.tantum.models.SemestersDTO;
 import com.tantum.app.tantum.models.Settings;
-import com.tantum.app.tantum.models.Subject;
 import com.tantum.app.tantum.models.SubjectsDTO;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestMapping("/v1/")
@@ -46,8 +43,8 @@ public class TantumController {
 		return loginDto;
 	}
 
-	@RequestMapping(path = "/next-subjects", method = RequestMethod.POST, consumes = "application/json")
-	public Semester semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
+	@RequestMapping(path = "/calculate-semester", method = RequestMethod.POST, consumes = "application/json")
+	public SemestersDTO semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
 		String c = Helper.readJson("test.json");
 
 		Gson g = new Gson();
@@ -57,9 +54,7 @@ public class TantumController {
 		a.rankDisciplinas();
 		a.applyConstraints(settings);
 
-		Map<Integer, List<Subject>> result = a.getSemestres();
-
-		return new Semester(result.get(1));
+		return new SemestersDTO(true, a.getSemestres());
 	}
 
 	@RequestMapping(path = "/schedule/{semestre}", method = RequestMethod.GET)
@@ -74,7 +69,7 @@ public class TantumController {
 		return disciplinasDTO;
 	}
 
-	@RequestMapping(path = "/disciplinas", method = RequestMethod.GET) // all subjects
+	@RequestMapping(path = "/subjects", method = RequestMethod.GET) // all subjects
 	public SubjectsDTO disciplinas() {
 		String c = Helper.readJson("test.json");
 

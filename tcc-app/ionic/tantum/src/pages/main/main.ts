@@ -12,41 +12,17 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MainPage {
 
-  private userData: UserData = new UserData("", "");
-
   private disciplinas: Subject[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService) {
   }
 
   ionViewDidLoad() {
-    this.getUserData();
-
     this.storage.get('disciplinas').then(d => {
       if (d) {
         this.disciplinas = d;
       }
     });
-  }
-
-  getUserData(): void {
-    this.storage.get('userData').then(val => {
-      if (val) {
-        this.userData = val;
-      }
-    });
-    this.userData = new UserData("nome", "2018.1");
-
-    /*this.userData = this.userDataProvider.userData()
-      .map(res => res.json())
-      .subscribe(res => {
-        if (res.success) {
-          this.userData = res;
-          this.storage.set('userData', this.userData);
-        }
-      }, err => {
-        console.error('ERROR', err);
-      }); */
   }
 
   onHorariosClicked(): void {

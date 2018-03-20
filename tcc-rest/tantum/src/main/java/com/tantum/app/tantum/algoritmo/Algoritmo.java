@@ -1,7 +1,5 @@
 package com.tantum.app.tantum.algoritmo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +13,10 @@ import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.variables.impl.FixedBoolVarImpl;
 
 import com.tantum.app.tantum.models.Curso;
-import com.tantum.app.tantum.models.Subject;
 import com.tantum.app.tantum.models.Periodo;
+import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.Settings;
+import com.tantum.app.tantum.models.Subject;
 
 import lombok.Getter;
 
@@ -30,11 +29,11 @@ public class Algoritmo {
 
 	private Map<Integer, Map<String, List<String>>> curriculo;
 
-	private Map<Integer, List<Subject>> semestres = new HashMap<>();
+	private Map<Integer, Semester> semestres = new HashMap<>();
 
 	public Algoritmo(Curso curso) {
 		this.disciplinas = curso.getDisciplinas().stream()
-				.collect(Collectors.toMap(Subject::getNome, Function.identity()));
+				.collect(Collectors.toMap(Subject::getCodigo, Function.identity()));
 		// recebe a lista de disciplinas do curso e monta do map
 		this.curriculo = new HashMap<>();
 
@@ -42,7 +41,7 @@ public class Algoritmo {
 			if (!this.curriculo.containsKey(d.getFase())) {
 				this.curriculo.put(d.getFase(), new HashMap<>());
 			}
-			this.curriculo.get(d.getFase()).put(d.getNome(), d.getRequisitos());// TODO mudar para codigo
+			this.curriculo.get(d.getFase()).put(d.getCodigo(), d.getRequisitos());
 		});
 	}
 
@@ -95,25 +94,29 @@ public class Algoritmo {
 		List<String> rankDisciplinas = getDisciplinasByRank();
 
 		int i = 1;
-		this.semestres.put(i, new ArrayList<>());
+		this.semestres.put(i, new Semester());
 		for (String d : rankDisciplinas) {
 			Subject disciplina = this.disciplinas.get(d);
 
 			Model model = new Model();
 			Solver solver = model.getSolver();
 
-			int cargaHoraria = this.semestres.get(i).stream().mapToInt(Subject::getAulas).sum();
+			int cargaHoraria = this.semestres.get(i).getDisciplinas().stream().mapToInt(Subject::getAulas).sum();
 			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
-			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(i), disciplina)));
+			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(i).getDisciplinas(), disciplina)));
 			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(settings, disciplina)));
 			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(settings, disciplina)));
+			// TODO ver pre requisitos
 
 			boolean solve = solver.solve();
 			if (solve) {
-				this.semestres.get(i).add(disciplina);
-			} else if (!checkCargaHorariaOk(solver)) {
+				this.semestres.get(i).getDisciplinas().add(disciplina);
+			} else if (!checkCargaHorariaOk(solver)) { // disciplina que nao deu solve, como choque de horário mas que ainda cabe
+														// materia nao ta sendo adicionada
 				i++;
-				this.semestres.put(i, new ArrayList<>(Arrays.asList(disciplina)));
+				Semester s = new Semester();
+				s.getDisciplinas().add(disciplina);
+				this.semestres.put(i, s);
 			}
 		}
 	}

@@ -20,7 +20,7 @@
         },
         {
             "nome": "Materia Aleatoria 3",
-            "codigo": "INE5612",
+            "codigo": "INE1111",
             "fase": 1,
             "aulas": 2,
             "obrigatoria": true,

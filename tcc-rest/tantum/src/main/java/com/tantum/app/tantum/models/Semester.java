@@ -1,5 +1,6 @@
 package com.tantum.app.tantum.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Semester {
 
-	public List<Subject> disciplinas;
+	public List<Subject> disciplinas = new ArrayList<>();
 
 }
