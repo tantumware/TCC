@@ -23,15 +23,15 @@ export class GradeHorarioComponent {
   private friday: string;
 
   constructor(private alertCtrl: AlertController, private translate: TranslateService) {
-    this.afternoon = translate.instant('AFTERNOON');
-    this.morning = translate.instant('MORNING');
-    this.night = translate.instant('NIGHT');
+    this.afternoon = this.translate.instant('AFTERNOON');
+    this.morning = this.translate.instant('MORNING');
+    this.night = this.translate.instant('NIGHT');
 
-    this.monday = translate.instant('MONDAY_SHORT');
-    this.tuesday = translate.instant('TUESDAY_SHORT');
-    this.wednesday = translate.instant('WEDNESDAY_SHORT');
-    this.thursday = translate.instant('THURSDAY_SHORT');
-    this.friday = translate.instant('FRIDAY_SHORT');
+    this.monday = this.translate.instant('MONDAY_SHORT');
+    this.tuesday = this.translate.instant('TUESDAY_SHORT');
+    this.wednesday = this.translate.instant('WEDNESDAY_SHORT');
+    this.thursday = this.translate.instant('THURSDAY_SHORT');
+    this.friday = this.translate.instant('FRIDAY_SHORT');
   }
 
   getValue(horario: string): string {

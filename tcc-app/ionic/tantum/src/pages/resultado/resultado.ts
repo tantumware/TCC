@@ -1,3 +1,4 @@
+import { StorageKeys } from './../../utils/storage-keys';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -15,7 +16,7 @@ export class ResultadoPage {
   }
 
   ionViewDidLoad() {
-    this.storage.get('x').then((val) => {
+    this.storage.get(StorageKeys.CONSTRAINT).then((val) => {
       this.subjects = val;
     });
   }

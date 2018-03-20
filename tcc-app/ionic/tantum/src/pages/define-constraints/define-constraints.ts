@@ -1,3 +1,4 @@
+import { StorageKeys } from './../../utils/storage-keys';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -40,6 +41,12 @@ export class DefineConstraintsPage {
   }
 
   ionViewDidLoad() {
+    this.storage.get(StorageKeys.CONSTRAINT).then((val) => {
+      if (val) {
+        this.navCtrl.push('ResultadoPage');
+      }
+    });
+    
     this.storage.get('allSubjects').then((val) => {
       if (val) {
         this.subjects = val;
@@ -80,8 +87,19 @@ export class DefineConstraintsPage {
 
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
-      this.storage.set('x', this.subjectsWanted);
-      this.navCtrl.push('ResultadoPage');
+      this.storage.set(StorageKeys.CONSTRAINT, this.subjectsWanted);
+      this.subjectsProvider.nextSubjects(null)// mandar constraints
+        .map(res => res.json())
+        .subscribe(res => {
+          if (res.success) {
+            this.storage.set(StorageKeys.RESULT, res);
+            this.storage.remove(StorageKeys.CONSTRAINT);
+            this.navCtrl.push('ResultadoPage');
+          }
+        }, err => {
+          console.error('ERROR', err);
+        }); 
+        // se demorar criar um loading
     } else {
       this.passo = (Number(this.passo) + 1).toString();
     }

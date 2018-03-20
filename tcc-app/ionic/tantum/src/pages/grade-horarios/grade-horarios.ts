@@ -3,7 +3,6 @@ import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 import { CalendarUtils } from './../../utils/calendar';
-import { FormatterUtils } from './../../utils/formatter';
 import { Dia } from './../../models/dia';
 import { Subject } from './../../models/subject';
 import { HorariosProvider } from '../../providers/horarios/horarios';

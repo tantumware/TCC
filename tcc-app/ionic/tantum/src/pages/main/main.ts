@@ -1,5 +1,4 @@
 import { Subject } from './../../models/subject';
-import { UserDataProvider } from './../../providers/user-data/user-data';
 import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -17,7 +16,7 @@ export class MainPage {
 
   private disciplinas: Subject[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService, public userDataProvider: UserDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService) {
   }
 
   ionViewDidLoad() {

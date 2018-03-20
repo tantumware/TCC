@@ -1,3 +1,4 @@
+import { Constraints } from './../../models/constraints';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Api } from '../providers';
@@ -10,8 +11,14 @@ export class SubjectsProvider {
   }
 
   allSubjects(): any {
-    let seq = this.api.get('disciplinas').share();
+    let seq = this.api.get('schedule').share();
 
+    return seq;
+  }
+
+  nextSubjects(constraints: Constraints): any {
+    let seq = this.api.get('next-subjects').share();
+    
     return seq;
   }
 

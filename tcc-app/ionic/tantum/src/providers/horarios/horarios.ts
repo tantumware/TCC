@@ -10,7 +10,7 @@ export class HorariosProvider {
   }
 
   gradeDeHorarios(): any {
-    let seq = this.api.get('disciplinas/2018-1', ['username', 'password'], ['user', 'password']).share();
+    let seq = this.api.get('schedule/2018-1', ['username', 'password'], ['user', 'password']).share();
 
     return seq;
   }
