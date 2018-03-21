@@ -2,7 +2,7 @@ import { LoginProvider } from './../../providers/login-provider/login-provider';
 import { Account } from './../../models/account';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 @IonicPage()
@@ -25,7 +25,8 @@ export class LoginPage {
     public loginProvider: LoginProvider, 
     public toastCtrl: ToastController, 
     public translateService: TranslateService, 
-    private storage: Storage) {
+    private storage: Storage,
+    public loadingCtrl: LoadingController) {
       
     this.translateService.setDefaultLang('pt');
 
@@ -63,27 +64,30 @@ export class LoginPage {
     let password = this.password == null ? "" : this.password;
 
     let acc = new Account(userName, password);
-
-    if (this.manterConectado) {
-      this.storage.set('account', acc);
-    }
+    
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
 
     this.loginProvider.login(acc).subscribe(res => {
+      if (this.manterConectado) {
+        this.storage.set('account', acc);
+      }
+      loading.dismiss();
       this.navCtrl.push('MainPage');
-    })
-
-
-  //  this.user.login(this.account).subscribe((resp) => {
-  //  }, (err) => {
-  //    this.navCtrl.push('MainPage');
-      // Unable to log in
-    //  let toast = this.toastCtrl.create({
-     //   message: this.loginErrorString,
-    //    duration: 3000,
-    //    position: 'top'
-    //  });
-   //   toast.present();
-    //});
+    }, err => {
+      loading.dismiss();
+      console.error('DEU RUIM', err);
+      let toast = this.toastCtrl.create({
+        message: 'DEU RUIM',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    });
+    
   }
 
   onSobreClick(): void {

@@ -37,7 +37,6 @@ export class MainPage {
   }
 
   onSairClicked(): void {
-    console.log(this.navCtrl.length());
     if (this.navCtrl.length() > 1) {
       this.navCtrl.remove(0);
     }

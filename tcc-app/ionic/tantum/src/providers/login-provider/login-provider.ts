@@ -18,7 +18,6 @@ export class LoginProvider {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    console.log(accountInfo);
     let seq = this.api.get('login', ['username', 'password'], [accountInfo.username, accountInfo.password]).share();
 
     seq
