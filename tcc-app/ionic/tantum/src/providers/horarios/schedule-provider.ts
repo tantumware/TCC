@@ -4,13 +4,13 @@ import { Api } from '../providers';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class HorariosProvider {
+export class ScheduleProvider {
 
   constructor(public http: Http, public api: Api) {
   }
 
-  gradeDeHorarios(): any {
-    let seq = this.api.get('schedule/2018-1', ['username', 'password'], ['user', 'password']).share();
+  schedule(semester: string): any {
+    let seq = this.api.get('schedule/' + semester, ['username', 'password'], ['user', 'password']).share();
 
     return seq;
   }

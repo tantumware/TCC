@@ -1,9 +1,9 @@
 import { Subject } from './../../models/subject';
-import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { ScheduleProvider } from '../../providers/horarios/schedule-provider';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,8 @@ export class MainPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private storage: Storage, 
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    private scheduleProvider: ScheduleProvider) {
   }
 
   ionViewDidLoad() {
@@ -25,6 +26,19 @@ export class MainPage {
       if (d) {
         this.disciplinas = d;
       }
+    });
+
+    // mudar esse ano automaticamente
+    this.scheduleProvider.schedule("2018-1")
+    .map(res => res.json())
+    .subscribe(res => {
+      console.log(res);
+      if (res.success) {
+        this.disciplinas = res.result.disciplinas;
+        this.storage.set('disciplinas', this.disciplinas);
+      }
+    }, err => {
+      console.error('ERROR', err);
     });
   }
 

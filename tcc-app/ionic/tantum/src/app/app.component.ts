@@ -4,8 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
-import { Settings } from '../providers/providers';
-
 @Component({
   template: `<ion-menu [content]="content" [enabled]='false'>
     <ion-header>
@@ -48,7 +46,7 @@ export class MyApp {
     { title: 'Resultado', component: 'ResultadoPage'}
   ]
 
-  constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService, private platform: Platform, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     this.initTranslate();
   }
 
