@@ -79,7 +79,7 @@ export class LoginPage {
       this.navCtrl.push('MainPage');
     }, err => {
       loading.dismiss();
-      console.error('DEU RUIM', err);
+      console.error('ERROR', err);
       let toast = this.toastCtrl.create({
         message: 'DEU RUIM',
         duration: 3000,
