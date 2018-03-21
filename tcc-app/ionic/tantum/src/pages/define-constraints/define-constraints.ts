@@ -88,7 +88,7 @@ export class DefineConstraintsPage {
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
       this.storage.set(StorageKeys.CONSTRAINT, this.subjectsWanted);
-      this.subjectsProvider.nextSubjects(null)// mandar constraints
+      this.subjectsProvider.calculateSemester(null)// mandar constraints
         .map(res => res.json())
         .subscribe(res => {
           if (res.success) {

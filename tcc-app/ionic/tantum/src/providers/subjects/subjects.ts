@@ -11,13 +11,13 @@ export class SubjectsProvider {
   }
 
   allSubjects(): any {
-    let seq = this.api.get('schedule').share();
+    let seq = this.api.get('subjects').share();
 
     return seq;
   }
 
-  nextSubjects(constraints: Constraints): any {
-    let seq = this.api.get('next-subjects').share();
+  calculateSemester(constraints: Constraints): any {
+    let seq = this.api.get('calculate-semester').share();
     
     return seq;
   }

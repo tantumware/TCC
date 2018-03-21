@@ -21,7 +21,12 @@ export class LoginPage {
 
   manterConectado: boolean = true;
 
-  constructor(public navCtrl: NavController, public loginProvider: LoginProvider, public toastCtrl: ToastController, public translateService: TranslateService, private storage: Storage) {
+  constructor(public navCtrl: NavController, 
+    public loginProvider: LoginProvider, 
+    public toastCtrl: ToastController, 
+    public translateService: TranslateService, 
+    private storage: Storage) {
+      
     this.translateService.setDefaultLang('pt');
 
     this.storage.get('idioma').then(idioma => {

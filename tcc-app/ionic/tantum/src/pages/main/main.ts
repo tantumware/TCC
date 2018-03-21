@@ -1,7 +1,7 @@
 import { Subject } from './../../models/subject';
 import { UserData } from './../../models/user-data';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +14,10 @@ export class MainPage {
 
   private disciplinas: Subject[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public translateService: TranslateService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private storage: Storage, 
+    public translateService: TranslateService) {
   }
 
   ionViewDidLoad() {

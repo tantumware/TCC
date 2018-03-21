@@ -44,7 +44,7 @@ public class TantumController {
 	}
 
 	@RequestMapping(path = "/calculate-semester", method = RequestMethod.POST, consumes = "application/json")
-	public SemestersDTO semestre(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
+	public SemestersDTO calculateSemester(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
 		String c = Helper.readJson("test.json");
 
 		Gson g = new Gson();
