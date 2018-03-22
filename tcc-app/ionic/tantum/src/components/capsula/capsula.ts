@@ -27,5 +27,5 @@ export class CapsulaComponent {
     }
     this.periodoSelected.emit(this.allPeriodosSelected);
   }
-
+  
 }

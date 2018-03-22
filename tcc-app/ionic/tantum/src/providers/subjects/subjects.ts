@@ -17,7 +17,7 @@ export class SubjectsProvider {
   }
 
   calculateSemester(constraints: Constraints): any {
-    let seq = this.api.get('calculate-semester').share();
+    let seq = this.api.post('calculate-semester', constraints).share();
     
     return seq;
   }

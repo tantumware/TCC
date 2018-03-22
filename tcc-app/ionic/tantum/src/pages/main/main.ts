@@ -1,3 +1,5 @@
+import { Account } from './../../models/account';
+import { StorageKeys } from './../../utils/storage-keys';
 import { Subject } from './../../models/subject';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -14,6 +16,8 @@ export class MainPage {
 
   private disciplinas: Subject[];
 
+  private account: Account;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private storage: Storage, 
@@ -27,6 +31,8 @@ export class MainPage {
         this.disciplinas = d;
       }
     });
+
+    this.storage.get(StorageKeys.ACCOUNT).then(acc => this.account = acc);
 
     // mudar esse ano automaticamente
     this.scheduleProvider.schedule("2018-1")
@@ -54,7 +60,7 @@ export class MainPage {
     if (this.navCtrl.length() > 1) {
       this.navCtrl.remove(0);
     }
-    this.storage.set('account', null);
+    this.storage.set(StorageKeys.ACCOUNT, null);
     this.navCtrl.push('LoginPage');
   }
 

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { StorageKeys } from '../../utils/storage-keys';
 
 @IonicPage()
 @Component({
@@ -21,16 +22,16 @@ export class LoginPage {
 
   manterConectado: boolean = true;
 
-  constructor(public navCtrl: NavController, 
-    public loginProvider: LoginProvider, 
-    public toastCtrl: ToastController, 
-    public translateService: TranslateService, 
+  constructor(public navCtrl: NavController,
+    public loginProvider: LoginProvider,
+    public toastCtrl: ToastController,
+    public translateService: TranslateService,
     private storage: Storage,
     public loadingCtrl: LoadingController) {
-      
+
     this.translateService.setDefaultLang('pt');
 
-    this.storage.get('idioma').then(idioma => {
+    this.storage.get(StorageKeys.LANGUAGE).then(idioma => {
       if (idioma) {
         this.idioma = idioma;
         this.translateService.use(this.idioma);
@@ -44,41 +45,54 @@ export class LoginPage {
     this.showView = false;
 
     this.idioma = this.translateService.currentLang;
+    this.checkKeepLoggedIn();
+  }
 
-    this.storage.get('account').then((val) => {
-      if (val) {
-        this.navCtrl.push('MainPage');
-      } else {
-        this.showView = true;
-      }
+  checkKeepLoggedIn() {
+    this.storage.get(StorageKeys.ACCOUNT).then((acc) => {
+      this.storage.get(StorageKeys.KEEP_LOGGED_IN).then(b => {
+        this.manterConectado = b
+        if (acc && b) {
+          this.doLogin(acc);
+        } else {
+          this.showView = true;
+        }
+      });
+      
     });
   }
 
   idiomaChanged(): void {
     this.translateService.use(this.idioma);
-    this.storage.set('idioma', this.idioma);
+    this.storage.set(StorageKeys.LANGUAGE, this.idioma);
   }
 
-  doLogin() {
+  prepareLogin() {    
     let userName = this.username == null ? "" : this.username;
     let password = this.password == null ? "" : this.password;
 
     let acc = new Account(userName, password);
-    
+    this.doLogin(acc);
+  }
+
+  doLogin(acc: Account) {
+    this.storage.set(StorageKeys.KEEP_LOGGED_IN, this.manterConectado);
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
-    });
-  
-    loading.present();
+    });      
+
+    let timeOutid = setTimeout(() => {
+      loading.present();
+    }, 300);
 
     this.loginProvider.login(acc).subscribe(res => {
-      if (this.manterConectado) {
-        this.storage.set('account', acc);
-      }
+      this.storage.set(StorageKeys.ACCOUNT, acc);
       loading.dismiss();
+      clearTimeout(timeOutid);
       this.navCtrl.push('MainPage');
     }, err => {
       loading.dismiss();
+      clearTimeout(timeOutid);
       console.error('ERROR', err);
       let toast = this.toastCtrl.create({
         message: 'DEU RUIM',
@@ -87,7 +101,7 @@ export class LoginPage {
       });
       toast.present();
     });
-    
+
   }
 
   onSobreClick(): void {

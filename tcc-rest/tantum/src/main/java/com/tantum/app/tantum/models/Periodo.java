@@ -1,5 +1,7 @@
 package com.tantum.app.tantum.models;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Periodo {
 
 	MATUTINO, VESPERTINO, NOTURNO;
@@ -17,6 +19,11 @@ public enum Periodo {
 		}
 
 		return VESPERTINO;
+	}
+
+	@JsonValue
+	public int jsonValue() {
+		return super.ordinal();
 	}
 
 }

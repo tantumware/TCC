@@ -12,10 +12,10 @@ import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.variables.impl.FixedBoolVarImpl;
 
+import com.tantum.app.tantum.models.Constraints;
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Periodo;
 import com.tantum.app.tantum.models.Semester;
-import com.tantum.app.tantum.models.Settings;
 import com.tantum.app.tantum.models.Subject;
 
 import lombok.Getter;
@@ -90,7 +90,7 @@ public class Algoritmo {
 		// @formatter:on
 	}
 
-	public void applyConstraints(Settings settings) {
+	public void applyConstraints(Constraints constraints) {
 		List<String> rankDisciplinas = getDisciplinasByRank();
 
 		int i = 1;
@@ -102,10 +102,11 @@ public class Algoritmo {
 			Solver solver = model.getSolver();
 
 			int cargaHoraria = this.semestres.get(i).getDisciplinas().stream().mapToInt(Subject::getAulas).sum();
-			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= settings.getCargaHorariaMaxima()));
+			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= constraints.getCreditMax()));
 			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(i).getDisciplinas(), disciplina)));
-			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(settings, disciplina)));
-			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(settings, disciplina)));
+			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, disciplina)));
+			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(constraints, disciplina)));
+			model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(constraints, disciplina)));
 			// TODO ver pre requisitos
 
 			boolean solve = solver.solve();
@@ -119,6 +120,11 @@ public class Algoritmo {
 				this.semestres.put(i, s);
 			}
 		}
+	}
+
+	private boolean validateRequisitos(Constraints settings, Subject disciplina) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	/**
@@ -142,8 +148,8 @@ public class Algoritmo {
 	 * @param disciplina
 	 * @return boolean
 	 */
-	private boolean validateDisciplinaExcluida(Settings settings, Subject disciplina) {
-		return settings.getExcluidas().contains(disciplina);
+	private boolean validateDisciplinaExcluida(Constraints settings, Subject disciplina) {
+		return settings.getSubjectsNotWanted().contains(disciplina);
 	}
 
 	/**
@@ -153,11 +159,11 @@ public class Algoritmo {
 	 * @param disciplina
 	 * @return boolean
 	 */
-	private boolean validadePeriodo(Settings settings, Subject disciplina) {
+	private boolean validadePeriodo(Constraints settings, Subject disciplina) {
 		return disciplina.getHorarios()
 				.stream()
 				.map(Periodo::getPeriodoByHorario)
-				.allMatch(settings.getPeriodos()::contains);
+				.allMatch(settings.getPeriods()::contains);
 	}
 
 	/**

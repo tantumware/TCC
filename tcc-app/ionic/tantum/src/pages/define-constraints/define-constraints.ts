@@ -1,3 +1,4 @@
+import { Constraints } from './../../models/constraints';
 import { StorageKeys } from './../../utils/storage-keys';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -20,7 +21,7 @@ export class DefineConstraintsPage {
 
   private botao: string = this.passo == "3" ? "Gerar grade de horários" : "Próximo Passo";
 
-  private periodosSelected: string[];
+  private periodosSelected: string[] = [];
 
   private subjectsWanted = [];
 
@@ -32,12 +33,19 @@ export class DefineConstraintsPage {
 
   private subjects;
 
-  structure = {
+  credits = {
     lower: 20,
     upper: 30
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public translate: TranslateService, private subjectsProvider: SubjectsProvider, private storage: Storage) {
+  equivalent = true;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public alertCtrl: AlertController, 
+    public translate: TranslateService, 
+    private subjectsProvider: SubjectsProvider, 
+    private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -87,22 +95,29 @@ export class DefineConstraintsPage {
 
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
-      this.storage.set(StorageKeys.CONSTRAINT, this.subjectsWanted);
-      this.subjectsProvider.calculateSemester(null)// mandar constraints
-        .map(res => res.json())
-        .subscribe(res => {
-          if (res.success) {
-            this.storage.set(StorageKeys.RESULT, res);
-            this.storage.remove(StorageKeys.CONSTRAINT);
-            this.navCtrl.push('ResultadoPage');
-          }
-        }, err => {
-          console.error('ERROR', err);
-        }); 
-        // se demorar criar um loading
+      let constraints: Constraints = this.createConstraints();
+      console.log(constraints);
+      this.storage.set(StorageKeys.CONSTRAINT, constraints);
+      this.navCtrl.push('ResultadoPage');
     } else {
       this.passo = (Number(this.passo) + 1).toString();
     }
+  }
+
+  createConstraints(): Constraints {
+    let periods: number[] = [];
+    
+    if (this.periodosSelected.indexOf(this.translate.instant('MORNING')) > -1) {
+      periods.push(0);
+    }
+    if (this.periodosSelected.indexOf(this.translate.instant('AFTERNOON')) > -1) {
+      periods.push(1);
+    }
+    if (this.periodosSelected.indexOf(this.translate.instant('NIGHT')) > -1) {
+      periods.push(2);
+    }
+    
+    return new Constraints(periods, this.credits.lower, this.credits.upper, this.equivalent, this.subjectsWanted, this.subjectsExcluded);
   }
 
   getPeriods(): string[] {

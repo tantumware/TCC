@@ -11,14 +11,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Settings {
+public class Constraints {
 
-	private int cargaHorariaMaxima;
+	private List<Periodo> periods;
 
-	private List<Periodo> periodos;
+	private int creditMax;
 
-	private List<Subject> selecionadas;
+	private int creditMin;
 
-	private List<Subject> excluidas;
+	private boolean equivalent;
+
+	private List<Subject> subjectsWanted;
+
+	private List<Subject> subjectsNotWanted;
 
 }

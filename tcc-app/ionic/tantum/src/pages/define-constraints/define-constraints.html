@@ -25,7 +25,7 @@
 
     <p>{{ 'CREDIT_INTERVAL' | translate }}</p>
     <ion-item>
-      <ion-range dualKnobs="true" pin="true" [(ngModel)]="structure" class="intervalo" color="main-color">
+      <ion-range dualKnobs="true" pin="true" [(ngModel)]="credits" class="intervalo" color="main-color">
         <ion-label range-left>-0</ion-label>
         <ion-label range-right>100</ion-label>
       </ion-range>
@@ -33,7 +33,7 @@
 
     <ion-item>
       <ion-label>{{ 'CONSIDER_EQUIVALENT_COURSES' | translate }}</ion-label>
-      <ion-toggle color="main-color" checked="false"></ion-toggle>
+      <ion-toggle color="main-color" checked="false" [(ngModel)]="equivalent"></ion-toggle>
     </ion-item>
   </div>
 

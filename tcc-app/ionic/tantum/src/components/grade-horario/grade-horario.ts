@@ -44,7 +44,7 @@ export class GradeHorarioComponent {
         }
       }
     }
-    return "";
+    return "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"; // white space
   }
 
   onSlideChanged(event: any): void {

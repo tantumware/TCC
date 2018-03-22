@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.helper.Helper;
+import com.tantum.app.tantum.models.Constraints;
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
 import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.SemestersDTO;
-import com.tantum.app.tantum.models.Settings;
 import com.tantum.app.tantum.models.SubjectsDTO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +44,7 @@ public class TantumController {
 	}
 
 	@RequestMapping(path = "/calculate-semester", method = RequestMethod.POST, consumes = "application/json")
-	public SemestersDTO calculateSemester(@RequestBody(required = true) Settings settings, @RequestParam(value = "token", defaultValue = "0") String token) {
+	public SemestersDTO calculateSemester(@RequestBody(required = true) Constraints constraints) {
 		String c = Helper.readJson("test.json");
 
 		Gson g = new Gson();
@@ -52,7 +52,7 @@ public class TantumController {
 
 		Algoritmo a = new Algoritmo(curso);
 		a.rankDisciplinas();
-		a.applyConstraints(settings);
+		a.applyConstraints(constraints);
 
 		return new SemestersDTO(true, a.getSemestres());
 	}
