@@ -1,20 +1,20 @@
 package com.tantum.app.tantum;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.tantum.app.tantum.algoritmo.Algoritmo;
 import com.tantum.app.tantum.helper.Helper;
 import com.tantum.app.tantum.models.Constraints;
+import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
@@ -44,25 +44,19 @@ public class TantumController {
 		return loginDto;
 	}
 
-	@RequestMapping(path = "/calculate-semester", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public SemestersDTO calculateSemester(@RequestParam Map<String, String> body) {
-		// System.out.println(body);
-		// String c = Helper.readJson("test.json");
-		//
-		Gson g = new Gson();
-		body.keySet().stream().forEach(s -> {
-			Constraints curso = g.fromJson(s, Constraints.class);
-			System.out.println(s);
+	@RequestMapping(path = "/calculate-semester", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public SemestersDTO calculateSemester(@RequestBody(required = true) Constraints constraints) {
+		String c = Helper.readJson("test.json");
 
-		});
-		//
-		// Algoritmo a = new Algoritmo(curso);
-		// a.rankDisciplinas();
-		// // a.applyConstraints(constraints);
-		//
-		// log.info("calculate-semester");
-		// return new SemestersDTO(true, a.getSemestres());
-		return new SemestersDTO(true, new HashMap<>());
+		Gson g = new Gson();
+		Curso curso = g.fromJson(c, Curso.class);
+
+		Algoritmo a = new Algoritmo(curso);
+		a.rankDisciplinas();
+		a.applyConstraints(constraints);
+
+		log.info("calculate-semester");
+		return new SemestersDTO(true, a.getSemestres());
 	}
 
 	@RequestMapping(path = "/schedule/{semester}", method = RequestMethod.GET)

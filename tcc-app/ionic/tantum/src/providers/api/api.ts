@@ -37,7 +37,7 @@ export class Api {
 
   post(endpoint: string, body: any, options?: RequestOptions) {
     let h: Headers = new Headers();
-    h.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    h.append('Content-Type', 'application/json; charset=UTF-8');
     return this.http.post(this.url + '/' + endpoint, body, { headers: h });
   }
 
