@@ -25,21 +25,22 @@ export class ResultadoPage {
 
   ionViewDidLoad() {
     this.storage.get(StorageKeys.CONSTRAINT).then((val) => {
-      this.constraints = val;
-    });
-
-    
-    this.subjectsProvider.calculateSemester(this.constraints)
-    .map(res => res.json())
-    .subscribe(res => {
-      if (res.success) {
-        
-        this.storage.set(StorageKeys.RESULT, res);
-        this.storage.remove(StorageKeys.CONSTRAINT);
+      if (val) {
+        console.log(val);
+        this.constraints = val;
+        this.subjectsProvider.calculateSemester(this.constraints)
+          .map(res => res.json())
+          .subscribe(res => {
+            if (res.success) {              
+              this.storage.set(StorageKeys.RESULT, res);
+              this.storage.remove(StorageKeys.CONSTRAINT);
+            }
+          }, err => {
+            console.error('ERROR', err);
+          }); 
       }
-    }, err => {
-      console.error('ERROR', err);
-    }); 
+    });
+    
     // se demorar criar um loading
   }
 
