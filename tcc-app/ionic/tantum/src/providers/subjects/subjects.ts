@@ -18,10 +18,7 @@ export class SubjectsProvider {
 
   calculateSemester(constraints: Constraints): any {
     let body = new FormData();
-    body.append('max', constraints.creditMax.toString());
-    body.append('min', constraints.creditMin.toString());
-    console.log(body);
-    let seq = this.api.post('calculate-semester', body).share();
+    let seq = this.api.post('calculate-semester', constraints).share();
     
     return seq;
   }
