@@ -77,6 +77,9 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
+    <platform name="windows">
+        <preference name="windows-target-version" value="10.0" />
+    </platform>
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
@@ -88,5 +91,6 @@
     <plugin name="cordova-sqlite-storage" spec="^2.2.1" />
     <allow-navigation href="http://192.168.0.14:8101" />
     <allow-navigation href="http://192.168.0.3:8100" />
-    <engine name="android" spec="~7.0.0" />
+    <engine name="android" spec="^7.0.0" />
+    <engine name="windows" spec="5.0.0" />
 </widget>

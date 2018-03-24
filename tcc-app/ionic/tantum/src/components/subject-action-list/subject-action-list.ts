@@ -11,6 +11,8 @@ export class SubjectActionListComponent {
 
   @Input() subjects: Subject[];
 
+  @Input() action: boolean = true;
+
   @Output() onRemoved = new EventEmitter<Subject>();
 
   constructor(public plt: Platform) {

@@ -112,12 +112,18 @@ public class Algoritmo {
 			boolean solve = solver.solve();
 			if (solve) {
 				this.semestres.get(i).getDisciplinas().add(disciplina);
-			} else if (!checkCargaHorariaOk(solver)) { // disciplina que nao deu solve, como choque de horário mas que ainda cabe
-														// materia nao ta sendo adicionada
+			} else {
 				i++;
-				Semester s = new Semester();
-				s.getDisciplinas().add(disciplina);
-				this.semestres.put(i, s);
+				if (this.semestres.containsKey(i)) {
+					this.semestres.get(i).disciplinas.add(disciplina);
+				} else {
+					Semester s = new Semester();
+					s.getDisciplinas().add(disciplina);
+					this.semestres.put(i, s);
+				}
+				if (checkCargaHorariaOk(solver)) {
+					i--;
+				}
 			}
 		}
 	}

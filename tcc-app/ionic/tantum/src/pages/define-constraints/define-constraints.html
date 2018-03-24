@@ -46,7 +46,7 @@
   <div [ngClass]="getClass('3')">
     <p>{{ 'SUBJECTS_I_DONT_WANT_TO_STUDY' | translate }}</p>
     <ion-searchbar (search)="searchMateria()" placeholder="Nome ou código" [(ngModel)]="busca"></ion-searchbar>
-    <subject-action-list [subjects]="getSubjectsExcluded()"></subject-action-list>
+    <subject-action-list [subjects]="getSubjectsExcluded()" [action]=false></subject-action-list>
   </div>
 
   <button ion-button class="next-step-button" (click)="btnProximoPassoClicked()">{{ botao }}</button>

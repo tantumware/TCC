@@ -94,6 +94,7 @@ export class LoginPage {
       loading.dismiss();
       clearTimeout(timeOutid);
       console.error('ERROR', err);
+      this.showView = true;
       let toast = this.toastCtrl.create({
         message: 'DEU RUIM',
         duration: 3000,
