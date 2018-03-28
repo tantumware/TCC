@@ -3,6 +3,8 @@ package com.tantum.app.tantum;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,8 +26,6 @@ import com.tantum.app.tantum.models.LoginDTO;
 import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.SemestersDTO;
 import com.tantum.app.tantum.models.SubjectsDTO;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestMapping("/v1/")
@@ -87,8 +87,8 @@ public class TantumController {
 		return disciplinasDTO;
 	}
 
-	@RequestMapping(path = "/estatisticas", method = RequestMethod.GET) // statictics
-	public Estatisticas estatisticas(@RequestParam(value = "token") String token) {
+	@RequestMapping(path = "/statictics", method = RequestMethod.GET)
+	public Estatisticas estatisticas(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
 		List<String> semesters = Arrays.asList("2015-1", "2015-2", "2016-1", "2016-2", "2017-1", "2017-2");
 		List<Double> semestersIA = Arrays.asList(4.0, 6.0, 7.5, 5.0, 6.0, 7.0);
 		List<Double> courseIA = Arrays.asList(6.0, 4.0, 6.5, 4.0, 5.0, 6.0);

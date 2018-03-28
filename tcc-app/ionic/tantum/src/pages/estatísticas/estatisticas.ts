@@ -1,9 +1,12 @@
+import { StorageKeys } from './../../utils/storage-keys';
 import { Estatistica } from './../../models/estatistica';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { Chart } from 'chart.js';
 import { EstatisticaProvider } from '../../providers/estatistica/estatistica';
+import { Constraints } from '../../models/constraints';
 
 
 @IonicPage()
@@ -23,16 +26,31 @@ export class EstatisticasPage {
 
     passo: string = '1';
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public estatisticaProvider: EstatisticaProvider) {
-        estatisticaProvider.getEstatisticas().subscribe(e => {
-            this.estatistic = e;
-            this.showDoughnutChart();
-            this.showLineChart();
-            console.log(e);
-        });
+    constructor(public navCtrl: NavController, 
+        public navParams: NavParams, 
+        public estatisticaProvider: EstatisticaProvider,
+        private storage: Storage) {
     }
 
-    ionViewDidLoad() {        
+    ionViewDidLoad() {
+        this.storage.get(StorageKeys.STATISTIC).then(e => {
+            console.log(e);
+            if (e) {
+              this.estatistic = e;
+              this.showDoughnutChart();
+              this.showLineChart();
+            }
+          });
+
+          this.estatisticaProvider.getEstatisticas()
+            .map(res => res.json())
+            .subscribe(e => {
+            console.log(e);
+              this.estatistic = e;
+              this.storage.set(StorageKeys.STATISTIC, e);
+              this.showDoughnutChart();
+              this.showLineChart();
+          });
     }
 
     onPassoChanged() {

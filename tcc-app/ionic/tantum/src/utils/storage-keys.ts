@@ -6,5 +6,6 @@ export class StorageKeys {
     public static ACCOUNT: string = "account";
     public static KEEP_LOGGED_IN: string = "keep_loged_in";
     public static LANGUAGE: string = "language";
+    public static STATISTIC: string = "statistic";
 
 }
