@@ -9,6 +9,10 @@ subject-action-list {
         color: color($colors, main-color);
     }
 
+    .name-subject-without-action {
+        width: 100%;
+    }
+
     .remove-subject {
         float: right;
         position: relative;

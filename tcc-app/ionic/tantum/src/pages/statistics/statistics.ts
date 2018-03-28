@@ -1,3 +1,4 @@
+import { Subject } from './../../models/subject';
 import { StorageKeys } from './../../utils/storage-keys';
 import { Estatistica } from './../../models/estatistica';
 import { Component, ViewChild } from '@angular/core';
@@ -6,15 +7,13 @@ import { Storage } from '@ionic/storage';
 
 import { Chart } from 'chart.js';
 import { EstatisticaProvider } from '../../providers/estatistica/estatistica';
-import { Constraints } from '../../models/constraints';
-
 
 @IonicPage()
 @Component({
-    selector: 'page-estatisticas',
-    templateUrl: 'estatisticas.html',
-})
-export class EstatisticasPage {
+    selector: 'page-statistics',
+    templateUrl: 'statistics.html',
+}) 
+export class StatisticsPage {
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChild('lineCanvas') lineCanvas;
@@ -22,7 +21,9 @@ export class EstatisticasPage {
     doughnutChart: any;
     lineChart: any;
 
-    private estatistic: Estatistica;
+    public estatistic: Estatistica;
+
+    public semesters: string[] = ["2018-2", "2019-2"];
 
     passo: string = '1';
 
@@ -54,6 +55,11 @@ export class EstatisticasPage {
     }
 
     onPassoChanged() {
+    }
+
+    getSubjects(semester: string) {
+        return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null), 
+    new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null)];
     }
     
     showLineChart() {

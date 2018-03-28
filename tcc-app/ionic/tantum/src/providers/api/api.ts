@@ -8,7 +8,8 @@ import { Http, RequestOptions, URLSearchParams, Headers } from '@angular/http';
  */
 @Injectable()
 export class Api {
-  url: string = 'http://localhost:8080/v1';
+  url: string = 'http://tccrest.pedro.pacheco.vms.ufsc.br:8080/v1';
+  // A24cPmgdCw
 
   constructor(public http: Http) {
   }

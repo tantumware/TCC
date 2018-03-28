@@ -28,4 +28,12 @@ export class SubjectActionListComponent {
     return disciplia.codigo + " - " + disciplia.nome;
   }
 
+  getClass(): string {
+    let name = "name-subject";
+    if (!this.action) {
+      name += " name-subject-without-action"
+    }
+    return name; 
+  }
+
 }

@@ -2,16 +2,16 @@ import { ComponentsModule } from './../../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { EstatisticasPage } from './estatisticas';
+import { StatisticsPage } from './statistics';
 
 @NgModule({
   declarations: [
-    EstatisticasPage,
+    StatisticsPage,
   ],
   imports: [
-    IonicPageModule.forChild(EstatisticasPage),
+    IonicPageModule.forChild(StatisticsPage),
     TranslateModule.forChild(),
     ComponentsModule
   ],
 })
-export class EstatisticasPageModule {}
+export class StatisticsPageModule {}

@@ -65,7 +65,7 @@ export class MainPage {
   }
 
   onEstatisticaClicked(): void {
-    this.navCtrl.push('EstatisticasPage');
+    this.navCtrl.push('StatisticsPage');
   }
   
   getDisciplinas() {
