@@ -1,8 +1,10 @@
+import { Estatistica } from './../../models/estatistica';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Chart } from 'chart.js';
 import { EstatisticaProvider } from '../../providers/estatistica/estatistica';
+
 
 @IonicPage()
 @Component({
@@ -17,39 +19,31 @@ export class EstatisticasPage {
     doughnutChart: any;
     lineChart: any;
 
+    private estatistic: Estatistica;
+
     passo: string = '1';
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public estatisticaProvider: EstatisticaProvider) {
-        estatisticaProvider.getEstatisticas().subscribe(e => console.log(e));
+        estatisticaProvider.getEstatisticas().subscribe(e => {
+            this.estatistic = e;
+            this.showDoughnutChart();
+            this.showLineChart();
+            console.log(e);
+        });
     }
 
-    ionViewDidLoad() {
-        this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+    ionViewDidLoad() {        
+    }
 
-            type: 'doughnut',
-            data: {
-                labels: ["Semestres restantes", "Semestres cursados"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB"
-                    ]
-                }]
-            }
-
-        });
-
+    onPassoChanged() {
+    }
+    
+    showLineChart() {
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-
+    
             type: 'line',
             data: {
-                labels: ["2014.1", "2014.2", "2015.1", "2015.2", "2016.1", "2016.2", "2017.1"],
+                labels: this.estatistic.semesters,
                 datasets: [
                     {
                         label: "Seu IA",
@@ -70,7 +64,7 @@ export class EstatisticasPage {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 40],
+                        data: this.estatistic.semestersIA,
                         spanGaps: false,
                     },
                     {
@@ -92,17 +86,37 @@ export class EstatisticasPage {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [74, 70, 69, 41, 43, 45, 75],
+                        data: this.estatistic.courseIA,
                         spanGaps: false,
                     }
-
+    
                 ]
+            }
+    
+        });        
+    }
+
+    showDoughnutChart() {
+        this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+
+            type: 'doughnut',
+            data: {
+                labels: ["Semestres restantes", "Semestres cursados"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [this.estatistic.semestresRestantes, this.estatistic.semesters.length],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB"
+                    ]
+                }]
             }
 
         });
-    }
-
-    onPassoChanged() {
     }
 
     getClass(p: string): string {

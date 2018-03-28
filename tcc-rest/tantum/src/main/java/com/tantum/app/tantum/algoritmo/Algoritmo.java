@@ -133,6 +133,14 @@ public class Algoritmo {
 		return true;
 	}
 
+	private boolean checkRequisito(Solver solver) {
+		return Stream.of(solver.getModel().getVars())
+				.filter(v -> v.getName().equals("requisitos"))
+				.map(v -> ((FixedBoolVarImpl) v).getValue() == 1 ? true : false)
+				.findAny()
+				.orElse(false);
+	}
+
 	/**
 	 * Verifica se a constraint da carga horária está ok
 	 *

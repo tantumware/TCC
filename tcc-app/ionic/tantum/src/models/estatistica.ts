@@ -1,14 +1,6 @@
-export interface IEstatistica {
-    
-    semestresCursados: number;
-    
-    semestresRestantes: number;
-    
-    disciplinasCursadas: number;
-    
-    totalDisciplinasCurso: number;
-    
-    porcentagemCursado: number;
-    
-    semestreFormatura: string;
+export class Estatistica {
+
+    constructor(public semestresRestantes: number, public semesters: string[], public semestersIA: number[], public courseIA: number[]) {
+    }
+        I
 }

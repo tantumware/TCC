@@ -1,5 +1,8 @@
 package com.tantum.app.tantum;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -86,7 +89,11 @@ public class TantumController {
 
 	@RequestMapping(path = "/estatisticas", method = RequestMethod.GET) // statictics
 	public Estatisticas estatisticas(@RequestParam(value = "token") String token) {
-		Estatisticas e = new Estatisticas(1, 2, 3, 4, 5, "2019-1");
+		List<String> semesters = Arrays.asList("2015-1", "2015-2", "2016-1", "2016-2", "2017-1", "2017-2");
+		List<Double> semestersIA = Arrays.asList(4.0, 6.0, 7.5, 5.0, 6.0, 7.0);
+		List<Double> courseIA = Arrays.asList(6.0, 4.0, 6.5, 4.0, 5.0, 6.0);
+
+		Estatisticas e = new Estatisticas(2, semesters, semestersIA, courseIA);
 		return e;
 	}
 

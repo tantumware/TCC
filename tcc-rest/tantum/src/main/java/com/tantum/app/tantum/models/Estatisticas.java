@@ -1,5 +1,7 @@
 package com.tantum.app.tantum.models;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,16 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Estatisticas {
 
-	int semestresCursados;
+	private int semestresRestantes;
 
-	int semestresRestantes;
+	private List<String> semesters;
 
-	int disciplinasCursadas;
+	private List<Double> semestersIA;
 
-	int totalDisciplinasCurso;
-
-	double porcentagemCursado;
-
-	String semestreFormatura;
+	private List<Double> courseIA;
 
 }
