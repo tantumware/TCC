@@ -43,7 +43,6 @@ public class TantumController {
 		LoginDTO loginDto = new LoginDTO(userOk && passwordOk, login);
 
 		log.info("Feito login com: " + username + "/" + password);
-
 		return loginDto;
 	}
 

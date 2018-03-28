@@ -1,3 +1,5 @@
+import { ComponentsModule } from './../../components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EstatisticasPage } from './estatisticas';
@@ -8,6 +10,8 @@ import { EstatisticasPage } from './estatisticas';
   ],
   imports: [
     IonicPageModule.forChild(EstatisticasPage),
+    TranslateModule.forChild(),
+    ComponentsModule
   ],
 })
 export class EstatisticasPageModule {}
