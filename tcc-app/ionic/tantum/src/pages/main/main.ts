@@ -6,6 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { ScheduleProvider } from '../../providers/horarios/schedule-provider';
+import { SubjectHelper } from '../../utils/subject-helper';
 
 @IonicPage()
 @Component({
@@ -69,8 +70,9 @@ export class MainPage {
   }
   
   getDisciplinas() {
-    return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null), 
-    new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null)];
+    return SubjectHelper.nextTwo(this.disciplinas);
+    // return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null), 
+    // new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null)];
   }
 
 }
