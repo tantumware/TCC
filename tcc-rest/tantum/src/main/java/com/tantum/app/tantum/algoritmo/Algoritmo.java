@@ -89,26 +89,48 @@ public class Algoritmo {
 				.collect(Collectors.toList());
 		// @formatter:on
 	}
+	
+	private Solver applyConstraints(Constraints constraints, List<String> subjectsHistory, Subject disciplina, int index) {
+			Model model = new Model();
+			Solver solver = model.getSolver();
 
-	public void applyConstraints(Constraints constraints) {
+			int cargaHoraria = this.semestres.get(index).getDisciplinas().stream().mapToInt(Subject::getAulas).sum();
+			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= constraints.getCreditMax()));
+			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(index).getDisciplinas(), disciplina)));
+			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, disciplina)));
+			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(constraints, disciplina)));
+			model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(disciplina, subjectsHistory)));
+
+			return solver;			
+	}
+
+	public void calculateSemester(Constraints constraints, List<String> subjectsHistory) {
 		List<String> rankDisciplinas = getDisciplinasByRank();
 
 		int i = 1;
 		this.semestres.put(i, new Semester());
+		
+		for (Subject subject : constraints.getSubjectsWanted()) { // TODO ordenar por rank
+			Solver solver = this.applyConstraints(constraints, subjectsHistory, subject, i);
+			boolean solve = solver.solve();
+			if (solve) {
+				this.semestres.get(i).getDisciplinas().add(subject);
+			} else {
+				// TODO avisa o usuário que nao deu para adicionar essa
+			}
+			
+		}
+				
+		
 		for (String d : rankDisciplinas) {
 			Subject disciplina = this.disciplinas.get(d);
+			if (subjectsHistory.contains(d) && isSubjectNotWanted(constraints, d) && !this.semestres.containsValue(disciplina)) { // TODO usar o semestreja
+				continue;
+			}
+			
 
-			Model model = new Model();
-			Solver solver = model.getSolver();
-
-			int cargaHoraria = this.semestres.get(i).getDisciplinas().stream().mapToInt(Subject::getAulas).sum();
-			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= constraints.getCreditMax()));
-			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(i).getDisciplinas(), disciplina)));
-			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, disciplina)));
-			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(constraints, disciplina)));
-			model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(constraints, disciplina)));
-			// TODO ver pre requisitos
-
+			Solver solver = this.applyConstraints(constraints, subjectsHistory, disciplina, i);
+			
 			boolean solve = solver.solve();
 			if (solve) {
 				this.semestres.get(i).getDisciplinas().add(disciplina);
@@ -127,10 +149,23 @@ public class Algoritmo {
 			}
 		}
 	}
+	
+	private boolean isSubjectNotWanted(Constraints constraints, String subject) {
+		return constraints.getSubjectsNotWanted()
+				.stream()
+				.map(Subject::getCodigo)
+				.anyMatch(subject::equals);
+	}
 
-	private boolean validateRequisitos(Constraints settings, Subject disciplina) {
-		// TODO Auto-generated method stub
-		return true;
+	private boolean containsSubjectsWanted(Constraints constraints, String d) {
+		return constraints.getSubjectsWanted()
+				.stream()
+				.map(Subject::getCodigo)
+				.anyMatch(d::equals);
+	}
+
+	private boolean validateRequisitos(Subject disciplina, List<String> subjects) {		
+		return subjects.containsAll(disciplina.getRequisitos());
 	}
 
 	private boolean checkRequisito(Solver solver) {

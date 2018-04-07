@@ -1,6 +1,8 @@
 package com.tantum.app.tantum;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +23,11 @@ import com.tantum.app.tantum.helper.Helper;
 import com.tantum.app.tantum.models.Constraints;
 import com.tantum.app.tantum.models.Curso;
 import com.tantum.app.tantum.models.Estatisticas;
+import com.tantum.app.tantum.models.History;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
 import com.tantum.app.tantum.models.Semester;
+import com.tantum.app.tantum.models.SemesterHistory;
 import com.tantum.app.tantum.models.SemestersDTO;
 import com.tantum.app.tantum.models.SubjectsDTO;
 
@@ -53,10 +57,14 @@ public class TantumController {
 
 		Gson g = new Gson();
 		Curso curso = g.fromJson(c, Curso.class);
-
+		History history = g.fromJson(h, History.class);
+		SemesterHistory xx = history.getSemesters().stream().reduce((x, y) -> {
+			x.getSubjects().addAll(y.getSubjects());
+			return x;
+		}).get();
 		Algoritmo a = new Algoritmo(curso);
 		a.rankDisciplinas();
-		a.applyConstraints(constraints);
+		a.calculateSemester(constraints, xx.getSubjects());
 
 		log.info("calculate-semester");
 		return new SemestersDTO(true, a.getSemestres());
