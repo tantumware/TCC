@@ -16,8 +16,10 @@ public class NextSemestersDTO {
 
 	private Map<Integer, Semester> nextSemesters;
 
-	private List<Subject> subjectWantedError;
+	private List<Subject> subjectsWantedError;
 
-	private List<Subject> subjectNotWantedError;
+	private List<Subject> subjectsNotWantedError;
+
+	private List<Subject> subjectsNotSelected;
 
 }

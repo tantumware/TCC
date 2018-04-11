@@ -21,8 +21,8 @@ public class Constraints {
 
 	private boolean equivalent;
 
-	private List<Subject> subjectsWanted;
+	private List<String> subjectsWanted;
 
-	private List<Subject> subjectsNotWanted;
+	private List<String> subjectsNotWanted;
 
 }

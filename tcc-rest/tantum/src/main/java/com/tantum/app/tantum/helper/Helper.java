@@ -13,6 +13,7 @@ public class Helper {
 
 		ClassLoader classLoader = TantumApplication.class.getClassLoader();
 		File file = new File(classLoader.getResource(path).getFile());
+		// File file = new File(path);
 
 		try (Scanner scanner = new Scanner(file)) {
 

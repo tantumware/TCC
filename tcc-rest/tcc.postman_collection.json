@@ -1,103 +1,13 @@
 {
 	"info": {
-		"name": "tcc",
-		"_postman_id": "995ef026-ad86-4b5d-ab43-ea7d9ee71393",
+		"name": "TCC",
+		"_postman_id": "8162c139-2f4f-d9a3-cde2-13dc14bc669f",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/semestre",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{ disciplinas: [\n    { \n        nome: \"A\", \n        codigo: \"A1\", \n        fase: 1,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: [] \n    },\n    { \n        nome: \"B\", \n        codigo: \"A2\", \n        fase: 1,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: []\n    },\n    { \n        nome: \"C\", \n        codigo: \"A3\", \n        fase: 1,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: []\n    },\n    { \n        nome: \"D\", \n        codigo: \"A4\", \n        fase: 2,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: [\"A\"] \n    },\n    { \n        nome: \"E\", \n        codigo: \"A4\", \n        fase: 2,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: []\n    },    \n    { \n        nome: \"F\", \n        codigo: \"A4\", \n        fase: 2,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: []\n    }, { \n        nome: \"G\", \n        codigo: \"A4\", \n        fase: 3,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: [\"F\"]\n    },    \n    { \n        nome: \"H\", \n        codigo: \"A4\", \n        fase: 3,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: [\"D\"]\n    },\n    { \n        nome: \"I\", \n        codigo: \"A4\", \n        fase: 4,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: []\n    },    \n    { \n        nome: \"J\", \n        codigo: \"A4\", \n        fase: 4,\n        aulas: 2,\n        obrigatoria: true,\n        horarios: [],\n        requisitos: [\"H\", \"B\"]\n    }\n]}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/semestre",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"semestre"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/estatisticas?token=\"0\"",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"cargaHorariaMaxima\":5,\"periodos\":[\"NOTURNO\", \"VESPERTINO\", \"MATUTINO\"],\"selecionadas\":[],\"excluidas\":[]}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/estatisticas?token=\"0\"",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"estatisticas"
-					],
-					"query": [
-						{
-							"key": "token",
-							"value": "\"0\"",
-							"equals": true
-						}
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/test",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"cargaHorariaMaxima\":5,\"periodos\":[\"NOTURNO\", \"VESPERTINO\", \"MATUTINO\"],\"selecionadas\":[],\"excluidas\":[]}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/test",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"test"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/semestre?token=\"0\"",
+			"name": "Calculate Semester",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -108,24 +18,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"cargaHorariaMaxima\":5,\"periodos\":[\"NOTURNO\", \"VESPERTINO\", \"MATUTINO\"],\"selecionadas\":[],\"excluidas\":[]}"
+					"raw": "{\n\t\"periods\": [0, 1, 2],\n\t\"creditMax\": 2,\n\t\"creditMin\": 0,\n\t\"equivalent\": true,\n\t\"subjectsWanted\": [],\n\t\"subjectsNotWanted\": []\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/semestre?token=\"0\"",
+					"raw": "http://localhost:8080/v1/calculate-semester",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"semestre"
-					],
-					"query": [
-						{
-							"key": "token",
-							"value": "\"0\"",
-							"equals": true
-						}
+						"v1",
+						"calculate-semester"
 					]
 				},
 				"description": ""

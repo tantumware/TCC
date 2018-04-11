@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(of = { "nome", "codigo" })
+@ToString
 public class Subject {
 
 	private String nome;
