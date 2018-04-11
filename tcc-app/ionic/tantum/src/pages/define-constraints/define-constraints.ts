@@ -55,7 +55,7 @@ export class DefineConstraintsPage {
       }
     });
     
-    this.storage.get('allSubjects').then((val) => {
+    this.storage.get(StorageKeys.ALL_SUBJECTS).then((val) => {
       if (val) {
         this.subjects = val;
       }
@@ -66,7 +66,7 @@ export class DefineConstraintsPage {
       .subscribe(res => {
         if (res.success) {
           this.subjects = res.result.disciplinas;
-          this.storage.set('allSubjects', this.subjects);
+          this.storage.set(StorageKeys.ALL_SUBJECTS, this.subjects);
         }
       }, err => {
         console.error('ERROR', err);
@@ -96,7 +96,6 @@ export class DefineConstraintsPage {
   btnProximoPassoClicked(): void {
     if (this.passo == '3') {
       let constraints: Constraints = this.createConstraints();
-      console.log(constraints);
       this.storage.set(StorageKeys.CONSTRAINT, constraints);
       this.navCtrl.push('ResultadoPage');
     } else {

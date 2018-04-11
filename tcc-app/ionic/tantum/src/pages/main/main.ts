@@ -39,7 +39,6 @@ export class MainPage {
     this.scheduleProvider.schedule("2018-1")
     .map(res => res.json())
     .subscribe(res => {
-      console.log(res);
       if (res.success) {
         this.disciplinas = res.result.disciplinas;
         this.storage.set('disciplinas', this.disciplinas);

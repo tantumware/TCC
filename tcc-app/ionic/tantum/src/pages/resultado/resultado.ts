@@ -24,16 +24,22 @@ export class ResultadoPage {
   }
 
   ionViewDidLoad() {
+    this.storage.get(StorageKeys.RESULT).then(res => {
+      if (res) {
+        this.subjects = res.result.nextSemesters[1].disciplinas;
+      }
+    });
+
     this.storage.get(StorageKeys.CONSTRAINT).then((val) => {
       if (val) {
-        console.log(val);
         this.constraints = val;
         this.subjectsProvider.calculateSemester(this.constraints)
           .map(res => res.json())
           .subscribe(res => {
-            if (res.success) {              
-              this.storage.set(StorageKeys.RESULT, res);
+            if (res.success) {
+              this.storage.set(StorageKeys.RESULT, res.result.nextSemesters);
               this.storage.remove(StorageKeys.CONSTRAINT);
+              this.subjects = res.result.nextSemesters[1].disciplinas;
             }
           }, err => {
             console.error('ERROR', err);
