@@ -1,5 +1,6 @@
 package com.tantum.app.tantum.algoritmo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.chocosolver.solver.variables.impl.FixedBoolVarImpl;
 
 import com.tantum.app.tantum.models.Constraints;
 import com.tantum.app.tantum.models.Curso;
+import com.tantum.app.tantum.models.NextSemestersDTO;
 import com.tantum.app.tantum.models.Periodo;
 import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.Subject;
@@ -30,6 +32,8 @@ public class Algoritmo {
 	private Map<Integer, Map<String, List<String>>> curriculo;
 
 	private Map<Integer, Semester> semestres = new HashMap<>();
+
+	private List<Subject> subjectsWantedError;
 
 	public Algoritmo(Curso curso) {
 		this.disciplinas = curso.getDisciplinas().stream()
@@ -81,75 +85,92 @@ public class Algoritmo {
 	}
 
 	private List<String> getDisciplinasByRank() {
-		// @formatter:off
 		return this.rank.entrySet()
 				.stream()
 				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
 				.map(Entry::getKey)
 				.collect(Collectors.toList());
-		// @formatter:on
-	}
-	
-	private Solver applyConstraints(Constraints constraints, List<String> subjectsHistory, Subject disciplina, int index) {
-			Model model = new Model();
-			Solver solver = model.getSolver();
-
-			int cargaHoraria = this.semestres.get(index).getDisciplinas().stream().mapToInt(Subject::getAulas).sum();
-			model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= constraints.getCreditMax()));
-			model.addClauseTrue(model.boolVar("horarios", validateHorario(this.semestres.get(index).getDisciplinas(), disciplina)));
-			model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, disciplina)));
-			model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(constraints, disciplina)));
-			model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(disciplina, subjectsHistory)));
-
-			return solver;			
 	}
 
-	public void calculateSemester(Constraints constraints, List<String> subjectsHistory) {
+	private Solver applyConstraints(Constraints constraints, List<String> subjectsHistory, Subject disciplina, List<Subject> currentSubjects) {
+		Model model = new Model();
+		Solver solver = model.getSolver();
+
+		int cargaHoraria = currentSubjects.stream().mapToInt(Subject::getAulas).sum();
+		model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= constraints.getCreditMax()));
+		model.addClauseTrue(model.boolVar("horarios", validateHorario(currentSubjects, disciplina)));
+		model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, disciplina)));
+		model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(constraints, disciplina)));
+		model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(disciplina, subjectsHistory)));
+
+		return solver;
+	}
+
+	public NextSemestersDTO calculateSemesters(Constraints constraints, List<String> _subjectsHistory) {
 		List<String> rankDisciplinas = getDisciplinasByRank();
+		rankDisciplinas.removeAll(_subjectsHistory);
+		List<Subject> subjects = new ArrayList<>();
+		List<String> subjectsHistory = _subjectsHistory;
 
-		int i = 1;
-		this.semestres.put(i, new Semester());
-		
+		int i = 0;
+		while (!rankDisciplinas.isEmpty() && i < 10) {
+			i++;
+			if (this.semestres.isEmpty()) {
+				subjects = calculateFirstSemester(constraints, subjectsHistory, rankDisciplinas);
+			} else {
+				subjects = calculateSemester(constraints, subjectsHistory, new ArrayList<>(), rankDisciplinas);
+			}
+			this.semestres.put(i, new Semester(subjects));
+
+			subjects.stream().map(Subject::getCodigo).forEach(codigo -> {
+				rankDisciplinas.remove(codigo);
+				subjectsHistory.add(codigo);
+			});
+		}
+		System.out.println(rankDisciplinas);
+		return new NextSemestersDTO(this.semestres, this.subjectsWantedError, new ArrayList<>());
+	}
+
+	private List<Subject> calculateFirstSemester(Constraints constraints, List<String> subjectsHistory, List<String> subjectsRemaining) {
+		this.subjectsWantedError = new ArrayList<>();
+		List<Subject> currentSubjects = new ArrayList<>();
+
 		for (Subject subject : constraints.getSubjectsWanted()) { // TODO ordenar por rank
-			Solver solver = this.applyConstraints(constraints, subjectsHistory, subject, i);
+			Solver solver = applyConstraints(constraints, subjectsHistory, subject, currentSubjects);
 			boolean solve = solver.solve();
 			if (solve) {
-				this.semestres.get(i).getDisciplinas().add(subject);
+				currentSubjects.add(subject);
 			} else {
-				// TODO avisa o usuário que nao deu para adicionar essa
+				this.subjectsWantedError.add(subject);
 			}
-			
+
 		}
-				
-		
-		for (String d : rankDisciplinas) {
+
+		return calculateSemester(constraints, subjectsHistory, currentSubjects, subjectsRemaining);
+	}
+
+	private List<Subject> calculateSemester(Constraints constraints, List<String> subjectsHistory, List<Subject> _currentSubjects, List<String> subjectsRemaining) {
+		List<Subject> currentSubjects = _currentSubjects;
+
+		for (String d : subjectsRemaining) {
 			Subject disciplina = this.disciplinas.get(d);
-			if (subjectsHistory.contains(d) && isSubjectNotWanted(constraints, d) && !this.semestres.containsValue(disciplina)) { // TODO usar o semestreja
+			if (subjectsHistory.contains(d) || isSubjectNotWanted(constraints, d) || !currentSubjects.contains(disciplina)) {
 				continue;
 			}
-			
 
-			Solver solver = this.applyConstraints(constraints, subjectsHistory, disciplina, i);
-			
+			Solver solver = applyConstraints(constraints, subjectsHistory, disciplina, currentSubjects);
+
 			boolean solve = solver.solve();
 			if (solve) {
-				this.semestres.get(i).getDisciplinas().add(disciplina);
-			} else {
-				i++;
-				if (this.semestres.containsKey(i)) {
-					this.semestres.get(i).disciplinas.add(disciplina);
-				} else {
-					Semester s = new Semester();
-					s.getDisciplinas().add(disciplina);
-					this.semestres.put(i, s);
-				}
-				if (checkCargaHorariaOk(solver)) {
-					i--;
-				}
+				currentSubjects.add(disciplina);
+			} else if (!checkCargaHorariaOk(solver)) {
+				break;
 			}
 		}
+
+		return currentSubjects;
 	}
-	
+
 	private boolean isSubjectNotWanted(Constraints constraints, String subject) {
 		return constraints.getSubjectsNotWanted()
 				.stream()
@@ -164,7 +185,7 @@ public class Algoritmo {
 				.anyMatch(d::equals);
 	}
 
-	private boolean validateRequisitos(Subject disciplina, List<String> subjects) {		
+	private boolean validateRequisitos(Subject disciplina, List<String> subjects) {
 		return subjects.containsAll(disciplina.getRequisitos());
 	}
 

@@ -1,10 +1,8 @@
 package com.tantum.app.tantum.models;
 
-import java.util.Map;
+public class SemestersDTO extends Result<NextSemestersDTO> {
 
-public class SemestersDTO extends Result<Map<Integer, Semester>> {
-
-	public SemestersDTO(boolean success, Map<Integer, Semester> result) {
+	public SemestersDTO(boolean success, NextSemestersDTO result) {
 		super(success, result);
 	}
 

@@ -1,11 +1,7 @@
 package com.tantum.app.tantum;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
@@ -26,10 +22,13 @@ import com.tantum.app.tantum.models.Estatisticas;
 import com.tantum.app.tantum.models.History;
 import com.tantum.app.tantum.models.Login;
 import com.tantum.app.tantum.models.LoginDTO;
+import com.tantum.app.tantum.models.NextSemestersDTO;
 import com.tantum.app.tantum.models.Semester;
 import com.tantum.app.tantum.models.SemesterHistory;
 import com.tantum.app.tantum.models.SemestersDTO;
 import com.tantum.app.tantum.models.SubjectsDTO;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestMapping("/v1/")
@@ -64,10 +63,10 @@ public class TantumController {
 		}).get();
 		Algoritmo a = new Algoritmo(curso);
 		a.rankDisciplinas();
-		a.calculateSemester(constraints, xx.getSubjects());
+		NextSemestersDTO result = a.calculateSemesters(constraints, xx.getSubjects());
 
 		log.info("calculate-semester");
-		return new SemestersDTO(true, a.getSemestres());
+		return new SemestersDTO(true, result);
 	}
 
 	@RequestMapping(path = "/schedule/{semester}", method = RequestMethod.GET)
