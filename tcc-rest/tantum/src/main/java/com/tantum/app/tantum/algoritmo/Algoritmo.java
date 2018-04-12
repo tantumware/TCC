@@ -1,6 +1,7 @@
 package com.tantum.app.tantum.algoritmo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class Algoritmo {
 
 	private Map<Integer, Map<String, List<String>>> curriculo;
 
-	private Map<Integer, Semester> semestres = new HashMap<>();
+	private Map<String, Semester> semestres = new HashMap<>();
 
 	private List<Subject> subjectsWantedError;
 
@@ -129,7 +130,7 @@ public class Algoritmo {
 				break;
 			}
 
-			this.semestres.put(i, new Semester(subjects));
+			this.semestres.put(getSemesterYear(i), new Semester(subjects));
 
 			subjects.stream().map(Subject::getCodigo).forEach(codigo -> {
 				rankDisciplinas.remove(codigo);
@@ -178,6 +179,21 @@ public class Algoritmo {
 		}
 
 		return currentSubjects;
+	}
+
+	// TODO arrumar essa coisa aqui
+	private String getSemesterYear(int index) {
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int month = Calendar.getInstance().get(Calendar.MONTH);
+
+		int n = Math.round(index / 2);
+
+		year = year + n;
+		if (month >= 7) {
+			return String.valueOf(year) + "-2";
+		}
+
+		return String.valueOf(year) + "-1";
 	}
 
 	private boolean validateRequisitos(Subject disciplina, List<String> subjects) {

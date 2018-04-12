@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class NextSemestersDTO {
 
-	private Map<Integer, Semester> nextSemesters;
+	private Map<String, Semester> nextSemesters;
 
 	private List<Subject> subjectsWantedError;
 
