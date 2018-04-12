@@ -53,7 +53,13 @@ export class MainPage {
   }
 
   onGerarHorarioClicked(): void {
-    this.navCtrl.push('DefineConstraintsPage');
+    this.storage.get(StorageKeys.RESULT).then(res => {
+      if (res) {
+        this.navCtrl.push('ResultadoPage');
+      } else {
+        this.navCtrl.push('DefineConstraintsPage');
+      }
+    });
   }
 
   onSairClicked(): void {

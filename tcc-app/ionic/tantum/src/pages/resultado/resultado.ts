@@ -17,8 +17,8 @@ export class ResultadoPage {
 
   private subjects: Subject[];
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
     private storage: Storage,
     private subjectsProvider: SubjectsProvider) {
   }
@@ -26,7 +26,7 @@ export class ResultadoPage {
   ionViewDidLoad() {
     this.storage.get(StorageKeys.RESULT).then(res => {
       if (res) {
-        this.subjects = res.result.nextSemesters[1].disciplinas;
+        this.subjects = res[1].disciplinas;
       }
     });
 
@@ -43,15 +43,25 @@ export class ResultadoPage {
             }
           }, err => {
             console.error('ERROR', err);
-          }); 
+          });
       }
     });
-    
+
     // se demorar criar um loading
   }
 
   getSubjects() {
     return this.subjects;
+  }
+
+  onRedefineConstrainsClicked() {
+    this.storage.remove(StorageKeys.RESULT);
+    let last = this.navCtrl.getPrevious().id;
+    if (last == "DefineConstraintsPage") {
+      this.navCtrl.pop();
+    } else {
+      this.navCtrl.push('DefineConstraintsPage');
+    }
   }
 
 }

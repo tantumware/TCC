@@ -12,7 +12,7 @@ import { EstatisticaProvider } from '../../providers/estatistica/estatistica';
 @Component({
     selector: 'page-statistics',
     templateUrl: 'statistics.html',
-}) 
+})
 export class StatisticsPage {
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
@@ -23,48 +23,58 @@ export class StatisticsPage {
 
     public estatistic: Estatistica;
 
-    public semesters: string[] = ["2018-2", "2019-2"];
+    public semestersYears: any[] = [];
+
+    public semesters: any;
 
     passo: string = '1';
 
-    constructor(public navCtrl: NavController, 
-        public navParams: NavParams, 
+    constructor(public navCtrl: NavController,
+        public navParams: NavParams,
         public estatisticaProvider: EstatisticaProvider,
         private storage: Storage) {
     }
 
     ionViewDidLoad() {
-        this.storage.get(StorageKeys.STATISTIC).then(e => {
-            console.log(e);
-            if (e) {
-              this.estatistic = e;
-              this.showDoughnutChart();
-              this.showLineChart();
+        this.storage.get(StorageKeys.RESULT).then(res => {
+            if (res) {
+                for (var property in res) {
+                    if (res.hasOwnProperty(property)) {
+                        this.semestersYears.push(property);
+                    }
+                }
+                this.semesters = res;
             }
-          });
+        });
 
-          this.estatisticaProvider.getEstatisticas()
+        this.storage.get(StorageKeys.STATISTIC).then(e => {
+            if (e) {
+                this.estatistic = e;
+                this.showDoughnutChart();
+                this.showLineChart();
+            }
+        });
+
+        this.estatisticaProvider.getEstatisticas()
             .map(res => res.json())
             .subscribe(e => {
-            console.log(e);
-              this.estatistic = e;
-              this.storage.set(StorageKeys.STATISTIC, e);
-              this.showDoughnutChart();
-              this.showLineChart();
-          });
+                this.estatistic = e;
+                this.storage.set(StorageKeys.STATISTIC, e);
+                this.showDoughnutChart();
+                this.showLineChart();
+            });
     }
 
     onPassoChanged() {
     }
 
     getSubjects(semester: string) {
-        return [new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null), 
-    new Subject("Linguagens formais e compiladores", "INE1337", 1, 2, true, ["3.0820-2 / CTC-CTC102"], null)];
+        return this.semesters[semester].disciplinas; 
     }
-    
+
     showLineChart() {
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-    
+
             type: 'line',
             data: {
                 labels: this.estatistic.semesters,
@@ -113,11 +123,11 @@ export class StatisticsPage {
                         data: this.estatistic.courseIA,
                         spanGaps: false,
                     }
-    
+
                 ]
             }
-    
-        });        
+
+        });
     }
 
     showDoughnutChart() {
@@ -128,7 +138,7 @@ export class StatisticsPage {
                 labels: ["Semestres restantes", "Semestres cursados"],
                 datasets: [{
                     label: '# of Votes',
-                    data: [this.estatistic.semestresRestantes, this.estatistic.semesters.length],
+                    data: [this.semestersYears.length, this.estatistic.semesters.length],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'

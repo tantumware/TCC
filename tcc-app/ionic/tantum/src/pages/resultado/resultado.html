@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Resultado</ion-title>
+    <ion-title>{{ 'RESULT' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,5 +9,7 @@
   <subject-action-list [subjects]="getSubjects()"></subject-action-list>
 
   <grade-horario [subjects]="getSubjects()"></grade-horario>
+
+  <button ion-button (click)='onRedefineConstrainsClicked()' class="button-redefine">{{ 'RESET_GENERATION_CRITERIA' | translate }}</button>
 
 </ion-content>

@@ -22,7 +22,7 @@
   </ion-list>
 
   <ion-list [ngClass]="getClass('2')">
-    <div *ngFor='let semester of semesters'>
+    <div *ngFor='let semester of semestersYears'>
         <p>{{ semester }}</p>
         <subject-action-list [subjects]="getSubjects(semester)" [action]=false></subject-action-list>
     </div>    

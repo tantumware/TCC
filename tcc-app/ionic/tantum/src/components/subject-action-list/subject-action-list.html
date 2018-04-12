@@ -1,7 +1,7 @@
 <div class="subject-list">
   <div class="base-subject" *ngFor='let subject of subjects'>
     <span [ngClass]="getClass()" [innerHTML]="getValue(subject)"></span>
-    <button *ngIf="action" class="remove-subject" (click)="remove(subject)">Remover</button>
+    <button *ngIf="action" class="remove-subject" (click)="remove(subject)">{{ 'REMOVE' | translate }}</button>
   </div>
   <div></div>
 </div>

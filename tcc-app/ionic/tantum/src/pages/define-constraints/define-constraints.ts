@@ -73,6 +73,10 @@ export class DefineConstraintsPage {
       });
   }
 
+  ionViewWillEnter(){
+   this.passo == '1';
+  }
+
   onPeriodoSelected(event: string[]) {
     this.periodosSelected = event;
   }
