@@ -1,6 +1,7 @@
 package com.tantum.app.tantum.algoritmo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Algoritmo {
 
 	private Map<Integer, Map<String, List<String>>> curriculo;
 
-	private Map<String, Semester> semestres = new HashMap<>();
+	private Map<String, Semester> semesters = new HashMap<>();
 
 	private List<Subject> subjectsWantedError;
 
@@ -93,20 +94,18 @@ public class Algoritmo {
 				.collect(Collectors.toList());
 	}
 
-	private Solver applyConstraints(Constraints constraints, List<String> subjectsHistory, Subject disciplina, List<Subject> currentSubjects) {
+	private Solver applyConstraints(Constraints constraints, List<String> subjectsHistory, Subject subject, List<Subject> currentSubjects) {
 		Model model = new Model();
 		Solver solver = model.getSolver();
 
-		// TODO carga horaria nao esta validando 100%
-		int cargaHoraria = currentSubjects.stream().mapToInt(Subject::getAulas).sum() + disciplina.getAulas();
-		model.addClauseTrue(model.boolVar("carga horaria maxima", cargaHoraria <= constraints.getCreditMax()));
-		model.addClauseTrue(model.boolVar("horarios", validateHorario(currentSubjects, disciplina)));
-		model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, disciplina)));
+		model.addClauseTrue(model.boolVar("carga horaria maxima", validateClassHourLoad(constraints, currentSubjects, subject)));
+		model.addClauseTrue(model.boolVar("horarios", validateHorario(currentSubjects, subject)));
+		model.addClauseTrue(model.boolVar("periodo", validadePeriodo(constraints, subject)));
 		// TODO fazer essa validação e as que ele quer mas removendo elas depois do
 		// primeiro semestre
-		// model.addClauseFalse(model.boolVar("disciplias excluidas",
-		// this.validateDisciplinaExcluida(constraints, disciplina)));
-		model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(disciplina, subjectsHistory)));
+		model.addClauseTrue(model.boolVar("disciplinas wanted", validateSubjectsWanted(constraints, subject)));
+		model.addClauseFalse(model.boolVar("disciplias excluidas", validateDisciplinaExcluida(constraints, subject)));
+		model.addClauseTrue(model.boolVar("requisitos", validateRequisitos(subject, subjectsHistory)));
 
 		return solver;
 	}
@@ -120,8 +119,12 @@ public class Algoritmo {
 		int i = 0;
 		while (!rankDisciplinas.isEmpty()) {
 			i++;
-			if (this.semestres.isEmpty()) {
+			if (this.semesters.isEmpty()) {
 				subjects = calculateFirstSemester(constraints, subjectsHistory, rankDisciplinas);
+				
+				// clear subjects wanted and not wanted cuz its only for the next semester
+				constraints.setSubjectsWanted(Arrays.asList());
+				constraints.setSubjectsNotWanted(Arrays.asList());
 			} else {
 				subjects = calculateSemester(constraints, subjectsHistory, new ArrayList<>(), rankDisciplinas);
 			}
@@ -130,14 +133,14 @@ public class Algoritmo {
 				break;
 			}
 
-			this.semestres.put(getSemesterYear(i), new Semester(subjects));
+			this.semesters.put(getSemesterYear(i), new Semester(subjects));
 
 			subjects.stream().map(Subject::getCodigo).forEach(codigo -> {
 				rankDisciplinas.remove(codigo);
 				subjectsHistory.add(codigo);
 			});
 		}
-		return new NextSemestersDTO(this.semestres, this.subjectsWantedError, new ArrayList<>(), rankDisciplinas.stream().map(this.disciplinas::get).collect(Collectors.toList()));
+		return new NextSemestersDTO(this.semesters, this.subjectsWantedError, new ArrayList<>(), rankDisciplinas.stream().map(this.disciplinas::get).collect(Collectors.toList()));
 	}
 
 	private List<Subject> calculateFirstSemester(Constraints constraints, List<String> subjectsHistory, List<String> _subjectsRemaining) {
@@ -221,8 +224,19 @@ public class Algoritmo {
 	 * @param disciplina
 	 * @return boolean
 	 */
-	private boolean validateDisciplinaExcluida(Constraints settings, Subject disciplina) {
-		return settings.getSubjectsNotWanted().contains(disciplina);
+	private boolean validateDisciplinaExcluida(Constraints settings, Subject subject) {
+		return settings.getSubjectsNotWanted().contains(subject.getCodigo());
+	}
+	
+
+	private boolean validateSubjectsWanted(Constraints constraints, Subject subject) {
+		return constraints.getSubjectsWanted().contains(subject.getCodigo());
+	}
+	
+	private boolean validateClassHourLoad(Constraints constraints, List<Subject> currentSubjects, Subject subject) {
+		int cargaHoraria = currentSubjects.stream().mapToInt(Subject::getAulas).sum() + subject.getAulas();
+		
+		return cargaHoraria <= constraints.getCreditMax();		
 	}
 
 	/**
